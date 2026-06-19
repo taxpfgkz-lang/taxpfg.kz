@@ -78,3 +78,55 @@
 пересобрать Footer; коммит Этапа 1.
 
 **Статус:** in progress (пауза через GSD pause-work; см. `.continue-here.md`).
+
+---
+
+## 2026-06-19 — Этап 2 (8 внутренних страниц), done
+
+**Сделано:**
+- Собраны 8 внутренних страниц: `about, services, accounting, taxes, registration,
+  accounting-recovery, consulting, contacts` (.html в корне).
+- **Детерминированная сборка** (нулевой дрейф оболочки): `.gsd-build/template.html`
+  (плейсхолдеры @@TITLE@@/@@DESC@@/@@TITLEBAR@@/@@CONTENT@@) + `.gsd-build/assemble.py`.
+  Header(nav)/footer берутся из эталона `index.html` и идентичны на всех страницах
+  (MD5 сверен скриптом). Контент генерировался отдельными фрагментами
+  (`.gsd-build/frag/<slug>.content.html` + `.meta.txt`), агенты писали только тело.
+- **Titlebar** (хлебные крошки) на реальных классах темы (`pbmit-title-bar-wrapper`,
+  фон `images/titlebar-img.jpg`); у 5 страниц услуг родитель «Услуги» в крошках.
+- **Hero-слайдер главной** оказался внутри `<header>` темы и «протекал» в шаблон —
+  вырезан из template и со всех 8 внутренних; на `index.html` сохранён.
+- **Контактная форма** (`.pfg-form`): поля name/phone/biztype/message/consent,
+  `.pfg-form-status`, required на name/phone/consent, autocomplete на name/phone,
+  видимая ссылка на политику конфиденциальности (#privacy, резерв до Этапа 3/5).
+- **Сквозные правки темы** на всех 9 страницах (держим header/footer синхронными):
+  футер-заголовок `h1`→`h2` (+правило в custom.css, вид сохранён); `Search`→`Поиск`
+  (placeholder + 2×title); aria-label «Написать в WhatsApp» на телефон-ссылке шапки.
+- **Фикс 404**: вендорный `.form-select` ссылался на отсутствующий
+  `images/bg/down-arrow.png` → переопределён инлайновым SVG в `custom.css`.
+- `css/custom.css` дополнен (утилиты внутренних страниц уже были; добавлены футер-h2,
+  стрелка select, ссылка-политика).
+
+**Контроль (две волны мульти-агентной проверки + механический скан):**
+- Структура: header(nav)/footer MD5 = index.html на всех 8; titlebar по 1; баланс div;
+  0 битых ссылок/ассетов; слайдер удалён с внутренних, сохранён на главной — **errors=0**.
+- Контент (адверсариально): вердикт **FIX_THEN_READY**, 0 BLOCKER. Найденные
+  2×MAJOR (contacts: лишний h1 в футере; нет видимой ссылки на политику) — **исправлены**.
+  Выдуманных фактов/ложных обещаний нет; резерв-комментарии [PFG] на месте.
+- Browser smoke (chrome-devtools): консоль чистая на about/services/accounting/contacts
+  (на contacts остаётся только сторонний `[debug]` Google Maps — не наш код);
+  форма собирает корректный `wa.me/77072370050`-префилл со всеми полями; мобильный
+  бургер раскрывает меню (десктоп+мобайл скриншоты сняты в `.gsd-build/shot-*.jpeg`).
+
+**Файлы:** `about/services/accounting/taxes/registration/accounting-recovery/consulting/
+contacts.html` (new), `index.html` (M — сквозные правл темы), `css/custom.css` (M),
+`.gsd-build/*` (template, assemble.py, фрагменты, верификаторы, скриншоты),
+`docs/DEVELOPMENT_PLAN.md` (M — Этап 2 ✅).
+
+**Отложено (по плану, не блокеры):** точные SEO `<title>`/`description` под эталон
+SITE_CONTENT (Этап 5); реальная страница политики конфиденциальности (#privacy → Этап 3/5);
+изображения внутренних страниц (Этап 4); a11y-доводка/адаптив (Этап 6).
+
+**Следующий шаг:** Этап 3 (формы и связь — финализация) или Этап 5 (SEO) по выбору.
+
+**Статус:** Этап 2 — **done**. Production-ready: НЕТ (контент на согласовании;
+изображения/SEO/политика ПДн/финальный QA — впереди).

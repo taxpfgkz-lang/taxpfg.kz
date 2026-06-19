@@ -54,3 +54,49 @@
 
 /* --- Мелкие утилиты --- */
 .pfg-muted{ opacity:.85; }
+
+/* ==========================================================================
+   Внутренние страницы (Этап 2): переиспользуемые утилиты содержимого.
+   Тонкая визуальная доводка/адаптив — Этап 6.
+   ========================================================================== */
+.pfg-section{ padding: 80px 0; }
+.pfg-section--alt{ background: var(--pbmit-light-color, #f6f7f9); }
+.pfg-lead{ font-size: 18px; line-height: 1.7; }
+.pfg-prose p{ margin-bottom: 16px; line-height: 1.7; }
+.pfg-card{ background:#fff; border:1px solid #eef0f3; border-radius:14px; padding:28px; height:100%; }
+.pfg-card h3{ font-size:20px; margin-bottom:12px; }
+.pfg-grid{ display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+/* Нумерованные шаги «как проходит работа» */
+.pfg-steps{ counter-reset: pfg; list-style:none; padding:0; margin:0; }
+.pfg-steps li{ position:relative; padding:4px 0 24px 64px; }
+.pfg-steps li:last-child{ padding-bottom:0; }
+.pfg-steps li:before{ counter-increment:pfg; content:counter(pfg,decimal-leading-zero);
+  position:absolute; left:0; top:0; width:44px; height:44px; border-radius:50%;
+  background:var(--pbmit-global-color,#f59f46); color:#fff; display:flex;
+  align-items:center; justify-content:center; font-weight:700; font-size:16px; }
+.pfg-steps li h3{ font-size:18px; margin:6px 0 6px; }
+/* Контактная форма: базовые поля (детальная стилизация — Этап 6) */
+.pfg-form label{ display:block; font-weight:600; margin-bottom:14px; }
+.pfg-form .form-control, .pfg-form .form-select{ margin-top:6px; }
+.pfg-form .pfg-consent{ font-weight:400; }
+.pfg-form .pfg-policy-link{ text-decoration:underline; }
+/* Стрелка <select>: в теме base.css ссылается на отсутствующий images/bg/down-arrow.png (404).
+   Переопределяем инлайновым SVG — без сетевого запроса, вендорный файл не трогаем. */
+.form-select{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='13' viewBox='0 0 11 13'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='1.6' d='M1 4.5 5.5 9 10 4.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 22px center;
+}
+.pfg-contacts-info li{ margin-bottom:14px; }
+
+/* Футер: подзаголовок CTA понижен с h1 до h2 (убираем дубль h1 на страницах);
+   воспроизводим штатный вид темы (.pbmit-custom-subtitle h1 в shortcode.css). */
+.pbmit-footer-style-1 .footer-heading-wrap .pbmit-custom-subtitle h2{
+  font-size: 13px;
+  line-height: 28px;
+  margin: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .78px;
+  color: var(--pbmit-global-color);
+}
