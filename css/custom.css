@@ -1,0 +1,56 @@
+/* ==========================================================================
+   PrimeFinance Group — кастомные стили поверх темы GudFin.
+   Здесь только наши правки; вендорные файлы темы не трогаем.
+   ========================================================================== */
+
+/* --- Текстовый логотип (вместо SVG «Gudfin») --- */
+.pfg-logo{
+	display: inline-block;
+	font-family: var(--pbmit-heading-typography-font-family, sans-serif);
+	font-weight: 800;
+	font-size: 26px;
+	line-height: 1;
+	letter-spacing: -0.5px;
+	color: var(--pbmit-white-color, #fff);
+	white-space: nowrap;
+}
+.pfg-logo span{ color: var(--pbmit-global-color, #f59f46); }
+.pfg-logo--dark{ color: var(--pbmit-blackish-color, #1b1b2b); }
+
+/* у темы две версии лого (обычная и для sticky); показываем нужную */
+.pbmit-sticky-logo{ display:none; }
+
+/* --- Плавающая кнопка WhatsApp --- */
+.pfg-whatsapp-float{
+	position: fixed;
+	right: 22px;
+	bottom: 22px;
+	z-index: 9999;
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	background: #25D366;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 6px 20px rgba(0,0,0,.25);
+	transition: transform .2s ease;
+}
+.pfg-whatsapp-float:hover{ transform: scale(1.08); }
+.pfg-whatsapp-float svg{ width: 30px; height: 30px; fill: #fff; }
+
+/* --- Форма заявки: статус и согласие --- */
+.pfg-form .pfg-consent{
+	font-size: 13px;
+	line-height: 1.4;
+	margin-top: 10px;
+	display: flex;
+	gap: 8px;
+	align-items: flex-start;
+}
+.pfg-form .pfg-form-status{ margin-top: 12px; font-size: 14px; }
+.pfg-form .pfg-form-status.is-error{ color: #d33; }
+.pfg-form .pfg-form-status.is-ok{ color: #1a9e57; }
+
+/* --- Мелкие утилиты --- */
+.pfg-muted{ opacity:.85; }
