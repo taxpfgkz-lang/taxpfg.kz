@@ -184,3 +184,55 @@ SITE_CONTENT (Этап 5); реальная страница политики к
 
 **Статус:** Этап 3 — **done**. Production-ready: НЕТ (политику нельзя публиковать,
 пока клиент не подтвердит [PFG]-поля; далее изображения/SEO/QA).
+
+---
+
+## 2026-06-19 — Этап 5 (SEO/техничка), done
+
+**Сделано:**
+- **Title/Description** уникальны на всех 10 страницах и синхронизированы под эталон
+  `docs/SITE_CONTENT.md` (закрыт отложенный долг Этапа 2 — расходились на 8 стр.).
+  По итогам адверс-проверки 5 длинных title сокращены до ≤60 симв (services, consulting,
+  accounting-recovery, registration, taxes — брендовый хвост больше не режется в выдаче),
+  4 description ужаты до ≤160 (index, about, taxes, registration).
+- **canonical** (self-referencing, абсолютные; index→`/`), **OpenGraph** (type/site_name/
+  locale ru_RU/title/description/url/image), **Twitter Card** (summary_large_image) —
+  на всех 10 страницах. og:title=title, og:description=description (сверено).
+- **JSON-LD** `AccountingService` с `@id` на всех страницах — только подтверждённые факты
+  (name, url, telephone, areaServed Алматы, PostalAddress). Намеренно опущены БИН
+  (260640025396 под вопросом), e-mail (предварительный), часы, geo, legalName — чтобы
+  не выдумывать (в JSON нельзя [PFG]-коммент → опускаем).
+- **`sitemap.xml`** (10 URL, priority 1.0/0.9/0.8/0.7/0.3, lastmod 2026-06-19) +
+  **`robots.txt`** (Allow: / + Sitemap).
+- **Достоверность:** в about.html нейтрализовано неподтверждённое юр.написание
+  «ТОО «PrimeFinance Group»» → бренд + [PFG]-пометка (точное написание под вопросом:
+  план даёт КАПС, SITE_CONTENT — смешанный регистр, DRAFT — «Groupe»).
+- **Инфраструктура:** в `template.html` добавлен плейсхолдер `@@SEOHEAD@@`; общий
+  генератор `.gsd-build/seo_common.py` (единый источник SEO-блока); оба ассемблера
+  (`assemble.py`, `build_privacy.py`) заполняют его из title/desc. Фрагменты
+  `frag/*.meta.txt` синхронизированы с эталоном (устранён рассинхрон Этапа 2).
+
+**Контроль:**
+- Детерминированный self-check: на всех 10 стр. canonical=slug, og:url=canonical,
+  title=og:title, description=og:description, title≤70, desc≤160, JSON-LD валиден с @id
+  и без выдуманных полей — **errors=0**.
+- Структура (`verify_struct2.py`): header(nav)/footer = эталон, 0 битых ссылок — errors=0.
+- **Идемпотентность:** повторная пересборка всех 9 страниц даёт байт-в-байт те же файлы.
+- Пост-правки Этапов 2–3 уцелели после пересборки (privacy-ссылка, required, autocomplete,
+  сквозные правки темы, titlebar-заголовки).
+- Адверс-проверка (workflow, 2 линзы + верификация находок): 0 BLOCKER; 1 MAJOR
+  (длина title) — **исправлен**; ложное срабатывание og:locale ru_RU обоснованно
+  отклонено; достоверность подтверждена чистой (0 выдумок).
+- Browser smoke: консоль чистая; DOM отдаёт корректные мета; sitemap.xml парсится
+  (text/xml, 10 loc).
+
+**Файлы:** все 10 `*.html` (M), `sitemap.xml` + `robots.txt` (new), `docs/SITE_CONTENT.md`
+(M — эталон title/desc), `docs/DEVELOPMENT_PLAN.md` (M), `.gsd-build/{seo_common.py,
+seo_stage5.py, fix_seo_v2.py, template.html, assemble.py, build_privacy.py, frag/*.meta.txt,
+frag/about.content.html}`.
+
+**Отложено (Этап 4):** брендовый og:image 1200×630 + og:image:width/height + image в
+JSON-LD. Улучшения (Этап 4/6): BreadcrumbList/WebSite JSON-LD, пофайловый lastmod.
+
+**Статус:** Этап 5 — **done**. Production-ready: НЕТ (изображения, политика ПДн на
+подтверждении клиента, финальный QA — впереди).
