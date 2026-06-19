@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import re, hashlib, os, sys
 PAGES = ["about","services","accounting","taxes","registration",
-         "accounting-recovery","consulting","contacts"]
+         "accounting-recovery","consulting","contacts","privacy"]
 def rd(p): return open(p, encoding="utf-8").read()
 def md5(s): return hashlib.md5(s.encode("utf-8")).hexdigest()
 def extract(html, start_re, end):

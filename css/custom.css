@@ -100,3 +100,11 @@
   letter-spacing: .78px;
   color: var(--pbmit-global-color);
 }
+
+/* Политика конфиденциальности: блок кнопок «связаться» под контактами. */
+.pfg-cta-actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 30px;
+}
