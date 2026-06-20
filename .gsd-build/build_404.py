@@ -49,7 +49,9 @@ CONTENT = (
     '\t\t\t\t<div class="container">\n'
     '\t\t\t\t\t<div class="pfg-prose" style="max-width:720px;margin:0 auto;">\n'
     '\t\t\t\t\t\t<div class="pbmit-heading-subheading"><p class="pbmit-subtitle" style="justify-content:center;">Ошибка 404</p></div>\n'
-    '\t\t\t\t\t\t<div style="font-size:96px;line-height:1;font-weight:800;color:var(--pbmit-global-color);margin:8px 0 18px;">404</div>\n'
+    # затемнённый бренд-янтарь #8a6209 ≈ 5.5:1 на белом (WCAG AA для текста),
+    # бренд-золото #ecab23 здесь давало бы ~1.9:1 (провал контраста).
+    '\t\t\t\t\t\t<div style="font-size:96px;line-height:1;font-weight:800;color:#8a6209;margin:8px 0 18px;">404</div>\n'
     '\t\t\t\t\t\t<h2 style="margin-bottom:16px;">Такой страницы не существует</h2>\n'
     '\t\t\t\t\t\t<p class="pfg-lead">Возможно, ссылка устарела или адрес введён с ошибкой. '
     'Вернитесь на главную или выберите нужный раздел.</p>\n'
