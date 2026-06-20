@@ -22,6 +22,26 @@ def fix(text):
     text = text.replace(ARIA_OLD, ARIA_NEW)
     return text, n_sub, n_aria
 
+# agent-accessibility-tree (Lighthouse «Agentic Browsing»): Swiper навешивает
+# role="group" на слайды «бегущей строки», а <article role="group"> — неуместная
+# комбинация (article уже несёт implicit role). Декоративные ярлыки marquee — не
+# статьи; меняем их тег <article> → <div> (стили/Swiper цепляются за КЛАССЫ).
+# Строго в пределах секции <!-- Marquee Start --> … Marquee End: там ровно 6
+# article-слайдов, прочие <article> страницы (карточки) не затрагиваются.
+def fix_marquee_article(text):
+    a = text.find('<!-- Marquee Start -->')
+    e = text.find('Marquee End', a)
+    if a < 0 or e < 0:
+        return text, 0
+    seg = text[a:e]
+    n = seg.count('<article class="pbmit-marquee-effect-style-1 swiper-slide">')
+    if not n:
+        return text, 0
+    seg = seg.replace('<article class="pbmit-marquee-effect-style-1 swiper-slide">',
+                      '<div class="pbmit-marquee-effect-style-1 swiper-slide">')
+    seg = seg.replace('</article>', '</div>')  # в срезе marquee все </article> — слайды
+    return text[:a] + seg + text[e:], n
+
 # landmark-one-main для index.html (внутренние пейджи получают <main> из template.html).
 # Идемпотентно: оборачиваем .page-content в <main id="content"> ровно один раз.
 def wrap_main_index(text):
@@ -41,14 +61,15 @@ total_sub = total_aria = 0
 for path in targets:
     src = io.open(path, encoding="utf-8").read()
     out, n_sub, n_aria = fix(src)
-    n_main = 0
+    n_main = n_marq = 0
     if os.path.basename(path) == "index.html":
         out, n_main = wrap_main_index(out)
+        out, n_marq = fix_marquee_article(out)
     if out != src:
         io.open(path, "w", encoding="utf-8").write(out)
     total_sub += n_sub; total_aria += n_aria
     rel = os.path.relpath(path, ROOT)
-    extra = ("  <main>:%d" % n_main) if os.path.basename(path) == "index.html" else ""
+    extra = ("  <main>:%d  marquee article→div:%d" % (n_main, n_marq)) if os.path.basename(path) == "index.html" else ""
     print("%-40s subtitle→p: %d  aria-label: %d%s%s" % (rel, n_sub, n_aria, extra, "  (изменён)" if out != src else ""))
 
 print("\nИТОГО: подзаголовков конвертировано %d, aria-label исправлено %d" % (total_sub, total_aria))
