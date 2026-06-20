@@ -6,6 +6,11 @@ Thumbs.db
 # Артефакты смоук-теста (скриншоты браузера)
 .gsd-build/shot-*.jpeg
 
+# Рабочие артефакты сборки (не входят в поставку)
+.gsd-build/img-backup/
+.gsd-build/md5.*
+.gsd-build/*.snap
+
 # Python bytecode cache
 __pycache__/
 *.pyc

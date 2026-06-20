@@ -4,7 +4,10 @@
 import json
 
 BASE = "https://taxpfg.kz"
-OG_IMAGE = BASE + "/images/slider1-01.jpg"  # [PFG] временный, заменить на Этапе 4
+OG_IMAGE = BASE + "/images/og-image.jpg"  # брендовый превью 1200x630 (Этап 4)
+OG_IMAGE_W = "1200"
+OG_IMAGE_H = "630"
+OG_IMAGE_ALT = "PrimeFinance Group — бухгалтерия, налоги и право в Алматы"
 
 JSONLD = json.dumps({
     "@context": "https://schema.org",
@@ -12,6 +15,7 @@ JSONLD = json.dumps({
     "@id": BASE + "/#organization",
     "name": "PrimeFinance Group",
     "url": BASE + "/",
+    "image": OG_IMAGE,
     "telephone": "+77072370050",
     "areaServed": "Алматы",
     "address": {
@@ -39,8 +43,10 @@ def seo_head(slug, title, desc):
         '\t\t<meta property="og:title" content="%s">' % ta,
         '\t\t<meta property="og:description" content="%s">' % da,
         '\t\t<meta property="og:url" content="%s">' % c,
-        '\t\t<!-- [PFG] og:image временный (кадр hero); заменить на брендовый 1200x630 на Этапе 4 -->',
         '\t\t<meta property="og:image" content="%s">' % OG_IMAGE,
+        '\t\t<meta property="og:image:width" content="%s">' % OG_IMAGE_W,
+        '\t\t<meta property="og:image:height" content="%s">' % OG_IMAGE_H,
+        '\t\t<meta property="og:image:alt" content="%s">' % _attr(OG_IMAGE_ALT),
         '\t\t<meta name="twitter:card" content="summary_large_image">',
         '\t\t<meta name="twitter:title" content="%s">' % ta,
         '\t\t<meta name="twitter:description" content="%s">' % da,
