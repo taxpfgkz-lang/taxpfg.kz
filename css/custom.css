@@ -137,3 +137,16 @@
 .pbmit-btn.blackish:hover{ color: #1b1b1b; }
 .pbmit-bg-color-secondary .pbmit-btn:hover,
 .pbmit-bg-color-blackish .pbmit-btn:hover{ color: #1b1b1b; }
+
+/* A11y target-size (WCAG 2.2 AA): на мобильной шапке (≤1200px) видимая иконка
+   поиска — слишком мелкий тап-таргет (только глиф). Расширяем хит-зону ссылки
+   до 44×44, иконка остаётся отцентрованной; гамбургер уже 45–55px. */
+@media (max-width: 1200px){
+	.site-header .pbmit-header-search-btn > a{
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 44px;
+		min-height: 44px;
+	}
+}
