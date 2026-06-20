@@ -108,3 +108,32 @@
   gap: 16px;
   margin-top: 30px;
 }
+
+/* ==========================================================================
+   Доступность (Track A, Lighthouse-аудит 2026-06-20): контраст WCAG AA.
+   Оформление задаём только здесь; вендорные файлы темы не трогаем.
+   ========================================================================== */
+
+/* Основной текст: тема задаёт --pbmit-body-typography-color #7c898d
+   (3.15–3.6:1 на светлом фоне — ниже AA 4.5:1). Затемняем до #525d62
+   (6.8:1 на #fff, 5.9:1 на #ecf0f4). Переменная питает body, .pbmit-subtitle,
+   .pfg-lead, .pfg-prose, .right-box p и пр.; тёмные секции переопределяют
+   цвет явно (shortcode.css), поэтому меняется только текст на светлом фоне. */
+:root{ --pbmit-body-typography-color: #525d62; }
+
+/* Ссылка в копирайте футера различалась только цветом (link-in-text-block,
+   1.17:1 к окружающему тексту) — добавляем подчёркивание. */
+.pbmit-footer-copyright-text-area a{ text-decoration: underline; }
+
+/* Золотые кнопки: белый текст на #ecab23 = 2.01:1 (ниже AA). Текст делаем
+   тёмным (#1b1b1b → ~8.5:1); фирменное золото не трогаем. Тёмнофоновые
+   кнопки .blackish сохраняют белый текст в покое (тёмный фон), но на hover
+   (фон становится золотым) тоже получают тёмный. */
+.pbmit-btn,
+.pbmit-btn:hover,
+.pbmit-btn:focus{ color: #1b1b1b; }
+.pbmit-btn .pbmit-button-text span{ color: inherit; }
+.pbmit-btn.blackish{ color: var(--pbmit-white-color, #fff); }
+.pbmit-btn.blackish:hover{ color: #1b1b1b; }
+.pbmit-bg-color-secondary .pbmit-btn:hover,
+.pbmit-bg-color-blackish .pbmit-btn:hover{ color: #1b1b1b; }

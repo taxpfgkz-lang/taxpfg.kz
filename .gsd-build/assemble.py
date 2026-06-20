@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Детерминированная сборка внутренних страниц: template.html + фрагменты -> <slug>.html
 import io, os, re, sys, html as _html
-from seo_common import seo_head
+from seo_common import seo_head, BASE, canon
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BUILD = os.path.join(ROOT, ".gsd-build")
@@ -40,6 +40,14 @@ def titlebar(h1, slug):
         '\t\t</div>' % (_html.escape(h1), "".join(crumbs))
     )
 
+def build_crumbs(slug, h1):
+    # зеркало видимых крошек из titlebar(): Главная / [Услуги] / <H1>
+    crumbs = [("Главная", BASE + "/")]
+    if slug in SERVICE_DETAIL:
+        crumbs.append(("Услуги", BASE + "/services.html"))
+    crumbs.append((h1, canon(slug)))
+    return crumbs
+
 def clean_fragment(s):
     s = s.strip()
     # снять случайные markdown-ограждения
@@ -71,7 +79,7 @@ for slug in PAGES:
     assert page.count("@@SEOHEAD@@") == 1
     page = page.replace("@@TITLE@@", esc_title(title))
     page = page.replace("@@DESC@@", esc_attr(desc))
-    page = page.replace("@@SEOHEAD@@", seo_head(slug, title, desc))
+    page = page.replace("@@SEOHEAD@@", seo_head(slug, title, desc, build_crumbs(slug, h1)))
     page = page.replace("@@TITLEBAR@@", titlebar(h1, slug))
     page = page.replace("@@CONTENT@@", content)
     # не должно остаться плейсхолдеров

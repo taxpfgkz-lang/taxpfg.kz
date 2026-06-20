@@ -32,9 +32,17 @@ def canon(slug):
 def _attr(s):
     return s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;")
 
-def seo_head(slug, title, desc):
+def breadcrumb_jsonld(crumbs):
+    # crumbs: список (name, url) — порядок = видимые хлебные крошки (Главная / … / Текущая).
+    items = [{"@type": "ListItem", "position": i, "name": name, "item": url}
+             for i, (name, url) in enumerate(crumbs, start=1)]
+    data = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList",
+                       "itemListElement": items}, ensure_ascii=False, separators=(",", ":"))
+    return '\t\t<script type="application/ld+json">%s</script>' % data
+
+def seo_head(slug, title, desc, crumbs=None):
     c = canon(slug); ta = _attr(title); da = _attr(desc)
-    return "\n".join([
+    lines = [
         '\t\t<!-- SEO: canonical / OpenGraph / Twitter / JSON-LD (Этап 5) -->',
         '\t\t<link rel="canonical" href="%s">' % c,
         '\t\t<meta property="og:type" content="website">',
@@ -52,4 +60,7 @@ def seo_head(slug, title, desc):
         '\t\t<meta name="twitter:description" content="%s">' % da,
         '\t\t<meta name="twitter:image" content="%s">' % OG_IMAGE,
         '\t\t<script type="application/ld+json">%s</script>' % JSONLD,
-    ])
+    ]
+    if crumbs:
+        lines.append(breadcrumb_jsonld(crumbs))
+    return "\n".join(lines)

@@ -2,7 +2,7 @@
 # Автономная сборка ОДНОЙ страницы privacy.html из эталонного template.html.
 # Не трогает остальные страницы. Header/footer берутся из template (= index.html).
 import io, os, re, sys, html as _html
-from seo_common import seo_head
+from seo_common import seo_head, BASE, canon
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BUILD = os.path.join(ROOT, ".gsd-build")
@@ -67,7 +67,7 @@ assert page.count("@@TITLEBAR@@") == 1 and page.count("@@CONTENT@@") == 1
 assert page.count("@@SEOHEAD@@") == 1
 page = page.replace("@@TITLE@@", esc_title(title))
 page = page.replace("@@DESC@@", esc_attr(desc))
-page = page.replace("@@SEOHEAD@@", seo_head(SLUG, title, desc))
+page = page.replace("@@SEOHEAD@@", seo_head(SLUG, title, desc, [("Главная", BASE + "/"), (h1, canon(SLUG))]))
 page = page.replace("@@TITLEBAR@@", titlebar(h1))
 page = page.replace("@@CONTENT@@", content)
 leftover = [p for p in ("@@TITLE@@","@@DESC@@","@@SEOHEAD@@","@@TITLEBAR@@","@@CONTENT@@") if p in page]
