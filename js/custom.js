@@ -3,6 +3,7 @@
    1) Мобильное меню (в теме у #menu-toggle нет обработчика).
    2) Форма заявки → отправка в WhatsApp с префиллом.
    3) Плавающая кнопка WhatsApp на всех страницах.
+   4) Замедление бегущей строки (marquee) — была нечитаемо быстрой.
    ========================================================================== */
 (function () {
 	'use strict';
@@ -13,6 +14,7 @@
 		initMobileMenu();
 		initWhatsAppFloat();
 		initLeadForm();
+		initMarqueeSpeed();
 	});
 
 	/* --- 1. Мобильное меню -------------------------------------------------
@@ -111,5 +113,40 @@
 				form.reset();
 			});
 		});
+	}
+
+	/* --- 4. Замедление бегущей строки (marquee) ----------------------------
+	   Тема инициализирует Swiper для .swiper-slider.marquee со speed:10000
+	   (js/scripts.js — вендорный, НЕ редактируем). На таком значении строка
+	   с названиями услуг бежит слишком быстро и не читается. Переопределяем
+	   params.speed уже созданного экземпляра на бо́льшее значение: скорость
+	   обратно пропорциональна speed, поэтому больше speed = медленнее ход.
+	   Значение 40000 (~4× медленнее) подобрано и проверено визуально.
+
+	   ВАЖНО: только присваиваем params.speed. Нельзя вызывать
+	   autoplay.stop()/start() — в конфиге темы disableOnInteraction:true,
+	   и пара stop→start трактуется как «взаимодействие», намертво
+	   останавливая прокрутку. Автоплей читает this.params.speed на каждом
+	   цикле run(), поэтому новое значение подхватывается само собой.
+
+	   Тема может инициализировать Swiper как на DOMContentLoaded, так и
+	   позже (window.load), поэтому опрашиваем экземпляр с интервалом и
+	   переустанавливаем speed в течение ~10 c — это покрывает обе ситуации
+	   и поправляет значение, если тема его переинициализирует. */
+	function initMarqueeSpeed() {
+		var MARQUEE_SPEED = 40000; // вендорное значение темы — 10000
+		var el = document.querySelector('.swiper-slider.marquee');
+		if (!el) return;
+
+		var ticks = 0;
+		var MAX_TICKS = 100; // ~10 c при шаге 100 мс
+		var timer = setInterval(function () {
+			ticks++;
+			var sw = el.swiper;
+			if (sw && sw.params && sw.params.speed !== MARQUEE_SPEED) {
+				sw.params.speed = MARQUEE_SPEED;
+			}
+			if (ticks >= MAX_TICKS) clearInterval(timer);
+		}, 100);
 	}
 })();
