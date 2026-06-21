@@ -252,3 +252,228 @@
 .pfg-lead a:not(.pbmit-btn){
 	text-decoration: underline;
 }
+
+/* ==========================================================================
+   ЭТАП 9 — ПРЕМИАЛЬНЫЙ СЛОЙ (frontend-design, 2026-06-21).
+   Доводка поверх темы GudFin до «дорогого» fintech-вида: чернила + золото на
+   белом, единая «леджерная» сигнатура (золотой штрих перед надзаголовками —
+   строка бухгалтерской книги), глубина hero/title-bar, тактильные кнопки,
+   карточки с мягкой тенью, плавные микровзаимодействия, доступный фокус.
+   Только оформление; HTML/контент и вендорные файлы не трогаем. Все 11 страниц.
+   ========================================================================== */
+
+/* --- 9.0 Токены премиум-слоя (namespace --pfg-*; бренд-цвета не меняем) --- */
+:root{
+	--pfg-ink:            #16222d;   /* чернила — фирменный тёмный */
+	--pfg-ink-deep:       #0f1820;   /* глубже чернил — для градиентов */
+	--pfg-gold:           #ecab23;   /* фирменное золото */
+	--pfg-gold-deep:      #d6960f;   /* тёмное золото — hover (текст #1b1b1b держит AA) */
+	--pfg-gold-ink:       #7a560a;   /* золото-текст на светлом (AA ≥5.4:1) */
+	--pfg-hairline:       rgba(22, 34, 45, .10);
+	--pfg-hairline-2:     rgba(22, 34, 45, .16);
+	--pfg-paper-warm:     #f6f4ef;   /* тёплая бумага вместо холодного #ecf0f4 */
+	--pfg-shadow-sm:      0 2px 8px rgba(16,24,32,.05), 0 1px 2px rgba(16,24,32,.04);
+	--pfg-shadow-md:      0 14px 34px -14px rgba(16,24,32,.20), 0 4px 10px -6px rgba(16,24,32,.10);
+	--pfg-shadow-btn:     0 4px 14px -6px rgba(16,24,32,.30);
+	--pfg-shadow-btn-h:   0 12px 26px -8px rgba(16,24,32,.34);
+	--pfg-radius:         14px;
+	--pfg-radius-sm:      10px;
+	--pfg-ease:           cubic-bezier(.22, .61, .36, 1);
+	--pfg-tf-fast:        .25s var(--pfg-ease);
+	--pfg-tf:             .4s  var(--pfg-ease);
+}
+
+/* --- 9.1 Глобальные микровзаимодействия + доступный фокус + reduced-motion --- */
+/* Видимое фокус-кольцо для клавиатуры (золото) — навигация/кнопки/ссылки.
+   Поля ввода получают собственное мягкое золотое кольцо ниже (9.9). */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+.pbmit-btn:focus-visible{
+	outline: 2px solid var(--pfg-gold);
+	outline-offset: 3px;
+	border-radius: 3px;
+}
+/* Уважаем системную настройку «меньше движения»: гасим CSS-переходы/анимации. */
+@media (prefers-reduced-motion: reduce){
+	*, *::before, *::after{
+		transition-duration: .001ms !important;
+		animation-duration: .001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* --- 9.2 Сигнатура: «леджерный» надзаголовок (eyebrow) ---
+   Было (Этап 7–8): золотая «таблетка»-pill — читается как бейдж веб-приложения.
+   Делаем тонкую леджерную метку: золотой штрих + разреженный капс. Предметно-
+   верно (строка бухгалтерской книги), дороже и единообразно по всему сайту.
+   Контраст: золото-текст #7a560a на белом 6.6:1, на #f6f4ef ~6.0:1, на тёплой
+   секции about (#ece8db) ~5.4:1 — везде AA. Тёмные секции — белый текст. */
+.pbmit-heading-subheading .pbmit-subtitle{
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	padding: 0;
+	background-color: transparent;
+	color: var(--pfg-gold-ink);
+	font-weight: 700;
+	letter-spacing: 1.4px;
+	border-radius: 0;
+}
+.pbmit-heading-subheading .pbmit-subtitle::before{
+	content: "";
+	display: inline-block;
+	flex: 0 0 auto;
+	width: 28px;
+	height: 2px;
+	background: var(--pfg-gold);
+}
+.pbmit-bg-color-secondary .pbmit-heading-subheading .pbmit-subtitle,
+.pbmit-bg-color-blackish  .pbmit-heading-subheading .pbmit-subtitle{
+	color: var(--pbmit-white-color, #fff);
+	background-color: transparent;
+}
+
+/* --- 9.3 Шапка: «стеклянная» панель (только десктоп ≥1201px) ---
+   Тусклую серую рамку темы (#7c898d) заменяем тонким световым hairline,
+   добавляем мягкую тень-отрыв и frosted-блюр.
+
+   ВАЖНО — почему media (min-width:1201px): на ≤1200px тема превращает меню в
+   off-canvas-панель .pbmit-menu-wrap { position:fixed; top:0; height:100% },
+   которая лежит ВНУТРИ .pbmit-header-content. Любой backdrop-filter (как и
+   transform/filter) на предке делает его containing-block для fixed-потомков →
+   height:100% схлопывается до высоты шапки (49px вместо 100vh), и мобильное
+   меню «ломается» (узкая белая полоса). На десктопе пунктов меню — обычная
+   горизонтальная навигация (static-позиция), ловушки нет. Поэтому весь
+   стеклянный слой включаем только с 1201px. */
+@media (min-width: 1201px){
+	.pbmit-header-style-1 .pbmit-header-content{
+		border-color: rgba(255, 255, 255, .22) !important;
+		box-shadow: 0 8px 30px -10px rgba(8, 14, 20, .45);
+		-webkit-backdrop-filter: blur(6px) saturate(115%);
+		backdrop-filter: blur(6px) saturate(115%);
+	}
+}
+
+/* --- 9.4 Навигация: фикс переноса + «леджерное» подчёркивание ---
+   Перенос пунктов на 2-ю строку: на >1366px тема ставит li{margin:0 15px} →
+   контент пунктов 411px не влезает в слот ~402px. Унифицируем десктоп ≥1301px
+   значением 8px (как у темы на меньших ширинах): контент 355px < слот (368px
+   на 1301, 402px на 1440) — перенос устранён во всём диапазоне. */
+@media (min-width: 1301px){
+	.pbmit-header-style-1 .site-navigation ul.navigation > li{
+		margin: 0 8px;
+	}
+}
+/* Растущее слева золотое подчёркивание на hover/active (у пунктов нет штатных
+   псевдоэлементов — проверено, задвоения нет). */
+.pbmit-header-style-1 .site-navigation ul.navigation > li > a{
+	position: relative;
+}
+.pbmit-header-style-1 .site-navigation ul.navigation > li > a::after{
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -4px;
+	height: 2px;
+	width: 0;
+	background: var(--pfg-gold);
+	transition: width var(--pfg-tf);
+}
+.pbmit-header-style-1 .site-navigation ul.navigation > li:hover > a::after,
+.pbmit-header-style-1 .site-navigation ul.navigation > li.active > a::after{
+	width: 100%;
+}
+
+/* --- 9.5 Кнопки: тактильность (тень + подъём + углубление золота) ---
+   Текст уже тёмный #1b1b1b (Этап 8, AA). Добавляем мягкую нейтральную тень,
+   подъём и углубление фона на hover (#d6960f → текст #1b1b1b ещё контрастнее).
+   Анимацию padding (стрелка-свап темы) сохраняем плавной. */
+.pbmit-btn{
+	box-shadow: var(--pfg-shadow-btn);
+	transition: background-color var(--pfg-tf-fast),
+	            box-shadow var(--pfg-tf),
+	            transform var(--pfg-tf-fast),
+	            color var(--pfg-tf-fast),
+	            padding .4s ease;
+}
+.pbmit-btn:hover{
+	background-color: var(--pfg-gold-deep);
+	box-shadow: var(--pfg-shadow-btn-h);
+	transform: translateY(-2px);
+}
+.pbmit-btn:active{ transform: translateY(0); }
+.pbmit-btn.blackish{ box-shadow: 0 8px 22px -10px rgba(16, 24, 32, .55); }
+.pbmit-btn.blackish:hover{ background-color: var(--pfg-gold); }
+
+/* --- 9.6 Title-bar внутренних страниц: «балансовый» градиент + читаемость ---
+   Штатный overlay = rgba(0,0,0,.42) × opacity .4 ≈ 0.17 затемнения, без тени →
+   белый заголовок 70px плохо читается на дневном фото. Заменяем плоский слой
+   направленным чернильным градиентом (темнее снизу-слева, где сидят крошки и
+   заголовок; светлее сверху-справа — фото остаётся видимым). Трекинг −3px для
+   кириллицы слишком тесный → −1.5px; добавляем мягкую тень тексту. */
+.pbmit-title-bar-wrapper::before{
+	background-color: transparent;
+	background-image:
+		linear-gradient(180deg, rgba(15,24,32,.32) 0%, rgba(15,24,32,.18) 38%, rgba(15,24,32,.66) 100%),
+		linear-gradient(105deg, rgba(15,24,32,.55) 0%, rgba(15,24,32,0) 58%);
+	opacity: 1;
+}
+.pbmit-tbar-title{
+	letter-spacing: -1.5px;
+	text-shadow: 0 2px 28px rgba(8, 14, 20, .42);
+}
+.pbmit-breadcrumb,
+.pbmit-breadcrumb a{
+	text-shadow: 0 1px 14px rgba(8, 14, 20, .45);
+}
+
+/* --- 9.7 Hero (slider-one): читаемость заголовка на фото --- */
+.pbmit-slider-one .pbmit-slider-title{
+	text-shadow: 0 2px 34px rgba(8, 14, 20, .40);
+}
+
+/* --- 9.8 Карточки .pfg-card: hairline + мягкая тень + подъём на hover --- */
+.pfg-card{
+	border: 1px solid var(--pfg-hairline);
+	border-radius: var(--pfg-radius);
+	box-shadow: var(--pfg-shadow-sm);
+	transition: transform var(--pfg-tf),
+	            box-shadow var(--pfg-tf),
+	            border-color var(--pfg-tf);
+}
+.pfg-card:hover{
+	transform: translateY(-4px);
+	box-shadow: var(--pfg-shadow-md);
+	border-color: rgba(236, 171, 35, .45);
+}
+
+/* Тёплая бумага вместо холодной #ecf0f4 на чередующихся секциях внутр. страниц. */
+.pfg-section--alt{ background: var(--pfg-paper-warm); }
+
+/* --- 9.9 Формы: hairline-поля + мягкое золотое фокус-кольцо --- */
+.pfg-form .form-control,
+.pfg-form .form-select,
+.pfg-form textarea.form-control{
+	border: 1px solid var(--pfg-hairline-2);
+	border-radius: var(--pfg-radius-sm);
+	transition: border-color var(--pfg-tf-fast), box-shadow var(--pfg-tf-fast);
+}
+.pfg-form .form-control:focus,
+.pfg-form .form-select:focus,
+.pfg-form textarea.form-control:focus{
+	border-color: var(--pfg-gold);
+	box-shadow: 0 0 0 3px rgba(236, 171, 35, .18);
+	outline: none;
+}
+
+/* --- 9.10 Эхо сигнатуры: тонкая золотая «леджерная» линия-кап над футером --- */
+.site-footer{ border-top: 3px solid var(--pfg-gold); }
+
+/* --- 9.11 Лёгкие микровзаимодействия для info-блоков темы (ihbox) --- */
+.pbmit-ihbox-style-15 .pbmit-ihbox-icon,
+.pbmit-ihbox-style-15 .pbmit-element-title{
+	transition: color var(--pfg-tf-fast), transform var(--pfg-tf-fast);
+}
+.pbmit-ihbox-style-15:hover .pbmit-ihbox-icon{ color: var(--pfg-gold); }
