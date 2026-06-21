@@ -150,3 +150,105 @@
 		min-height: 44px;
 	}
 }
+
+/* ==========================================================================
+   Этап 8 — визуальная доводка (production UI/UX-аудит, 2026-06-21).
+   Только оформление поверх темы; вендорные файлы не трогаем.
+   ========================================================================== */
+
+/* 1. Hero (slider-one): на ≤575px заголовок 70px вылезал за правый край и
+   обрезался («Бухгалтери…» вместо «Бухгалтерия под ключ»). Масштабируем под
+   ширину экрана — текст помещается целиком, без горизонтального обрезания. */
+@media (max-width: 575px){
+	.pbmit-slider-one .pbmit-slider-title{
+		font-size: clamp(34px, 11vw, 52px) !important;
+		line-height: 1.12 !important;
+	}
+}
+
+/* 2. Кнопка «наверх» (.pbmit-backtotop, base.css) и плавающая кнопка WhatsApp
+   делили один угол и накладывались. Поднимаем «наверх» над WhatsApp и
+   выравниваем по центру (WhatsApp: right22/bottom22/56px → центр 50px от края;
+   кнопка 50px → right25 даёт тот же центр). */
+.pbmit-backtotop.active{ bottom: 90px !important; right: 25px !important; }
+.pbmit-backtotop:hover{ bottom: 95px !important; }
+
+/* 3. Мобильное меню: штатная анимация открытия ~1500мс (delay 600 + 900мс) —
+   после тапа полсекунды ничего не происходит, читается как «не работает».
+   Делаем отзывчивой (0.3с, без задержки). */
+@media (max-width: 1200px){
+	.pbmit-menu-wrap,
+	.active .pbmit-menu-wrap,
+	.pbmit-mobile-menu-bg,
+	.active .pbmit-mobile-menu-bg{
+		transition-duration: .3s !important;
+		transition-delay: 0s !important;
+	}
+}
+
+/* 4. Футер «Услуги» (.pbmit-two-column-menu): две колонки стояли впритык
+   (нулевой зазор, длинные пункты сталкивались). Добавляем зазор; на мобильном
+   (≤575px) разворачиваем в одну колонку. */
+.site-footer .widget .pbmit-two-column-menu ul.menu li{ padding-right: 20px; }
+@media (max-width: 575px){
+	.site-footer .widget .pbmit-two-column-menu ul.menu li{ width: 100%; padding-right: 0; }
+}
+
+/* 5. Меню футера: text-transform:capitalize (shortcode.css) ломал русские
+   союзы — «Налоги И Отчётность», «Консультации И Юрист». Возвращаем регистр
+   как в исходном тексте. */
+.site-footer .widget ul.menu li a{ text-transform: none; }
+
+/* 6. Карточки .pfg-card: h3 без line-height наследовал 45px от темы —
+   2-строчные заголовки растягивались по высоте (90px) и «разваливались».
+   Задаём плотный межстрочный интервал. */
+.pfg-card h3{ line-height: 1.3; }
+
+/* 7. Подзаголовки-«eyebrow» (.pbmit-subtitle): pill-фон --pbmit-light-color
+   (#ecf0f4) сливался и с белыми, и с серыми (.pfg-section--alt) секциями
+   (контраст pill↔фон 1.0–1.15) → метки были практически нечитаемы и
+   несогласованны по всему сайту. Делаем единый тёплый чип с тёмно-янтарным
+   текстом. Полупрозрачный pill пропускает фон секции, поэтому на тёплой
+   бежевой секции about (axe резолвит фон #ece8db — самый тёмный из «светлых»)
+   исходный #8a6209 падал до 4.47:1 (ниже AA). Берём чуть темнее — #7a560a:
+   ≥5.4:1 даже на #ece8db, 6.6:1 на белом; тёмные секции сохраняют штатный
+   золотой pill темы (переопределение ниже). */
+.pbmit-heading-subheading .pbmit-subtitle{
+	color: #7a560a;
+	background-color: rgba(236, 171, 35, .12);
+}
+.pbmit-bg-color-secondary .pbmit-heading-subheading .pbmit-subtitle{
+	color: var(--pbmit-white-color, #fff);
+	background-color: var(--pbmit-global-color);
+}
+
+/* 8. Кнопки (.pbmit-btn и сервис/прайс-кнопки темы): text-transform:capitalize
+   (base.css:290, shortcode.css:148) капитализировал русские предлоги внутри
+   подписей — «Написать В WhatsApp», «Отправить В WhatsApp» — и навязывал
+   Title-Case всем кнопкам («Получить Консультацию», «Наши Услуги»), что для
+   русского неверно. Возвращаем регистр исходного текста (все подписи в HTML
+   уже в корректном предложном виде с заглавной первой буквой). «WhatsApp»
+   как имя собственное при none сохраняется. */
+.pbmit-btn,
+.pbmit-btn .pbmit-button-text span,
+.pbmit-service-btn a,
+.pbmit-service-btn .pbmit-button-text span,
+.pbmit-price-btn a,
+.pbmit-price-btn .pbmit-button-text span,
+.pbmit-ihbox-btn .pbmit-btn-wrapper .pbmit-button-render span{
+	text-transform: none;
+}
+
+/* 9. Инлайн-ссылки в тексте (.pfg-prose / .pfg-lead): tel/WhatsApp-ссылки внутри
+   абзацев и списков (registration «…напишите нам в WhatsApp…», consulting «…по
+   телефону +7…», privacy-списки) отличались от окружающего текста только цветом
+   (#16222d к #525d62 = 2.38:1 < 3:1) и не имели подчёркивания → axe
+   link-in-text-block (WCAG 1.4.1 «Использование цвета»). Подчёркиваем инлайн-
+   ссылки в прозе — как уже сделано для копирайт-ссылки футера. Контакт-карточки
+   (.pbmit-element-title, .pbmit-heading-desc в <aside>/ihbox), кнопки и меню —
+   вне .pfg-prose, поэтому не затрагиваются. */
+.pfg-prose p a:not(.pbmit-btn),
+.pfg-prose li a:not(.pbmit-btn),
+.pfg-lead a:not(.pbmit-btn){
+	text-decoration: underline;
+}

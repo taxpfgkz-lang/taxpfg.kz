@@ -3,8 +3,10 @@ node_modules/
 Thumbs.db
 *.log
 
-# Артефакты смоук-теста (скриншоты браузера)
+# Артефакты смоук-теста и UI-аудита (скриншоты браузера)
 .gsd-build/shot-*.jpeg
+.gsd-build/audit-shots/
+.playwright-mcp/
 
 # Рабочие артефакты сборки (не входят в поставку)
 .gsd-build/img-backup/
