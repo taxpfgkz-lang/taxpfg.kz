@@ -376,3 +376,37 @@ consulting,accounting-recovery}.content.html` (M — FAQ скрыт), однои
 
 **Статус:** Этап 7 — **done**. Проект **production-ready по коду/вёрстке/QA**;
 к публикации — после ответов клиента (раздел A `docs/HANDOFF.md`).
+
+---
+
+## 2026-06-23 — fix(a11y): точечный prefers-reduced-motion (вместо универсального гасителя), done
+
+**Проблема.** В `css/custom.css` стоял универсальный гаситель движения:
+`*,*::before,*::after{transition-duration:.001ms!important; animation-duration:.001ms!important}`
+внутри `@media (prefers-reduced-motion: reduce)`. С `!important` он перебивал в т.ч.
+фирменные контент-анимации темы, у которых вся плавность держится на CSS-transition:
+hero-слайдер (`.transform-*`, transition 1s + delay) и бегущую строку услуг (Swiper
+ведёт `.swiper-wrapper` через inline `transition-duration`). У владельца сайта в ОС
+включён «reduce motion» → обе анимации пропадали (на машинах без флага — нет, оттого
+дефект и проскочил ранее).
+
+**Решение.** Узкий scope без `*`: гасим ТОЛЬКО декоративные микро-взаимодействия
+премиум-слоя (подъём `.pfg-card`/`.pbmit-btn`, рост подчёркивания навигации,
+hover info-блоков `.pbmit-ihbox-style-15`) через `transition:none!important;
+transform:none!important`. Фирменные слайдер/marquee/заголовки сохранены сознательно
+(часть айдентики, владелец хочет их видеть). `html{scroll-behavior:auto}` оставлен.
+
+**Верификация (Playwright, реальная эмуляция `reducedMotion: reduce`):**
+- `matchMedia('(prefers-reduced-motion: reduce)').matches = true` (флаг реально активен);
+- `.pbmit-btn` → `transition-duration: 0s`; nav `::after` → `0s`; `.pfg-card`
+  (about.html) → `0s`, `transform: none` — микро-взаимодействия погашены;
+- hero `.pbmit-slider-title.transform-left.transform-delay-1` → `transition-duration: 1s`
+  (фирменная анимация СОХРАНЕНА, раньше ломалась в 0.001ms);
+- marquee `.swiper-slider.marquee .swiper-wrapper` → inline `transition-duration: 10000ms`
+  + живой `translate3d(...)` (Swiper не затёрт);
+- дефолтный путь (без флага) не затронут — весь дифф внутри `@media`, файл распарсился
+  (правила после блока применились).
+
+**Файлы:** `css/custom.css` (M — узкий reduce-motion-блок), `docs/SESSION_LOG.md` (M).
+
+**Статус:** done. Изменение безопасно и обратимо; не затрагивает обычный рендеринг.

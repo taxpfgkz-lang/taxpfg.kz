@@ -294,14 +294,36 @@ button:focus-visible,
 	outline-offset: 3px;
 	border-radius: 3px;
 }
-/* Уважаем системную настройку «меньше движения»: гасим CSS-переходы/анимации. */
+/* Уважаем системную настройку «меньше движения» — но ТОЧЕЧНО.
+   РАНЕЕ здесь стоял универсальный гаситель `*,*::before,*::after{transition/
+   animation-duration:.001ms!important}`. С `!important` он перебивал в т.ч.
+   inline-стили Swiper и фирменные анимации темы, у которых вся «плавность»
+   держится исключительно на CSS-transition:
+     • Hero-слайдер (.pbmit-slider-area .transform-*): появление заголовка/
+       кнопки/описания — transition 1s + delay 1–2.1s (shortcode.css:5186+);
+     • бегущая строка услуг (.swiper-slider.marquee): Swiper ведёт ленту через
+       inline transition-duration (наш 40000ms), который тоже затирался.
+   У владельца сайта в ОС включён «reduce motion», поэтому правило срабатывало
+   и обе анимации пропадали (на машинах без флага — нет, оттого и проскочило).
+
+   Фирменные контент-анимации (слайдер, marquee, GSAP/AOS-заголовки) — часть
+   айдентики и сознательно сохраняются. Гасим ТОЛЬКО декоративные микро-
+   взаимодействия, добавленные премиум-слоем (подъём карточек/кнопок, рост
+   подчёркивания в навигации, hover info-блоков): они вестибулярно-избыточны и
+   ничего не сообщают. Узкий scope, без универсального `*`. */
 @media (prefers-reduced-motion: reduce){
-	*, *::before, *::after{
-		transition-duration: .001ms !important;
-		animation-duration: .001ms !important;
-		animation-iteration-count: 1 !important;
-		scroll-behavior: auto !important;
+	.pfg-card,
+	.pfg-card:hover,
+	.pbmit-btn,
+	.pbmit-btn:hover,
+	.pbmit-btn:active,
+	.pbmit-header-style-1 .site-navigation ul.navigation > li > a::after,
+	.pbmit-ihbox-style-15 .pbmit-ihbox-icon,
+	.pbmit-ihbox-style-15 .pbmit-element-title{
+		transition: none !important;
+		transform: none !important;
 	}
+	html{ scroll-behavior: auto !important; }
 }
 
 /* --- 9.2 Сигнатура: «леджерный» надзаголовок (eyebrow) ---
