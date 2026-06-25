@@ -1,10 +1,11 @@
 ---
 phase: 2
 slug: design-tokens-primitives
-status: draft
+status: approved
 shadcn_initialized: false
 preset: none
 created: 2026-06-26
+reviewed_at: 2026-06-25T21:23:43Z
 master_contract: ../01-baseline-audit-ui-design-contract/01-UI-SPEC.md
 ---
 
