@@ -2,18 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 1
-current_phase_name: Baseline Audit + UI Design Contract
 status: executing
-stopped_at: ROADMAP.md + STATE.md written, REQUIREMENTS.md traceability updated
-last_updated: "2026-06-25T20:39:28.329Z"
+last_updated: "2026-06-25T20:45:43.673Z"
 last_activity: 2026-06-25
-last_activity_desc: Phase 1 execution started
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 4
-  completed_plans: 1
+  completed_plans: 2
   percent: 0
 ---
 
@@ -29,11 +25,11 @@ See: .planning/PROJECT.md (updated 2026-06-25)
 ## Current Position
 
 Phase: 1 (Baseline Audit + UI Design Contract) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 Status: Ready to execute
-Last activity: 2026-06-25 — Phase 1 execution started
+Last activity: 2026-06-25
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█████░░░░░] 50%
 
 ## Performance Metrics
 
@@ -56,6 +52,7 @@ Progress: [░░░░░░░░░░] 0%
 
 *Updated after each plan completion*
 | Phase 01 P01 | 8min | 3 tasks | 23 files |
+| Phase 01 P02 | 8min | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -70,6 +67,7 @@ Recent decisions affecting current work:
 - [Roadmap]: AUD-01 baseline is the dependency gate for all verification (A11Y-04, VER-01); capture before any edit.
 - [Phase ?]: AUD-01 baseline floor captured: min a11y=95, axe WCAG 2.0/2.1 A+AA=0 violations across 11 pages (lighthouse@13.4.0, axe-core 4.12.1)
 - [Phase ?]: WCAG 2.2 target-size flag (SC 2.5.8) recorded as accepted exception, outside scanned axe tags
+- [Phase ?]: AUD-03: !important budget floor = 57 функциональных деклараций (grep-c=59 сверен); chart.js удаление → v2/PERF-02
 
 ### Pending Todos
 
@@ -98,6 +96,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-25T20:39:16.592Z
+Last session: 2026-06-25T20:45:23.925Z
 Stopped at: ROADMAP.md + STATE.md written, REQUIREMENTS.md traceability updated
 Resume file: None

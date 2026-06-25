@@ -38,7 +38,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Wave 1**
 
 - [x] 01-01-PLAN.md — AUD-01 Lighthouse + axe baseline (regression floor) for all 11 pages
-- [ ] 01-02-PLAN.md — AUD-03 !important ledger (59) + do-not-touch namespaces + chart.js disposition
+- [x] 01-02-PLAN.md — AUD-03 !important ledger (59) + do-not-touch namespaces + chart.js disposition
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -124,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Baseline Audit + UI Design Contract | 1/4 | In Progress|  |
+| 1. Baseline Audit + UI Design Contract | 2/4 | In Progress|  |
 | 2. Design Tokens + Primitives | 0/TBD | Not started | - |
 | 3. Components | 0/TBD | Not started | - |
 | 4. Conversion Blocks + Imagery | 0/TBD | Not started | - |
