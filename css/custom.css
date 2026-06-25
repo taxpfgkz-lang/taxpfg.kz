@@ -25,7 +25,7 @@
 	position: fixed;
 	right: 22px;
 	bottom: 22px;
-	z-index: 9999;
+	z-index: var(--pfg-z-float);   /* TOK-01: единственный z-index вынесен в токен */
 	width: 56px;
 	height: 56px;
 	border-radius: 50%;
@@ -299,6 +299,44 @@
 	--pfg-ease:           cubic-bezier(.22, .61, .36, 1);
 	--pfg-tf-fast:        .25s var(--pfg-ease);
 	--pfg-tf:             .4s  var(--pfg-ease);
+
+	/* --- TOK-02: шкала отступов (4px-grid) ---
+	   Единая 4px-сетка взамен россыпи vendor-px. Только объявление —
+	   применение (snap отступов к элементам) делается в плане 02-02.
+	   Имя = множитель базового шага 4px (space-4 = 4*4 = 16px). */
+	--pfg-space-1:   4px;
+	--pfg-space-2:   8px;
+	--pfg-space-3:   12px;
+	--pfg-space-4:   16px;
+	--pfg-space-6:   24px;
+	--pfg-space-8:   32px;
+	--pfg-space-12:  48px;
+	--pfg-space-16:  64px;
+	--pfg-space-24:  96px;
+
+	/* --- TOK-03: флюидная типографическая шкала (ratio ≈1.25) ---
+	   clamp(MIN, предпочт., MAX). MAX каждого заголовка зеркалит текущий
+	   vendor desktop-px (base.css:223-251: h1 58 / h2 48 / h3 40 / h4 34 /
+	   h5 28 / h6 22), чтобы на 1440 desktop рендер не изменился — это фаза
+	   объявления, применение к элементам в 02-02. MIN даёт мобильную плавность.
+	   База body 16→18px. Метки/кнопки держат vendor 15px. */
+	--pfg-fs-body:    clamp(1rem, 0.95rem + 0.25vw, 1.125rem);    /* 16 → 18 */
+	--pfg-fs-label:   15px;                                       /* = vendor --pbmit-btn font-size */
+	--pfg-fs-h6:      clamp(1.125rem, 1rem + 0.5vw, 1.375rem);    /* → 22 */
+	--pfg-fs-h5:      clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);   /* → 28 */
+	--pfg-fs-h4:      clamp(1.375rem, 1.05rem + 1.2vw, 2.125rem); /* → 34 */
+	--pfg-fs-h3:      clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem);      /* → 40 */
+	--pfg-fs-h2:      clamp(1.75rem, 1.2rem + 2.4vw, 3rem);       /* → 48 */
+	--pfg-fs-display: clamp(2.125rem, 1.2rem + 4vw, 3.625rem);    /* → 58 (= h1) */
+	--pfg-lh-tight:   1.2;
+	--pfg-lh-body:    1.6;   /* = vendor --pbmit-body line-height */
+	--pfg-lh-display: 1.15;
+
+	/* --- TOK-01: z-index токен ---
+	   В custom.css ровно ОДИН хардкоженный z-index (whatsapp-float 9999,
+	   custom.css:28). Выносим его в токен. Шкалу z-index НЕ вводим —
+	   реальный consumer единственный (02-RESEARCH Open Question 2). */
+	--pfg-z-float:   9999;
 }
 
 /* --- 9.1 Глобальные микровзаимодействия + доступный фокус + reduced-motion --- */
