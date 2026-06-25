@@ -1,10 +1,11 @@
 ---
 phase: 1
 slug: baseline-audit-ui-design-contract
-status: draft
+status: approved
 shadcn_initialized: false
 preset: none
 created: 2026-06-25
+reviewed_at: 2026-06-25T20:05:55Z
 ---
 
 # Phase 1 — UI Design Contract
