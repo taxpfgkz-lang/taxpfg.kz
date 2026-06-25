@@ -63,7 +63,16 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Headings and body text use a `clamp()` fluid type scale with correct line-height and no harsh Russian wrapping (`text-wrap: balance/pretty`, orphan guard) (TOK-03).
   4. Colors and contrast meet WCAG AA: gold text uses the `--pfg-gold-ink` token (≥5.4:1), and the gold fill is never used as low-contrast body text on white (VIS-03).
 
-**Plans**: TBD
+**Plans**: 0/2 plans executed
+
+**Wave 1**
+
+- [ ] 02-01-PLAN.md — TOK-01/02/03 declaration: extend `:root` with `--pfg-space-*`, fluid `--pfg-fs-*`/`--pfg-lh-*`, `--pfg-z-float`
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 02-02-PLAN.md — TOK-02/03 + VIS-02/03 application: card-padding snap, F1 input 16px, line-height policy, text-wrap, contrast guard + DOM/axe/JS-smoke verify
+
 **Notes**: Definition-of-done includes the recurring gate — DOM-measured Playwright check at 1440/1024/768/390/360 (no horizontal scroll, ≥44px targets, headings not clipped); axe/Lighthouse 0-new-violations vs the Phase-1 baseline; JS smoke test (menu/WhatsApp/form/marquee/slider/reduced-motion); change-all-11 grep (returns 11) where any shared markup is touched; `!important` net-new ≈ 0 with each new one citing the vendor rule it beats. No `@layer` — unlayered source-order + targeted specificity only.
 **UI hint**: yes
 
@@ -125,7 +134,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Baseline Audit + UI Design Contract | 4/5 | Complete    | 2026-06-25 |
-| 2. Design Tokens + Primitives | 0/TBD | Not started | - |
+| 2. Design Tokens + Primitives | 0/2 | Not started | - |
 | 3. Components | 0/TBD | Not started | - |
 | 4. Conversion Blocks + Imagery | 0/TBD | Not started | - |
 | 5. Accessibility Pass + Cross-Device Verification | 0/TBD | Not started | - |
