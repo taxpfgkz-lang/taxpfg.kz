@@ -315,16 +315,18 @@ console.log(results.violations); // store per page into AUDIT.md
 
 **Note:** All six research questions (Q1–Q6) were resolved by reading/grepping the real files — those findings are VERIFIED, not assumed.
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Baseline artifact location vs `.gitignore`**
    - What we know: `.gitignore` excludes Playwright/screenshot audit artifacts at root.
    - What's unclear: Whether the planner wants the Lighthouse JSON/screenshots committed under `.planning/.../baseline/` (likely yes, as the regression floor must persist) or kept local.
    - Recommendation: Store baseline JSON under `.planning/phases/01-*/baseline/` and confirm that path is NOT ignored (it's under `.planning/`, not root) so the floor is committed with the docs.
+   - **RESOLVED:** Implemented in plan `01-01` — `key_links` store baseline under `.planning/phases/01-*/baseline/` and the verification step confirms the path is NOT matched by `.gitignore`.
 
 2. **Known mobile header search target-size flag**
    - What we know: Prior audit (memory `ui-audit-2026-06-23.md`) deliberately left a theme header search target-size flag unfixed.
    - Recommendation: Record it in AUDIT as an accepted documented exception unless this baseline run re-surfaces it as a hard blocker.
+   - **RESOLVED:** Carried as an accepted documented exception in plans `01-01` T2, `01-03` T2, and `01-04` T2.
 
 ## Environment Availability
 
