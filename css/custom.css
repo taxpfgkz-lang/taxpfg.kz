@@ -528,6 +528,17 @@ button:focus-visible,
 	line-height: var(--pfg-lh-display);
 }
 
+/* HE1/G2 (AUD-02, продолжение line-height policy): анимированный tween-заголовок
+   .pbmit-tween-effect-style-1 (vendor 170/142 → lh<fs ratio 0.835 на ВСЕХ ширинах;
+   responsive.css даёт 135/111, 100/80, 70/58 — все lh<fs). Юнитлесс 1.15 масштабируется
+   с каждым px-тиром, поэтому lh>=fs на 1440/1024/768/390/360. Селектор 0,3,0 = vendor
+   (.pbmit-tween-effect-style-1.pbmit-tween-text .pbmit-element-title); выигрыш source-order
+   (custom.css после responsive.css), без media-query и без форсирования каскада.
+   Phase 2 = только line-height policy; font-size/анимация tween — не трогаем. */
+.pbmit-tween-effect-style-1.pbmit-tween-text .pbmit-element-title{
+	line-height: var(--pfg-lh-display);
+}
+
 /* --- 9.8 Карточки .pfg-card: hairline + мягкая тень + подъём на hover --- */
 .pfg-card{
 	border: 1px solid var(--pfg-hairline);
