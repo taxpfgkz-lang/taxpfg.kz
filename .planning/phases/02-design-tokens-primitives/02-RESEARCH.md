@@ -318,7 +318,7 @@ h6 { font-size: 22px; line-height: ~28px; }
 | A3 | The 8 uncited section-padding `!important` (ihbox-section, dark-section) are out of the AUD-02 fix list and stay untouched | Pitfall 2 | LOW — leaving them untouched is the safe default; only matters if planner chooses to snap them (then confirm beaten selector first) |
 | A4 | Phase 2 owns heading **line-height policy** (no lh<fs); hero **height/LCP** is Phase 4 | Pitfall 3 | MEDIUM — UI-SPEC maps HE1 to both phases. If planner wants desktop-hero clamp in Phase 2, that's allowed but verify it doesn't regress hero composition |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Russian preposition non-breaking with markup read-only**
    - What we know: CSS `text-wrap: balance/pretty` guards orphans/widows globally and degrades gracefully. The CONTEXT decision lists "non-breaking для коротких предлогов/союзов (в, и, с, к, на, по, от)".
@@ -331,6 +331,8 @@ h6 { font-size: 22px; line-height: ~28px; }
    - Recommendation: Planner task should grep `z-index` in `custom.css`; if 0-2 occurrences and theme-owned, declaring `--pfg-z-*` is optional cosmetic consolidation, not a functional requirement. Do not invent a z-index scale with no consumers.
 
 3. **HE1 desktop-hero clamp ownership (Phase 2 vs Phase 4)** — see A4. Resolve with planner: recommend Phase 2 = line-height policy only.
+
+**RESOLVED dispositions (all consumed by plans):** Q1 → 02-02 T2 step3 delivers balance/pretty, preposition non-breaking DEFERRED (markup/JS); Q2 → 02-01 tokenizes the single real z-index consumer (whatsapp-float :28) as `--pfg-z-float`, no invented scale; Q3 → 02-02 T2 step1, Phase 2 = line-height policy only, hero font-size/LCP stays Phase 4.
 
 ## Environment Availability
 
