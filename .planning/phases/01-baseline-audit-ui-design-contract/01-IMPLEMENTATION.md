@@ -1,4 +1,4 @@
-# 01-IMPL-PLAN — Implementation Plan (AUD-05)
+# 01-IMPLEMENTATION — Implementation Plan (AUD-05)
 
 - **Milestone:** v1.0 — taxpfg.kz Production UI Polish
 - **Phase:** 01 — baseline-audit-ui-design-contract

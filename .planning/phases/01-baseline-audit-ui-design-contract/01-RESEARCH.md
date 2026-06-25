@@ -154,7 +154,7 @@ File-to-artifact mapping lives in the Architectural Responsibility Map above; th
 ├── 01-UI-SPEC.md             # DESIGN-CONTRACT (AUD-04, approved)
 ├── 01-AUDIT.md               # AUD-01 baseline table + AUD-02 visual problems
 ├── 01-CONFLICT-CATALOG.md    # AUD-03 !important ledger + do-not-touch
-├── 01-IMPL-PLAN.md           # AUD-05 file-change order for Phases 2–5
+├── 01-IMPLEMENTATION.md           # AUD-05 file-change order for Phases 2–5
 └── baseline/                 # Lighthouse JSON/HTML + Playwright screenshots
 ```
 

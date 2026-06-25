@@ -12,7 +12,7 @@ tech_stack:
   patterns: ["documents-only synthesis", "no site-code edits"]
 key_files:
   created:
-    - .planning/phases/01-baseline-audit-ui-design-contract/01-IMPL-PLAN.md
+    - .planning/phases/01-baseline-audit-ui-design-contract/01-IMPLEMENTATION.md
   modified:
     - .planning/phases/01-baseline-audit-ui-design-contract/01-UI-SPEC.md
 decisions:
@@ -29,7 +29,7 @@ status: complete
 
 # Phase 1 Plan 04: Contract Sign-Off + Implementation Plan Summary
 
-Verified the already-approved UI design contract (01-UI-SPEC.md) complete against AUD-04 and signed it off, then wrote the AUD-05 implementation plan (01-IMPL-PLAN.md) sequencing the Phase 2–5 file changes — a documents-only phase that locks the rules and the work-order before any code is written.
+Verified the already-approved UI design contract (01-UI-SPEC.md) complete against AUD-04 and signed it off, then wrote the AUD-05 implementation plan (01-IMPLEMENTATION.md) sequencing the Phase 2–5 file changes — a documents-only phase that locks the rules and the work-order before any code is written.
 
 ## What Was Built
 
@@ -39,7 +39,7 @@ Verified the already-approved UI design contract (01-UI-SPEC.md) complete agains
 - Marked the five "Open Questions" resolved, each with a pointer to where it was answered (font-loading → RESEARCH Q1/v2 PERF-03; img inventory → RESEARCH Q2 + AUD-02 I1/I2; pricing/FAQ/modal absence → RESEARCH Q3 + AUD-02 absent-features; chart.js → RESEARCH Q4 + CONFLICT-CATALOG; target-size → AUD-01 H2).
 - Ticked all 6 Checker Sign-Off dimensions and set **Approval: pending → approved (2026-06-25)**. No locked decision weakened.
 
-**Task 2 — AUD-05 implementation plan** (`01-IMPL-PLAN.md`, commit `976eeaf`):
+**Task 2 — AUD-05 implementation plan** (`01-IMPLEMENTATION.md`, commit `976eeaf`):
 - **File-change order** section maps each downstream phase to the files it edits (`custom.css`/`base.css`/`custom.js`) and why, in dependency order: Phase 2 (token sheet + spacing/type scale, root dependency) → Phase 3 (components, needs P2 tokens; `custom.js` a11y patches only) → Phase 4 (conversion blocks + imagery, needs stable components; `custom.js` for sticky-CTA↔WhatsApp collision) → Phase 5 (focus/motion polish + verification run). Each phase lists the specific AUD-02 findings it lands.
 - **Net-new vs polish** section: pricing (CNV-02), FAQ (CMP-05), modal (CMP-06) marked NET-NEW features to be built in full (no scope-reducing language); CMP-06 conditioned on Magnific Popup actually being instantiated. Target-size flag = accepted documented exception; chart.js, image payload, font-loading, header/footer templating all marked out-of-scope (v2).
 - **Carried gates** section: the `!important` budget (57 functional / 59 grep-c, net-new ≈ 0); the recurring per-phase verification gate (multi-breakpoint DOM-measured Playwright + axe-0-new + JS smoke + change-all-11 grep); the AUD-01 regression floor (a11y ≥ 95, axe = 0) Phase 5 measures against.
@@ -51,12 +51,12 @@ None — plan executed exactly as written. Both tasks `type="auto"`; no checkpoi
 ## Verification
 
 - Task 1 automated check: `grep` for `approved` + `Hard Constraints` + `spacing scale` in 01-UI-SPEC.md → **PASS**.
-- Task 2 automated check: `grep` for `file-change order` + `net-new` + `custom.css` + `out of scope` in 01-IMPL-PLAN.md → **PASS**.
+- Task 2 automated check: `grep` for `file-change order` + `net-new` + `custom.css` + `out of scope` in 01-IMPLEMENTATION.md → **PASS**.
 - `git status` scope: the two commits touched only `.planning/` documents. No `css/*`, `js/*`, or `*.html` edits were made by this plan. (Pre-existing unrelated working-tree changes to root HTML and `docs/*` were present at conversation start and were left untouched — not part of this plan's commits.)
 
 ## Self-Check: PASSED
 
 - FOUND: `.planning/phases/01-baseline-audit-ui-design-contract/01-UI-SPEC.md`
-- FOUND: `.planning/phases/01-baseline-audit-ui-design-contract/01-IMPL-PLAN.md`
+- FOUND: `.planning/phases/01-baseline-audit-ui-design-contract/01-IMPLEMENTATION.md`
 - FOUND commit: `b567359` (Task 1)
 - FOUND commit: `976eeaf` (Task 2)
