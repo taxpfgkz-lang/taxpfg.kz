@@ -17,9 +17,9 @@
 
 ### Design Tokens & Primitives
 
-- [ ] **TOK-01**: Консолидировать дизайн-токены как CSS custom properties (палитра «чернила+золото», радиусы, тени, transitions, z-index) в `:root` слоя `custom.css` (грузится последним)
-- [ ] **TOK-02**: Единый spacing scale на токенах, применённый к отступам секций/блоков — нет сломанных отступов
-- [ ] **TOK-03**: Type scale: размеры заголовков/подзаголовков/body на `clamp()` (fluid), корректный line-height, читаемость; нет грубых переносов текста (`text-wrap: balance/pretty`, защита от orphans)
+- [x] **TOK-01**: Консолидировать дизайн-токены как CSS custom properties (палитра «чернила+золото», радиусы, тени, transitions, z-index) в `:root` слоя `custom.css` (грузится последним)
+- [x] **TOK-02**: Единый spacing scale на токенах, применённый к отступам секций/блоков — нет сломанных отступов
+- [x] **TOK-03**: Type scale: размеры заголовков/подзаголовков/body на `clamp()` (fluid), корректный line-height, читаемость; нет грубых переносов текста (`text-wrap: balance/pretty`, защита от orphans)
 
 ### Visual Hierarchy & Layout
 
@@ -97,9 +97,9 @@
 | AUD-03 | Phase 1 | Complete |
 | AUD-04 | Phase 1 | Complete |
 | AUD-05 | Phase 1 | Complete |
-| TOK-01 | Phase 2 | Pending |
-| TOK-02 | Phase 2 | Pending |
-| TOK-03 | Phase 2 | Pending |
+| TOK-01 | Phase 2 | Complete |
+| TOK-02 | Phase 2 | Complete |
+| TOK-03 | Phase 2 | Complete |
 | VIS-01 | Phase 3 | Pending |
 | VIS-02 | Phase 2 | Pending |
 | VIS-03 | Phase 2 | Pending |

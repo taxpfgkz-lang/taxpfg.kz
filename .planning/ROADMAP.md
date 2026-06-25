@@ -63,11 +63,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Headings and body text use a `clamp()` fluid type scale with correct line-height and no harsh Russian wrapping (`text-wrap: balance/pretty`, orphan guard) (TOK-03).
   4. Colors and contrast meet WCAG AA: gold text uses the `--pfg-gold-ink` token (≥5.4:1), and the gold fill is never used as low-contrast body text on white (VIS-03).
 
-**Plans**: 0/2 plans executed
+**Plans**: 1/2 plans executed
 
 **Wave 1**
 
-- [ ] 02-01-PLAN.md — TOK-01/02/03 declaration: extend `:root` with `--pfg-space-*`, fluid `--pfg-fs-*`/`--pfg-lh-*`, `--pfg-z-float`
+- [x] 02-01-PLAN.md — TOK-01/02/03 declaration: extend `:root` with `--pfg-space-*`, fluid `--pfg-fs-*`/`--pfg-lh-*`, `--pfg-z-float`
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -134,7 +134,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Baseline Audit + UI Design Contract | 4/5 | Complete    | 2026-06-25 |
-| 2. Design Tokens + Primitives | 0/2 | Not started | - |
+| 2. Design Tokens + Primitives | 1/2 | In Progress|  |
 | 3. Components | 0/TBD | Not started | - |
 | 4. Conversion Blocks + Imagery | 0/TBD | Not started | - |
 | 5. Accessibility Pass + Cross-Device Verification | 0/TBD | Not started | - |

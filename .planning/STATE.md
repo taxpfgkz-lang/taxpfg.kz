@@ -6,15 +6,15 @@ current_phase: 2
 current_phase_name: Design Tokens + Primitives
 status: executing
 stopped_at: ROADMAP.md + STATE.md written, REQUIREMENTS.md traceability updated
-last_updated: "2026-06-25T21:49:17.432Z"
+last_updated: "2026-06-25T21:53:02.997Z"
 last_activity: 2026-06-25
-last_activity_desc: Phase 1 complete, transitioned to Phase 2
+last_activity_desc: Phase 2 execution started
 progress:
   total_phases: 5
-  completed_phases: 0
-  total_plans: 5
-  completed_plans: 4
-  percent: 0
+  completed_phases: 1
+  total_plans: 6
+  completed_plans: 5
+  percent: 20
 ---
 
 # Project State
@@ -24,14 +24,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-25)
 
 **Core value:** Сайт выглядит дорого, единообразно и убедительно на desktop/tablet/mobile, а conversion-блоки чисто конвертируют посетителя в лид — без изменения бизнес-логики.
-**Current focus:** Phase 1 — Baseline Audit + UI Design Contract
+**Current focus:** Phase 2 — Design Tokens + Primitives
 
 ## Current Position
 
-Phase: 2 — Design Tokens + Primitives
-Plan: Not started
+Phase: 2 (Design Tokens + Primitives) — EXECUTING
+Plan: 2 of 2
 Status: Ready to execute
-Last activity: 2026-06-25 — Phase 1 complete, transitioned to Phase 2
+Last activity: 2026-06-25 — Phase 2 execution started
 
 Progress: [████████░░] 80%
 
@@ -59,6 +59,7 @@ Progress: [████████░░] 80%
 | Phase 01 P02 | 8min | 2 tasks | 1 files |
 | Phase 01 P03 | 25min | 2 tasks | 38 files |
 | Phase 01 P04 | 14m | 2 tasks | 2 files |
+| Phase 02 P01 | 6min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -78,6 +79,7 @@ Recent decisions affecting current work:
 - [Phase ?]: Baseline screenshots force-committed under baseline/screenshots/ as required audit evidence (T-01-03); generic screenshots/ ignore left intact for ad-hoc shots
 - [Phase ?]: 01-UI-SPEC.md verified complete against AUD-04 and signed off (Approval approved); AUD-01 had 0 axe contrast violations so no contrast gap to close
 - [Phase ?]: Pricing/FAQ/modal marked NET-NEW for Phases 3-4 (CMP-06 conditioned on Magnific Popup instantiation); target-size accepted exception; chart.js out-of-scope v2/PERF-02
+- [Phase ?]: [Phase 2 P01]: Токены объявлены аддитивно в :root (custom.css); существующие --pfg-* байт-идентичны; clamp() maxes зеркалят vendor desktop-px (h1 58..h6 22) — desktop без регрессии; z-index:9999 -> --pfg-z-float (единственный consumer); !important остаётся 59
 
 ### Pending Todos
 
@@ -106,6 +108,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-25T21:05:00.206Z
+Last session: 2026-06-25T21:52:49.800Z
 Stopped at: ROADMAP.md + STATE.md written, REQUIREMENTS.md traceability updated
 Resume file: None
