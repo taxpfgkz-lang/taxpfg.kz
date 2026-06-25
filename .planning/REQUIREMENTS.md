@@ -24,8 +24,8 @@
 ### Visual Hierarchy & Layout
 
 - [ ] **VIS-01**: Единая визуальная иерархия — заголовки, подзаголовки, CTA, блоки, карточки выглядят системно на всех страницах
-- [ ] **VIS-02**: Выравнивания и сетка приведены к единому spacing scale; нет визуального дрейфа между 11 страницами
-- [ ] **VIS-03**: Цвета и контраст приведены к WCAG AA; золото не используется как body-текст там, где теряется контраст
+- [x] **VIS-02**: Выравнивания и сетка приведены к единому spacing scale; нет визуального дрейфа между 11 страницами
+- [x] **VIS-03**: Цвета и контраст приведены к WCAG AA; золото не используется как body-текст там, где теряется контраст
 
 ### Components
 
@@ -101,8 +101,8 @@
 | TOK-02 | Phase 2 | Complete |
 | TOK-03 | Phase 2 | Complete |
 | VIS-01 | Phase 3 | Pending |
-| VIS-02 | Phase 2 | Pending |
-| VIS-03 | Phase 2 | Pending |
+| VIS-02 | Phase 2 | Complete |
+| VIS-03 | Phase 2 | Complete |
 | CMP-01 | Phase 3 | Pending |
 | CMP-02 | Phase 3 | Pending |
 | CMP-03 | Phase 3 | Pending |

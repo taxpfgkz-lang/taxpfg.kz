@@ -2,19 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 2
-current_phase_name: Design Tokens + Primitives
-status: executing
-stopped_at: ROADMAP.md + STATE.md written, REQUIREMENTS.md traceability updated
-last_updated: "2026-06-25T21:53:02.997Z"
+status: verifying
+last_updated: "2026-06-25T22:18:35.494Z"
 last_activity: 2026-06-25
-last_activity_desc: Phase 2 execution started
 progress:
   total_phases: 5
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 6
-  completed_plans: 5
-  percent: 20
+  completed_plans: 6
+  percent: 40
 ---
 
 # Project State
@@ -30,10 +26,10 @@ See: .planning/PROJECT.md (updated 2026-06-25)
 
 Phase: 2 (Design Tokens + Primitives) — EXECUTING
 Plan: 2 of 2
-Status: Ready to execute
-Last activity: 2026-06-25 — Phase 2 execution started
+Status: Phase complete — ready for verification
+Last activity: 2026-06-25
 
-Progress: [████████░░] 80%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -60,6 +56,7 @@ Progress: [████████░░] 80%
 | Phase 01 P03 | 25min | 2 tasks | 38 files |
 | Phase 01 P04 | 14m | 2 tasks | 2 files |
 | Phase 02 P01 | 6min | 1 tasks | 1 files |
+| Phase 02 P02 | 20min | 3 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -80,6 +77,8 @@ Recent decisions affecting current work:
 - [Phase ?]: 01-UI-SPEC.md verified complete against AUD-04 and signed off (Approval approved); AUD-01 had 0 axe contrast violations so no contrast gap to close
 - [Phase ?]: Pricing/FAQ/modal marked NET-NEW for Phases 3-4 (CMP-06 conditioned on Magnific Popup instantiation); target-size accepted exception; chart.js out-of-scope v2/PERF-02
 - [Phase ?]: [Phase 2 P01]: Токены объявлены аддитивно в :root (custom.css); существующие --pfg-* байт-идентичны; clamp() maxes зеркалят vendor desktop-px (h1 58..h6 22) — desktop без регрессии; z-index:9999 -> --pfg-z-float (единственный consumer); !important остаётся 59
+- [Phase ?]: 02-02: line-height policy via unitless --pfg-lh-display at vendor specificity + source-order, no net-new !important (budget 59)
+- [Phase ?]: 02-02: Russian preposition non-breaking DEFERRED (markup/JS); delivered text-wrap balance/pretty
 
 ### Pending Todos
 
@@ -108,6 +107,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-25T21:52:49.800Z
+Last session: 2026-06-25T22:18:04.515Z
 Stopped at: ROADMAP.md + STATE.md written, REQUIREMENTS.md traceability updated
 Resume file: None

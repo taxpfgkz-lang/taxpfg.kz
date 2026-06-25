@@ -14,7 +14,7 @@ This is a brownfield visual hardening of a live, no-build static marketing site 
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Baseline Audit + UI Design Contract** - Capture the Lighthouse/axe floor and lock the rules before any code changes (documents only) (completed 2026-06-25)
-- [ ] **Phase 2: Design Tokens + Primitives** - Consolidate the `:root` token sheet, spacing scale, and fluid type scale everything inherits
+- [x] **Phase 2: Design Tokens + Primitives** - Consolidate the `:root` token sheet, spacing scale, and fluid type scale everything inherits (completed 2026-06-25)
 - [ ] **Phase 3: Components** - Style buttons, forms, cards, nav, FAQ, and modals with all interaction states
 - [ ] **Phase 4: Conversion Blocks + Imagery** - Tune hero, pricing, CTA hierarchy, footer parity, and imagery; resolve the sticky-CTA vs WhatsApp collision
 - [ ] **Phase 5: Accessibility Pass + Cross-Device Verification** - Prove a11y ≥ baseline across all 11 pages at every breakpoint with logic untouched
@@ -71,7 +71,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 02-02-PLAN.md — TOK-02/03 + VIS-02/03 application: card-padding snap, F1 input 16px, line-height policy, text-wrap, contrast guard + DOM/axe/JS-smoke verify
+- [x] 02-02-PLAN.md — TOK-02/03 + VIS-02/03 application: card-padding snap, F1 input 16px, line-height policy, text-wrap, contrast guard + DOM/axe/JS-smoke verify
 
 **Notes**: Definition-of-done includes the recurring gate — DOM-measured Playwright check at 1440/1024/768/390/360 (no horizontal scroll, ≥44px targets, headings not clipped); axe/Lighthouse 0-new-violations vs the Phase-1 baseline; JS smoke test (menu/WhatsApp/form/marquee/slider/reduced-motion); change-all-11 grep (returns 11) where any shared markup is touched; `!important` net-new ≈ 0 with each new one citing the vendor rule it beats. No `@layer` — unlayered source-order + targeted specificity only.
 **UI hint**: yes
@@ -134,7 +134,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Baseline Audit + UI Design Contract | 4/5 | Complete    | 2026-06-25 |
-| 2. Design Tokens + Primitives | 1/2 | In Progress|  |
+| 2. Design Tokens + Primitives | 2/2 | Complete   | 2026-06-25 |
 | 3. Components | 0/TBD | Not started | - |
 | 4. Conversion Blocks + Imagery | 0/TBD | Not started | - |
 | 5. Accessibility Pass + Cross-Device Verification | 0/TBD | Not started | - |
