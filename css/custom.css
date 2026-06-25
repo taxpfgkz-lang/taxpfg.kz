@@ -61,11 +61,16 @@
    ========================================================================== */
 .pfg-section{ padding: 80px 0; }
 .pfg-section--alt{ background: var(--pbmit-light-color, #f6f7f9); }
-.pfg-lead{ font-size: 18px; line-height: 1.7; }
-.pfg-prose p{ margin-bottom: 16px; line-height: 1.7; }
+/* TOK-03: body-роли на флюидные токены + orphan/widow-guard.
+   .pfg-lead/.pfg-prose уже владеют размером → подключаем var() напрямую (декларация→применение).
+   text-wrap:pretty убирает «висячие» слова в конце абзаца (graceful degrade ~88%).
+   ВАЖНО: per-word неразрывность коротких русских предлогов (в/и/с/к/на/по/от) CSS-средствами
+   НЕВОЗМОЖНА — нужен &nbsp; в read-only разметке или JS-проход → DEFERRED (вне scope фазы). */
+.pfg-lead{ font-size: var(--pfg-fs-body); line-height: var(--pfg-lh-body); text-wrap: pretty; }
+.pfg-prose p{ margin-bottom: 16px; line-height: var(--pfg-lh-body); text-wrap: pretty; }
 /* C1 (AUD-02): padding snap 28→24px на 4px-сетку (--pfg-space-6) — единый ритм. */
 .pfg-card{ background:#fff; border:1px solid #eef0f3; border-radius:14px; padding:var(--pfg-space-6); height:100%; }
-.pfg-card h3{ font-size:20px; margin-bottom:12px; }
+.pfg-card h3{ font-size:20px; margin-bottom:12px; text-wrap: balance; }
 .pfg-grid{ display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
 /* Нумерованные шаги «как проходит работа» */
 .pfg-steps{ counter-reset: pfg; list-style:none; padding:0; margin:0; }
@@ -502,6 +507,10 @@ button:focus-visible,
 .pbmit-tbar-title{
 	letter-spacing: -1.5px;
 	text-shadow: 0 2px 28px rgba(8, 14, 20, .42);
+	/* HE1/T2/G2 (AUD-02): line-height policy. Vendor 70/70 (lh==fs) клипает 2-строчный
+	   заголовок. Юнитлесс 1.15 (--pfg-lh-display) → lh>=fs на всех ширинах (вкл. mobile
+	   32px). Та же специфичность 0,1,0 что у vendor .pbmit-tbar-title, выигрыш source-order. */
+	line-height: var(--pfg-lh-display);
 }
 .pbmit-breadcrumb,
 .pbmit-breadcrumb a{
@@ -511,6 +520,12 @@ button:focus-visible,
 /* --- 9.7 Hero (slider-one): читаемость заголовка на фото --- */
 .pbmit-slider-one .pbmit-slider-title{
 	text-shadow: 0 2px 34px rgba(8, 14, 20, .40);
+	/* HE1/G2 (AUD-02): vendor 170/150 (lh<fs) → 2-строчный кириллический заголовок
+	   перекрывается по вертикали на desktop 1440. Юнитлесс 1.15 (--pfg-lh-display) →
+	   lh>=fs. Та же специфичность 0,2,0 что у vendor .pbmit-slider-one .pbmit-slider-title,
+	   выигрыш source-order (custom.css грузится последним), без форсирования каскада.
+	   Phase 2 = только line-height policy; hero font-size/LCP (170px) — Phase 4. */
+	line-height: var(--pfg-lh-display);
 }
 
 /* --- 9.8 Карточки .pfg-card: hairline + мягкая тень + подъём на hover --- */
