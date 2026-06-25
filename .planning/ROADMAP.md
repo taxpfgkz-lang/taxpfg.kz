@@ -46,7 +46,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 01-04-PLAN.md — AUD-04 contract verification/sign-off + AUD-05 implementation plan
+- [x] 01-04-PLAN.md — AUD-04 contract verification/sign-off + AUD-05 implementation plan
 
 **Notes**: No code edits in this phase, so the recurring implementation gate does not apply. AUD-01 baseline numbers become the regression floor that Phase 5 (A11Y-04, VER-01) is measured against. Resolve open questions from research/SUMMARY.md here (live `<head>` font-loading config; `<img>` vs CSS-background asset inventory; which pages have pricing/FAQ/modal; whether `chart.js` deletion stays out).
 **UI hint**: yes
@@ -124,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Baseline Audit + UI Design Contract | 3/4 | In Progress|  |
+| 1. Baseline Audit + UI Design Contract | 4/5 | In Progress|  |
 | 2. Design Tokens + Primitives | 0/TBD | Not started | - |
 | 3. Components | 0/TBD | Not started | - |
 | 4. Conversion Blocks + Imagery | 0/TBD | Not started | - |

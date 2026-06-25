@@ -12,8 +12,8 @@
 - [x] **AUD-01**: Снять baseline (Lighthouse + axe-core, a11y/perf/CLS) по всем 11 страницам ДО любых правок — это «не хуже текущего» floor
 - [x] **AUD-02**: UI audit report — перечень визуальных проблем с привязкой «что/где/почему» по desktop/tablet/mobile
 - [x] **AUD-03**: Каталог конфликтов `custom.css` ↔ vendor-правила + список `!important` (текущая база ~59) и do-not-touch классов/атрибутов темы (`swiper-*`, `data-aos*`, `pbmit-*`)
-- [ ] **AUD-04**: UI design contract — зафиксированные правила дизайна (токены, spacing scale, type scale, цвета+контраст, состояния, правила по компонентам, hard-constraints: visual-only, vendor read-only, no @layer, focus-always, scoped-motion)
-- [ ] **AUD-05**: Implementation plan — какие файлы (`custom.css`/`base.css`/`custom.js`) менять и зачем, с порядком работ
+- [x] **AUD-04**: UI design contract — зафиксированные правила дизайна (токены, spacing scale, type scale, цвета+контраст, состояния, правила по компонентам, hard-constraints: visual-only, vendor read-only, no @layer, focus-always, scoped-motion)
+- [x] **AUD-05**: Implementation plan — какие файлы (`custom.css`/`base.css`/`custom.js`) менять и зачем, с порядком работ
 
 ### Design Tokens & Primitives
 
@@ -95,8 +95,8 @@
 | AUD-01 | Phase 1 | Complete |
 | AUD-02 | Phase 1 | Complete |
 | AUD-03 | Phase 1 | Complete |
-| AUD-04 | Phase 1 | Pending |
-| AUD-05 | Phase 1 | Pending |
+| AUD-04 | Phase 1 | Complete |
+| AUD-05 | Phase 1 | Complete |
 | TOK-01 | Phase 2 | Pending |
 | TOK-02 | Phase 2 | Pending |
 | TOK-03 | Phase 2 | Pending |
