@@ -9,7 +9,7 @@
 
 ### Audit & Contract (deliverables-документы)
 
-- [ ] **AUD-01**: Снять baseline (Lighthouse + axe-core, a11y/perf/CLS) по всем 11 страницам ДО любых правок — это «не хуже текущего» floor
+- [x] **AUD-01**: Снять baseline (Lighthouse + axe-core, a11y/perf/CLS) по всем 11 страницам ДО любых правок — это «не хуже текущего» floor
 - [ ] **AUD-02**: UI audit report — перечень визуальных проблем с привязкой «что/где/почему» по desktop/tablet/mobile
 - [ ] **AUD-03**: Каталог конфликтов `custom.css` ↔ vendor-правила + список `!important` (текущая база ~59) и do-not-touch классов/атрибутов темы (`swiper-*`, `data-aos*`, `pbmit-*`)
 - [ ] **AUD-04**: UI design contract — зафиксированные правила дизайна (токены, spacing scale, type scale, цвета+контраст, состояния, правила по компонентам, hard-constraints: visual-only, vendor read-only, no @layer, focus-always, scoped-motion)
@@ -92,7 +92,7 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUD-01 | Phase 1 | Pending |
+| AUD-01 | Phase 1 | Complete |
 | AUD-02 | Phase 1 | Pending |
 | AUD-03 | Phase 1 | Pending |
 | AUD-04 | Phase 1 | Pending |
@@ -124,6 +124,7 @@
 | VER-04 | Phase 5 | Pending |
 
 **Coverage:**
+
 - v1 requirements: 30 total
 - Mapped to phases: 30 ✓
 - Unmapped: 0 ✓

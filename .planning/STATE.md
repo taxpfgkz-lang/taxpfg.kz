@@ -6,14 +6,14 @@ current_phase: 1
 current_phase_name: Baseline Audit + UI Design Contract
 status: executing
 stopped_at: ROADMAP.md + STATE.md written, REQUIREMENTS.md traceability updated
-last_updated: "2026-06-25T20:27:30.471Z"
+last_updated: "2026-06-25T20:39:28.329Z"
 last_activity: 2026-06-25
-last_activity_desc: Roadmap created; 30 v1 requirements mapped across 5 phases (100% coverage)
+last_activity_desc: Phase 1 execution started
 progress:
   total_phases: 5
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  total_plans: 4
+  completed_plans: 1
   percent: 0
 ---
 
@@ -28,10 +28,10 @@ See: .planning/PROJECT.md (updated 2026-06-25)
 
 ## Current Position
 
-Phase: 1 of 5 (Baseline Audit + UI Design Contract)
-Plan: 0 of TBD in current phase
+Phase: 1 (Baseline Audit + UI Design Contract) — EXECUTING
+Plan: 2 of 4
 Status: Ready to execute
-Last activity: 2026-06-25 — Roadmap created; 30 v1 requirements mapped across 5 phases (100% coverage)
+Last activity: 2026-06-25 — Phase 1 execution started
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -55,6 +55,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01 P01 | 8min | 3 tasks | 23 files |
 
 ## Accumulated Context
 
@@ -67,6 +68,8 @@ Recent decisions affecting current work:
 - [Roadmap]: Strict bottom-up build order — tokens (P2) are the root dependency; components (P3), then conversion blocks (P4), then a11y/verification (P5).
 - [Roadmap]: `@layer` is FORBIDDEN for theme overrides (unlayered vendor always wins) — overrides win by source-order + targeted specificity only.
 - [Roadmap]: AUD-01 baseline is the dependency gate for all verification (A11Y-04, VER-01); capture before any edit.
+- [Phase ?]: AUD-01 baseline floor captured: min a11y=95, axe WCAG 2.0/2.1 A+AA=0 violations across 11 pages (lighthouse@13.4.0, axe-core 4.12.1)
+- [Phase ?]: WCAG 2.2 target-size flag (SC 2.5.8) recorded as accepted exception, outside scanned axe tags
 
 ### Pending Todos
 
@@ -95,6 +98,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-25 19:54
+Last session: 2026-06-25T20:39:16.592Z
 Stopped at: ROADMAP.md + STATE.md written, REQUIREMENTS.md traceability updated
 Resume file: None
