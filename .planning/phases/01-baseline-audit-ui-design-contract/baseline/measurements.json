@@ -1,0 +1,826 @@
+[
+  {
+    "block": "global",
+    "page": "about",
+    "vw": 1440,
+    "metric": "scrollWidth",
+    "value": 1440,
+    "note": "clientWidth=1440 overflow=0px"
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 1440,
+    "metric": "box",
+    "value": "1440x0",
+    "note": "pos=relative"
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 1440,
+    "metric": "logo-box",
+    "value": "249x31",
+    "note": ""
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 1440,
+    "metric": "search-tap",
+    "value": "44x44",
+    "note": "cls= (44px floor)"
+  },
+  {
+    "block": "nav",
+    "page": "about",
+    "vw": 1440,
+    "metric": "burger-tap",
+    "value": "0x0",
+    "note": "visible=false (44px floor)"
+  },
+  {
+    "block": "title-bar",
+    "page": "services",
+    "vw": 1440,
+    "metric": "box",
+    "value": "1440x550",
+    "note": "minH=550px padT=0px padB=0px"
+  },
+  {
+    "block": "title-bar",
+    "page": "services",
+    "vw": 1440,
+    "metric": "h1",
+    "value": "70px",
+    "note": "lh=70px box=1416x70 \"Услуги\""
+  },
+  {
+    "block": "cards",
+    "page": "services",
+    "vw": 1440,
+    "metric": "box",
+    "value": "336x256",
+    "note": "pad=28px count=4"
+  },
+  {
+    "block": "hero",
+    "page": "index",
+    "vw": 1440,
+    "metric": "box",
+    "value": "1440x1000",
+    "note": ""
+  },
+  {
+    "block": "hero",
+    "page": "index",
+    "vw": 1440,
+    "metric": "title",
+    "value": "16px",
+    "note": "lh=16px box=116x16 right=652"
+  },
+  {
+    "block": "global",
+    "page": "index",
+    "vw": 1440,
+    "metric": "scrollWidth",
+    "value": 1440,
+    "note": "clientWidth=1440 overflow=0px"
+  },
+  {
+    "block": "imagery",
+    "page": "index",
+    "vw": 1440,
+    "metric": "imgs",
+    "value": "[{\"w\":273,\"h\":304,\"nw\":900,\"nh\":1000,\"src\":\"about-01.jpg\"},{\"w\":363,\"h\":647,\"nw\":381,\"nh\":680,\"src\":\"about-02.png\"},{\"w\":120,\"h\":40,\"nw\":120,\"nh\":40,\"src\":\"infobox-img.png\"}]",
+    "note": "render vs natural"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 1440,
+    "metric": "box",
+    "value": "1416x491",
+    "note": ""
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 1440,
+    "metric": "input-box",
+    "value": "696x55",
+    "note": "fontSize=15px (iOS-zoom<16px?)"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 1440,
+    "metric": "submit-tap",
+    "value": "261x64",
+    "note": "44px floor"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 1440,
+    "metric": "consent-checkbox",
+    "value": "18x18",
+    "note": "44px floor"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 1440,
+    "metric": "map-iframe",
+    "value": "1416x420",
+    "note": ""
+  },
+  {
+    "block": "footer",
+    "page": "contacts",
+    "vw": 1440,
+    "metric": "box",
+    "value": "1440x1067",
+    "note": "borderTop=3px solid rgb(236, 171, 35)"
+  },
+  {
+    "block": "footer",
+    "page": "contacts",
+    "vw": 1440,
+    "metric": "footer-link-tap",
+    "value": "0x0",
+    "note": "44px floor"
+  },
+  {
+    "block": "global",
+    "page": "about",
+    "vw": 1024,
+    "metric": "scrollWidth",
+    "value": 1024,
+    "note": "clientWidth=1024 overflow=0px"
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 1024,
+    "metric": "box",
+    "value": "1024x0",
+    "note": "pos=relative"
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 1024,
+    "metric": "logo-box",
+    "value": "249x31",
+    "note": ""
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 1024,
+    "metric": "search-tap",
+    "value": "44x44",
+    "note": "cls= (44px floor)"
+  },
+  {
+    "block": "nav",
+    "page": "about",
+    "vw": 1024,
+    "metric": "burger-tap",
+    "value": "55x55",
+    "note": "visible=true (44px floor)"
+  },
+  {
+    "block": "nav",
+    "page": "about",
+    "vw": 1024,
+    "metric": "offcanvas-box",
+    "value": "0x0",
+    "note": ""
+  },
+  {
+    "block": "nav",
+    "page": "about",
+    "vw": 1024,
+    "metric": "menu-link-tap",
+    "value": "109x47",
+    "note": "44px floor"
+  },
+  {
+    "block": "title-bar",
+    "page": "services",
+    "vw": 1024,
+    "metric": "box",
+    "value": "1024x550",
+    "note": "minH=550px padT=0px padB=0px"
+  },
+  {
+    "block": "title-bar",
+    "page": "services",
+    "vw": 1024,
+    "metric": "h1",
+    "value": "70px",
+    "note": "lh=70px box=964x70 \"Услуги\""
+  },
+  {
+    "block": "cards",
+    "page": "services",
+    "vw": 1024,
+    "metric": "box",
+    "value": "305x283",
+    "note": "pad=28px count=4"
+  },
+  {
+    "block": "hero",
+    "page": "index",
+    "vw": 1024,
+    "metric": "box",
+    "value": "1024x700",
+    "note": ""
+  },
+  {
+    "block": "hero",
+    "page": "index",
+    "vw": 1024,
+    "metric": "title",
+    "value": "14px",
+    "note": "lh=14px box=0x0 right=0"
+  },
+  {
+    "block": "global",
+    "page": "index",
+    "vw": 1024,
+    "metric": "scrollWidth",
+    "value": 1024,
+    "note": "clientWidth=1024 overflow=0px"
+  },
+  {
+    "block": "imagery",
+    "page": "index",
+    "vw": 1024,
+    "metric": "imgs",
+    "value": "[{\"w\":402,\"h\":446,\"nw\":900,\"nh\":1000,\"src\":\"about-01.jpg\"},{\"w\":381,\"h\":680,\"nw\":381,\"nh\":680,\"src\":\"about-02.png\"},{\"w\":120,\"h\":40,\"nw\":120,\"nh\":40,\"src\":\"infobox-img.png\"}]",
+    "note": "render vs natural"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 1024,
+    "metric": "box",
+    "value": "964x491",
+    "note": ""
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 1024,
+    "metric": "input-box",
+    "value": "470x55",
+    "note": "fontSize=15px (iOS-zoom<16px?)"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 1024,
+    "metric": "submit-tap",
+    "value": "261x64",
+    "note": "44px floor"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 1024,
+    "metric": "consent-checkbox",
+    "value": "18x18",
+    "note": "44px floor"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 1024,
+    "metric": "map-iframe",
+    "value": "964x420",
+    "note": ""
+  },
+  {
+    "block": "footer",
+    "page": "contacts",
+    "vw": 1024,
+    "metric": "box",
+    "value": "1024x1289",
+    "note": "borderTop=3px solid rgb(236, 171, 35)"
+  },
+  {
+    "block": "footer",
+    "page": "contacts",
+    "vw": 1024,
+    "metric": "footer-link-tap",
+    "value": "0x0",
+    "note": "44px floor"
+  },
+  {
+    "block": "global",
+    "page": "about",
+    "vw": 768,
+    "metric": "scrollWidth",
+    "value": 768,
+    "note": "clientWidth=768 overflow=0px"
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 768,
+    "metric": "box",
+    "value": "768x0",
+    "note": "pos=relative"
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 768,
+    "metric": "logo-box",
+    "value": "249x31",
+    "note": ""
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 768,
+    "metric": "search-tap",
+    "value": "44x44",
+    "note": "cls= (44px floor)"
+  },
+  {
+    "block": "nav",
+    "page": "about",
+    "vw": 768,
+    "metric": "burger-tap",
+    "value": "55x55",
+    "note": "visible=true (44px floor)"
+  },
+  {
+    "block": "nav",
+    "page": "about",
+    "vw": 768,
+    "metric": "offcanvas-box",
+    "value": "0x0",
+    "note": ""
+  },
+  {
+    "block": "nav",
+    "page": "about",
+    "vw": 768,
+    "metric": "menu-link-tap",
+    "value": "109x47",
+    "note": "44px floor"
+  },
+  {
+    "block": "title-bar",
+    "page": "services",
+    "vw": 768,
+    "metric": "box",
+    "value": "768x550",
+    "note": "minH=550px padT=0px padB=0px"
+  },
+  {
+    "block": "title-bar",
+    "page": "services",
+    "vw": 768,
+    "metric": "h1",
+    "value": "70px",
+    "note": "lh=70px box=708x70 \"Услуги\""
+  },
+  {
+    "block": "cards",
+    "page": "services",
+    "vw": 768,
+    "metric": "box",
+    "value": "342x256",
+    "note": "pad=28px count=4"
+  },
+  {
+    "block": "hero",
+    "page": "index",
+    "vw": 768,
+    "metric": "box",
+    "value": "768x590",
+    "note": ""
+  },
+  {
+    "block": "hero",
+    "page": "index",
+    "vw": 768,
+    "metric": "title",
+    "value": "14px",
+    "note": "lh=14px box=0x0 right=0"
+  },
+  {
+    "block": "global",
+    "page": "index",
+    "vw": 768,
+    "metric": "scrollWidth",
+    "value": 768,
+    "note": "clientWidth=768 overflow=0px"
+  },
+  {
+    "block": "imagery",
+    "page": "index",
+    "vw": 768,
+    "metric": "imgs",
+    "value": "[{\"w\":295,\"h\":328,\"nw\":900,\"nh\":1000,\"src\":\"about-01.jpg\"},{\"w\":381,\"h\":680,\"nw\":381,\"nh\":680,\"src\":\"about-02.png\"},{\"w\":120,\"h\":40,\"nw\":120,\"nh\":40,\"src\":\"infobox-img.png\"}]",
+    "note": "render vs natural"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 768,
+    "metric": "box",
+    "value": "708x491",
+    "note": ""
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 768,
+    "metric": "input-box",
+    "value": "342x55",
+    "note": "fontSize=15px (iOS-zoom<16px?)"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 768,
+    "metric": "submit-tap",
+    "value": "261x64",
+    "note": "44px floor"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 768,
+    "metric": "consent-checkbox",
+    "value": "18x18",
+    "note": "44px floor"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 768,
+    "metric": "map-iframe",
+    "value": "708x420",
+    "note": ""
+  },
+  {
+    "block": "footer",
+    "page": "contacts",
+    "vw": 768,
+    "metric": "box",
+    "value": "768x1229",
+    "note": "borderTop=3px solid rgb(236, 171, 35)"
+  },
+  {
+    "block": "footer",
+    "page": "contacts",
+    "vw": 768,
+    "metric": "footer-link-tap",
+    "value": "0x0",
+    "note": "44px floor"
+  },
+  {
+    "block": "global",
+    "page": "about",
+    "vw": 390,
+    "metric": "scrollWidth",
+    "value": 390,
+    "note": "clientWidth=390 overflow=0px"
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 390,
+    "metric": "box",
+    "value": "390x0",
+    "note": "pos=relative"
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 390,
+    "metric": "logo-box",
+    "value": "249x31",
+    "note": ""
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 390,
+    "metric": "search-tap",
+    "value": "44x44",
+    "note": "cls= (44px floor)"
+  },
+  {
+    "block": "nav",
+    "page": "about",
+    "vw": 390,
+    "metric": "burger-tap",
+    "value": "45x45",
+    "note": "visible=true (44px floor)"
+  },
+  {
+    "block": "nav",
+    "page": "about",
+    "vw": 390,
+    "metric": "offcanvas-box",
+    "value": "0x0",
+    "note": ""
+  },
+  {
+    "block": "nav",
+    "page": "about",
+    "vw": 390,
+    "metric": "menu-link-tap",
+    "value": "109x47",
+    "note": "44px floor"
+  },
+  {
+    "block": "title-bar",
+    "page": "services",
+    "vw": 390,
+    "metric": "box",
+    "value": "390x214",
+    "note": "minH=0px padT=0px padB=0px"
+  },
+  {
+    "block": "title-bar",
+    "page": "services",
+    "vw": 390,
+    "metric": "h1",
+    "value": "32px",
+    "note": "lh=50px box=330x50 \"Услуги\""
+  },
+  {
+    "block": "cards",
+    "page": "services",
+    "vw": 390,
+    "metric": "box",
+    "value": "330x256",
+    "note": "pad=28px count=4"
+  },
+  {
+    "block": "hero",
+    "page": "index",
+    "vw": 390,
+    "metric": "box",
+    "value": "390x420",
+    "note": ""
+  },
+  {
+    "block": "hero",
+    "page": "index",
+    "vw": 390,
+    "metric": "title",
+    "value": "14px",
+    "note": "lh=14px box=0x0 right=0"
+  },
+  {
+    "block": "global",
+    "page": "index",
+    "vw": 390,
+    "metric": "scrollWidth",
+    "value": 390,
+    "note": "clientWidth=390 overflow=0px"
+  },
+  {
+    "block": "imagery",
+    "page": "index",
+    "vw": 390,
+    "metric": "imgs",
+    "value": "[{\"w\":330,\"h\":367,\"nw\":900,\"nh\":1000,\"src\":\"about-01.jpg\"},{\"w\":330,\"h\":589,\"nw\":381,\"nh\":680,\"src\":\"about-02.png\"},{\"w\":120,\"h\":40,\"nw\":120,\"nh\":40,\"src\":\"infobox-img.png\"}]",
+    "note": "render vs natural"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 390,
+    "metric": "box",
+    "value": "330x616",
+    "note": ""
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 390,
+    "metric": "input-box",
+    "value": "330x55",
+    "note": "fontSize=15px (iOS-zoom<16px?)"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 390,
+    "metric": "submit-tap",
+    "value": "261x64",
+    "note": "44px floor"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 390,
+    "metric": "consent-checkbox",
+    "value": "18x18",
+    "note": "44px floor"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 390,
+    "metric": "map-iframe",
+    "value": "330x420",
+    "note": ""
+  },
+  {
+    "block": "footer",
+    "page": "contacts",
+    "vw": 390,
+    "metric": "box",
+    "value": "390x1732",
+    "note": "borderTop=3px solid rgb(236, 171, 35)"
+  },
+  {
+    "block": "footer",
+    "page": "contacts",
+    "vw": 390,
+    "metric": "footer-link-tap",
+    "value": "0x0",
+    "note": "44px floor"
+  },
+  {
+    "block": "global",
+    "page": "about",
+    "vw": 360,
+    "metric": "scrollWidth",
+    "value": 360,
+    "note": "clientWidth=360 overflow=0px"
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 360,
+    "metric": "box",
+    "value": "360x0",
+    "note": "pos=relative"
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 360,
+    "metric": "logo-box",
+    "value": "249x31",
+    "note": ""
+  },
+  {
+    "block": "header",
+    "page": "about",
+    "vw": 360,
+    "metric": "search-tap",
+    "value": "44x44",
+    "note": "cls= (44px floor)"
+  },
+  {
+    "block": "nav",
+    "page": "about",
+    "vw": 360,
+    "metric": "burger-tap",
+    "value": "45x45",
+    "note": "visible=true (44px floor)"
+  },
+  {
+    "block": "nav",
+    "page": "about",
+    "vw": 360,
+    "metric": "offcanvas-box",
+    "value": "0x0",
+    "note": ""
+  },
+  {
+    "block": "nav",
+    "page": "about",
+    "vw": 360,
+    "metric": "menu-link-tap",
+    "value": "109x47",
+    "note": "44px floor"
+  },
+  {
+    "block": "title-bar",
+    "page": "services",
+    "vw": 360,
+    "metric": "box",
+    "value": "360x214",
+    "note": "minH=0px padT=0px padB=0px"
+  },
+  {
+    "block": "title-bar",
+    "page": "services",
+    "vw": 360,
+    "metric": "h1",
+    "value": "32px",
+    "note": "lh=50px box=300x50 \"Услуги\""
+  },
+  {
+    "block": "cards",
+    "page": "services",
+    "vw": 360,
+    "metric": "box",
+    "value": "300x283",
+    "note": "pad=28px count=4"
+  },
+  {
+    "block": "hero",
+    "page": "index",
+    "vw": 360,
+    "metric": "box",
+    "value": "360x420",
+    "note": ""
+  },
+  {
+    "block": "hero",
+    "page": "index",
+    "vw": 360,
+    "metric": "title",
+    "value": "14px",
+    "note": "lh=14px box=0x0 right=0"
+  },
+  {
+    "block": "global",
+    "page": "index",
+    "vw": 360,
+    "metric": "scrollWidth",
+    "value": 360,
+    "note": "clientWidth=360 overflow=0px"
+  },
+  {
+    "block": "imagery",
+    "page": "index",
+    "vw": 360,
+    "metric": "imgs",
+    "value": "[{\"w\":300,\"h\":333,\"nw\":900,\"nh\":1000,\"src\":\"about-01.jpg\"},{\"w\":300,\"h\":535,\"nw\":381,\"nh\":680,\"src\":\"about-02.png\"},{\"w\":120,\"h\":40,\"nw\":120,\"nh\":40,\"src\":\"infobox-img.png\"}]",
+    "note": "render vs natural"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 360,
+    "metric": "box",
+    "value": "300x634",
+    "note": ""
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 360,
+    "metric": "input-box",
+    "value": "300x55",
+    "note": "fontSize=15px (iOS-zoom<16px?)"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 360,
+    "metric": "submit-tap",
+    "value": "261x64",
+    "note": "44px floor"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 360,
+    "metric": "consent-checkbox",
+    "value": "18x18",
+    "note": "44px floor"
+  },
+  {
+    "block": "form",
+    "page": "contacts",
+    "vw": 360,
+    "metric": "map-iframe",
+    "value": "300x420",
+    "note": ""
+  },
+  {
+    "block": "footer",
+    "page": "contacts",
+    "vw": 360,
+    "metric": "box",
+    "value": "360x1755",
+    "note": "borderTop=3px solid rgb(236, 171, 35)"
+  },
+  {
+    "block": "footer",
+    "page": "contacts",
+    "vw": 360,
+    "metric": "footer-link-tap",
+    "value": "0x0",
+    "note": "44px floor"
+  }
+]
