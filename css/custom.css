@@ -63,7 +63,8 @@
 .pfg-section--alt{ background: var(--pbmit-light-color, #f6f7f9); }
 .pfg-lead{ font-size: 18px; line-height: 1.7; }
 .pfg-prose p{ margin-bottom: 16px; line-height: 1.7; }
-.pfg-card{ background:#fff; border:1px solid #eef0f3; border-radius:14px; padding:28px; height:100%; }
+/* C1 (AUD-02): padding snap 28→24px на 4px-сетку (--pfg-space-6) — единый ритм. */
+.pfg-card{ background:#fff; border:1px solid #eef0f3; border-radius:14px; padding:var(--pfg-space-6); height:100%; }
 .pfg-card h3{ font-size:20px; margin-bottom:12px; }
 .pfg-grid{ display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
 /* Нумерованные шаги «как проходит работа» */
@@ -534,6 +535,10 @@ button:focus-visible,
 .pfg-form .form-control,
 .pfg-form .form-select,
 .pfg-form textarea.form-control{
+	/* F1 (AUD-02): vendor .form-control = 15px (style.css:2641) → iOS<16 зумит при фокусе.
+	   16px подавляет focus-zoom; выигрывает специфичностью 0,2,0 > 0,1,0 + source-order,
+	   без форсирования каскада. Desktop визуально почти не меняется (15→16px). */
+	font-size: 16px;
 	border: 1px solid var(--pfg-hairline-2);
 	border-radius: var(--pfg-radius-sm);
 	transition: border-color var(--pfg-tf-fast), box-shadow var(--pfg-tf-fast);
@@ -874,7 +879,8 @@ button:focus-visible,
 
 /* Внутренний контент карточки — отступы от краёв */
 .pbmit-element-service-style-2 .pbmit-box-content-wrap{
-	padding: 28px;
+	/* C1 (AUD-02): padding snap 28→24px на 4px-сетку (--pfg-space-6) — единый ритм с .pfg-card. */
+	padding: var(--pfg-space-6);
 }
 
 /* Заголовок услуги — уплотняем line-height */
