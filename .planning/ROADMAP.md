@@ -42,7 +42,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-03-PLAN.md — AUD-02 visual-problem inventory by block-type (DOM-measured, 5 viewports)
+- [x] 01-03-PLAN.md — AUD-02 visual-problem inventory by block-type (DOM-measured, 5 viewports)
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -124,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Baseline Audit + UI Design Contract | 2/4 | In Progress|  |
+| 1. Baseline Audit + UI Design Contract | 3/4 | In Progress|  |
 | 2. Design Tokens + Primitives | 0/TBD | Not started | - |
 | 3. Components | 0/TBD | Not started | - |
 | 4. Conversion Blocks + Imagery | 0/TBD | Not started | - |
