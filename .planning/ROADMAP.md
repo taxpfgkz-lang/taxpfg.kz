@@ -13,7 +13,7 @@ This is a brownfield visual hardening of a live, no-build static marketing site 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Baseline Audit + UI Design Contract** - Capture the Lighthouse/axe floor and lock the rules before any code changes (documents only)
+- [x] **Phase 1: Baseline Audit + UI Design Contract** - Capture the Lighthouse/axe floor and lock the rules before any code changes (documents only) (completed 2026-06-25)
 - [ ] **Phase 2: Design Tokens + Primitives** - Consolidate the `:root` token sheet, spacing scale, and fluid type scale everything inherits
 - [ ] **Phase 3: Components** - Style buttons, forms, cards, nav, FAQ, and modals with all interaction states
 - [ ] **Phase 4: Conversion Blocks + Imagery** - Tune hero, pricing, CTA hierarchy, footer parity, and imagery; resolve the sticky-CTA vs WhatsApp collision
@@ -124,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Baseline Audit + UI Design Contract | 4/5 | In Progress|  |
+| 1. Baseline Audit + UI Design Contract | 4/5 | Complete    | 2026-06-25 |
 | 2. Design Tokens + Primitives | 0/TBD | Not started | - |
 | 3. Components | 0/TBD | Not started | - |
 | 4. Conversion Blocks + Imagery | 0/TBD | Not started | - |
