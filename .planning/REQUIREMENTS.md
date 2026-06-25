@@ -90,24 +90,44 @@
 
 ## Traceability
 
-Заполняется при создании roadmap.
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUD-01..05 | TBD | Pending |
-| TOK-01..03 | TBD | Pending |
-| VIS-01..03 | TBD | Pending |
-| CMP-01..06 | TBD | Pending |
-| CNV-01..04 | TBD | Pending |
-| IMG-01 | TBD | Pending |
-| A11Y-01..04 | TBD | Pending |
-| VER-01..04 | TBD | Pending |
+| AUD-01 | Phase 1 | Pending |
+| AUD-02 | Phase 1 | Pending |
+| AUD-03 | Phase 1 | Pending |
+| AUD-04 | Phase 1 | Pending |
+| AUD-05 | Phase 1 | Pending |
+| TOK-01 | Phase 2 | Pending |
+| TOK-02 | Phase 2 | Pending |
+| TOK-03 | Phase 2 | Pending |
+| VIS-01 | Phase 3 | Pending |
+| VIS-02 | Phase 2 | Pending |
+| VIS-03 | Phase 2 | Pending |
+| CMP-01 | Phase 3 | Pending |
+| CMP-02 | Phase 3 | Pending |
+| CMP-03 | Phase 3 | Pending |
+| CMP-04 | Phase 3 | Pending |
+| CMP-05 | Phase 3 | Pending |
+| CMP-06 | Phase 3 | Pending |
+| CNV-01 | Phase 4 | Pending |
+| CNV-02 | Phase 4 | Pending |
+| CNV-03 | Phase 4 | Pending |
+| CNV-04 | Phase 4 | Pending |
+| IMG-01 | Phase 4 | Pending |
+| A11Y-01 | Phase 5 | Pending |
+| A11Y-02 | Phase 5 | Pending |
+| A11Y-03 | Phase 5 | Pending |
+| A11Y-04 | Phase 5 | Pending |
+| VER-01 | Phase 5 | Pending |
+| VER-02 | Phase 5 | Pending |
+| VER-03 | Phase 5 | Pending |
+| VER-04 | Phase 5 | Pending |
 
 **Coverage:**
-- v1 requirements: 28 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 28 ⚠️
+- v1 requirements: 30 total
+- Mapped to phases: 30 ✓
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-06-25*
-*Last updated: 2026-06-25 after initial definition*
+*Last updated: 2026-06-25 after roadmap creation (traceability filled, count corrected 28→30)*
