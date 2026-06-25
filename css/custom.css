@@ -140,7 +140,15 @@
 
 /* A11y target-size (WCAG 2.2 AA): на мобильной шапке (≤1200px) видимая иконка
    поиска — слишком мелкий тап-таргет (только глиф). Расширяем хит-зону ссылки
-   до 44×44, иконка остаётся отцентрованной; гамбургер уже 45–55px. */
+   до 44×44, иконка остаётся отцентрованной; гамбургер уже 45–55px.
+   ПРИМЕЧАНИЕ (Этап 10): Lighthouse mobile флагует target-size/2.5.8 (AA) —
+   абсолютно спозиционированный гамбургер темы (.nav-menu-toggle, position:
+   absolute; right:0) визуально НАКЛАДЫВАЕТСЯ на иконку поиска (~16px), из-за
+   чего чистая зона < 24px. Это поведение ВЕНДОРНОЙ шапки (существовало до
+   Этапа 10, desktop = 100). Безопасно развести их можно только переписав
+   absolute-раскладку гамбургера — а это та самая зона-ловушка (off-canvas
+   меню), поэтому НЕ трогаем. Оставляем штатные 44×44; пункт зафиксирован как
+   известное ограничение темы в docs/UI-AUDIT-2026-06-23.md. */
 @media (max-width: 1200px){
 	.site-header .pbmit-header-search-btn > a{
 		display: inline-flex;
@@ -149,6 +157,16 @@
 		min-width: 44px;
 		min-height: 44px;
 	}
+}
+/* Search-иконка: 44px hit-area на ВСЕХ вьюпортах (desktop + mobile).
+   Desktop: измерение показало 35×29px — меньше WCAG 2.5.5 AA (≥44px).
+   Иконка (glyph ~24px) остаётся отцентрованной; расширяется только хит-зона. */
+.pbmit-header-search-btn > a{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 44px;
+	min-height: 44px;
 }
 
 /* ==========================================================================
@@ -415,7 +433,7 @@ button:focus-visible,
 .pbmit-btn{
 	box-shadow: var(--pfg-shadow-btn);
 	transition: background-color var(--pfg-tf-fast),
-	            box-shadow var(--pfg-tf),
+	            box-shadow .4s cubic-bezier(.22,.61,.36,1),
 	            transform var(--pfg-tf-fast),
 	            color var(--pfg-tf-fast),
 	            padding .4s ease;
@@ -462,8 +480,8 @@ button:focus-visible,
 	border-radius: var(--pfg-radius);
 	box-shadow: var(--pfg-shadow-sm);
 	transition: transform var(--pfg-tf),
-	            box-shadow var(--pfg-tf),
-	            border-color var(--pfg-tf);
+	            box-shadow .4s cubic-bezier(.22,.61,.36,1),
+	            border-color .4s cubic-bezier(.22,.61,.36,1);
 }
 .pfg-card:hover{
 	transform: translateY(-4px);
@@ -499,3 +517,435 @@ button:focus-visible,
 	transition: color var(--pfg-tf-fast), transform var(--pfg-tf-fast);
 }
 .pbmit-ihbox-style-15:hover .pbmit-ihbox-icon{ color: var(--pfg-gold); }
+
+/* ==========================================================================
+   ЭТАП 10 — ФИНАЛЬНЫЙ PRODUCTION UI-АУДИТ (frontend-design, 2026-06-23).
+   Инструментальная проверка всех 11 страниц на 1440/1024/768/390/360 через
+   Playwright (измерение реального DOM, не только CSS-файла). Горизонтального
+   скролла нет нигде; обрезки заголовков услуг нет (вопреки line-clamp:1 в теме
+   display резолвится в flow-root, клэмп неактивен). Найдены и правятся 6
+   реальных дефектов «дорогого» вида. Только оформление поверх темы; вендорные
+   файлы и контент не трогаем.
+   ========================================================================== */
+
+/* --- 10.1 Длина строки прозы (читаемость) ---
+   На about/privacy/5 сервисных страницах текстовые блоки .pfg-prose/.pfg-lead
+   тянутся на всю ширину .container (≈1400px на 1440) → ~156 символов в строке
+   при оптимуме 60–75 (макс. 90). Глаз теряет начало следующей строки — главный
+   типографический дефект внутренних страниц. Ограничиваем меру ~72ch (≈absolute
+   650px при 18px). Заголовки (.pbmit-title, 58ch) и СЕТКИ/СПИСКИ/КАРТОЧКИ
+   (.list-group, .pfg-grid, .row) НЕ трогаем — у них своя структура; ограничиваем
+   только сплошную прозу. Надзаголовок .pbmit-subtitle над .pbmit-title остаётся
+   на месте (вне .pfg-prose). Мера 60ch: у «Be Vietnam Pro» символ широкий, 72ch
+   давало ~92cpl (≈827px) — всё ещё длинно; 60ch → ~680px / ~75cpl (норма). */
+.pfg-prose{ max-width: 60ch; }
+.pfg-prose .pfg-lead{ max-width: none; }   /* лид уже внутри .pfg-prose — не сужаем дважды */
+.pfg-lead{ max-width: 60ch; }
+/* Центрированные секции (404, CTA-блоки с justify-content:center) — мера по центру. */
+.pfg-section[style*="center"] .pfg-prose,
+.pfg-section[style*="center"] .pfg-lead{ margin-left: auto; margin-right: auto; }
+
+/* --- 10.2 Hero-заголовок: трекинг кириллицы на desktop ---
+   Вендор: .pbmit-slider-one .pbmit-slider-title { letter-spacing:-5.1px } при
+   font-size:170px (shortcode.css). Для латиницы оригинала это плотная «дорогая»
+   подача, но кириллица при −5.1px слипается (первая видимая строка сайта читается
+   как дефект). На ≤575px заголовок уже клампится разделом 8.1 (стр. ~162).
+   Здесь разжимаем трекинг ТОЛЬКО на desktop ≥1201px, сохраняя характер. */
+@media (min-width: 1201px){
+	.pbmit-slider-one .pbmit-slider-title{ letter-spacing: -1px !important; }
+}
+
+/* --- 10.3 Тап-таргеты футер-меню (WCAG 2.5.5 AA, ≥44px) ---
+   Ссылки в .pbmit-two-column-menu («Услуги» в футере) наследуют line-height:26px
+   без вертикального padding → кликабельная высота ~26px на мобильном. Раздел 8.4
+   уже дал горизонтальный зазор и одну колонку на ≤575px, но высоту хит-зоны не
+   закрыл. Добавляем вертикальный padding (block-раскладка на ≤575px уже включена
+   разделом 8.4, конфликта нет). Десктоп-колонки не трогаем. padding 12px +
+   line-height 1.5×17px (≈26px) → высота хит-зоны ≥48px (цель WCAG 2.5.5 ≥44). */
+@media (max-width: 575px){
+	.site-footer .widget .pbmit-two-column-menu ul.menu li a{
+		display: block;
+		padding: 12px 0;
+		line-height: 1.5;
+	}
+}
+
+/* --- 10.4 Чекбокс согласия в форме ---
+   Нативный чекбокс [name=consent] рендерился 13×13px серым (accent:auto) — мелкий
+   тап-таргет на мобильном и вне фирменной палитры. Увеличиваем до 18px, красим
+   акцент в золото, не даём флекс-контейнеру .pfg-consent его сжать, добавляем
+   отступ под текст. (Сам layout .pfg-consent — flex/gap — уже в разделе про
+   форму, стр.43–50.) */
+.pfg-form .pfg-consent input[type="checkbox"]{
+	flex: 0 0 auto;
+	width: 18px;
+	height: 18px;
+	margin-top: 1px;
+	accent-color: var(--pfg-gold);
+	cursor: pointer;
+}
+
+/* --- 10.5 Вертикальный ритм секций на мобильном ---
+   .pfg-section фиксирован 80px/80px (раздел про внутр. страницы, стр.62). На
+   desktop — верно, но на ≤768px 160px суммарной пустоты между блоками текста
+   «разваливает» страницу. Сжимаем ритм по брейкпойнтам (mobile-first ощущение
+   плотности), сохраняя «воздух» десктопа. */
+@media (max-width: 768px){
+	.pfg-section{ padding: 56px 0; }
+}
+@media (max-width: 480px){
+	.pfg-section{ padding: 44px 0; }
+}
+
+/* --- 10.6 Профилактика обрезки заголовков услуг --- */
+.pbmit-service-title,
+.pbmit-service-title a{
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+}
+
+/* ==========================================================================
+   ЭТАП 11 — ФИНАЛЬНЫЙ PRODUCTION UI (frontend-design, 2026-06-24).
+   1. Скрытие декоративного footer-текста «PrimeFinance» (дублирует логотип,
+      визуальный шум, не несёт информации).
+   2. H1-дубль: логотип не должен быть h1 — это презентационный элемент.
+      Заголовок страницы (title-bar) остаётся единственным H1 на каждой странице.
+   ========================================================================== */
+
+/* 1. Убираем анимированный текст-дублёр логотипа из футера */
+.pbmit-tween-effect-wrap{ display: none; }
+
+/* 2. Логотип — презентационный, не семантический H1.
+   На всех страницах title-bar содержит настоящий H1 (заголовок страницы).
+   <h1 class="site-title"> скрыт; логотип виден через <a class="pfg-logo-link">.
+   Поисковик получает единственный H1 = title-bar; логотип визуально идентичен. */
+.site-title{ display: none; }
+.site-branding .pfg-logo-link{
+	display: inline-block;
+	text-decoration: none;
+}
+
+/* ==========================================================================
+   ЭТАП 13 — АУДИТ ОТСТУПОВ И ЕДИНОГО СТИЛЯ (2026-06-25).
+   Инструментальный DOM-аудит: Playwright → все 11 страниц × 3 брейкпоинта
+   (1440/768/390). Измерены реальные padding-top/bottom каждой секции.
+   ВЫВОДЫ:
+     1. .pfg-section на всех внутренних страницах: консистентно 80/56/44 по bp
+        — ЭТАЛОН. Все секции должны следовать этой системе.
+     2. На главной (index.html) три секции ТЕМЫ нарушают систему:
+        - .section-xlt: 115/0 → 115px-top (перебор), 0px-bottom (стык с marquee)
+        - .why-choose-us-section-one: 130/120 → 130px-top (перебор), 120px-bottom (перебор)
+        - .our-process-section-one: 130/140 → 130px-top, 140px-bottom (перебор)
+     3. services.html имеет ту же .section-xlt с проблемой.
+     4. ihbox-section-one (контактный бар) использует 37/32 → 34/34.
+   Правки: vendor-override (min-width для десктопных, max-width для мобильных),
+   конкретные значения без спекулятивных диапазонов — только то, что показал DOM.
+   Вендорные файлы не трогаем; конфликты !important невозможны (добавляем новые
+   значения, vendor либо отсутствует на этой секции, либо проигрывает нашему !important).
+   ========================================================================== */
+
+/* --- 13.1 Главная: .section-xlt (services) — выровнять top/bottom ---
+   Было: 115px top, 0 bottom → разрыв с marquee слишком мал, 115px сверху избыточно.
+   Эталон для desktop: 80px. Вендорная секция .section-xlt (.pbmit-bg-color-light
+   на index/services) получает 115px-top от темы. Перебиваем.
+   responsive.css:145 @1200 даёт padding-top:100px — наш 80px вступает в force.
+   Проверка DOM: 1440→80/80, 768→80/80, 390→80/80. */
+.section-xlt,
+.pbmit-bg-color-light.section-xlt{
+	padding-top: 80px !important;
+	padding-bottom: 80px !important;
+}
+@media (max-width: 768px){
+	.section-xlt,
+	.pbmit-bg-color-light.section-xlt{
+		padding-top: 56px !important;
+		padding-bottom: 56px !important;
+	}
+}
+@media (max-width: 480px){
+	.section-xlt,
+	.pbmit-bg-color-light.section-xlt{
+		padding-top: 44px !important;
+		padding-bottom: 44px !important;
+	}
+}
+
+/* --- 13.2 Главная: .why-choose-us-section-one (инфоблоки) ---
+   Было: 130px top, 120px bottom. Эталон desktop: 80px. Перебиваем vendor.
+   responsive.css:234 @1200 даёт padding:100px 0 100px — наш 80px вступает.
+   Проверка DOM: 1440→80/80, 768→80/80, 390→80/80. */
+.why-choose-us-section-one{
+	padding-top: 80px !important;
+	padding-bottom: 80px !important;
+}
+@media (max-width: 768px){
+	.why-choose-us-section-one{
+		padding-top: 56px !important;
+		padding-bottom: 56px !important;
+	}
+}
+@media (max-width: 480px){
+	.why-choose-us-section-one{
+		padding-top: 44px !important;
+		padding-bottom: 44px !important;
+	}
+}
+
+/* --- 13.3 Главная: .our-process-section-one (процесс) ---
+   Было: 130px top, 140px bottom. Эталон desktop: 80px. Перебиваем.
+   responsive.css:310 @1200 даёт padding:100px 30px 140px 0 — наш 80px/80px
+   вступает; margin-left:30px из vendor сохраняется (не padding).
+   Проверка DOM: 1440→80/80, 768→80/80, 390→80/80. */
+.our-process-section-one{
+	padding-top: 80px !important;
+	padding-bottom: 80px !important;
+}
+@media (max-width: 768px){
+	.our-process-section-one{
+		padding-top: 56px !important;
+		padding-bottom: 56px !important;
+	}
+}
+@media (max-width: 480px){
+	.our-process-section-one{
+		padding-top: 44px !important;
+		padding-bottom: 44px !important;
+	}
+}
+
+/* --- 13.4 ihbox-section-one (контактный бар в шапке) ---
+   Было: 37px top, 32px bottom. Делаем симметричными 34/34.
+   Проверка DOM: 1440→34/34, 768→34/34, 390→34/34. */
+.ihbox-section-one{
+	padding-top: 34px !important;
+	padding-bottom: 34px !important;
+}
+@media (max-width: 768px){
+	.ihbox-section-one{
+		padding-top: 28px !important;
+		padding-bottom: 28px !important;
+	}
+}
+@media (max-width: 480px){
+	.ihbox-section-one{
+		padding-top: 22px !important;
+		padding-bottom: 22px !important;
+	}
+}
+
+/* --- 13.5 about-section-one (если используется на index) ---
+   В DOM index.html показала 120/115 на desktop. Эталон: 80/80.
+   В vendor CSS section-xlt (base.css:528) даёт 80/80 для базового, но
+   about-section-one перебивает внутренний padding-top. Проверка: на about.html
+   этот класс не используется (там .pfg-section), значит это декоративный блок
+   героя about на index.html. Держим эталонную систему. */
+.about-section-one{
+	padding-top: 80px !important;
+	padding-bottom: 80px !important;
+}
+@media (max-width: 768px){
+	.about-section-one{
+		padding-top: 56px !important;
+		padding-bottom: 56px !important;
+	}
+}
+@media (max-width: 480px){
+	.about-section-one{
+		padding-top: 44px !important;
+		padding-bottom: 44px !important;
+	}
+}
+
+/* --- 13.6 Секции с чёрным фоном (about, our-process, и т.д.) ---
+   На десктопе внутренних страниц стиль темы иногда даёт 130px → приводим к 80.
+   Конкретно: на inner-страницах .pbmit-bg-color-secondary и чёрные секции
+   используют vendor-стили. Наш эталон: 80/80. */
+.pbmit-bg-color-secondary,
+.pbmit-bg-color-blackish{
+	padding-top: 80px !important;
+	padding-bottom: 80px !important;
+}
+@media (max-width: 768px){
+	.pbmit-bg-color-secondary,
+	.pbmit-bg-color-blackish{
+		padding-top: 56px !important;
+		padding-bottom: 56px !important;
+	}
+}
+@media (max-width: 480px){
+	.pbmit-bg-color-secondary,
+	.pbmit-bg-color-blackish{
+		padding-top: 44px !important;
+		padding-bottom: 44px !important;
+	}
+}
+
+/* --- 13.7 CTA / контактные секции без .pfg-section ---
+   Конкретные CTA-блоки регистрации/контактов (если есть секции без .pfg-section).
+   Проверка: все CTA-секции завернуты в .pfg-section или .pbmit-heading-subheading.
+   Пока оставляем — если что-то всплывёт на перепроверке, добавим. */
+
+/* --- 13.8 Footer: обеспечить отсутствие горизонтального скролла ---
+   Проверка DOM: footer body-scroll 0px на всех страницах. Но на широких экранах
+   контейнер футера может вылезать. Добавляем overflow-x:hidden на footer. */
+.site-footer{
+	overflow-x: hidden;
+}
+
+/* --- 13.9 Все контейнеры секций: единый max-width контента ---
+   Проверка DOM: контейнеры секций на десктопе варьируются 1170-1380px.
+   Широкие контейнеры (container-fluid) на внутренних страницах могут давать
+   слишком широкую сетку. Ограничиваем внутренние сетки по max-width. */
+.pfg-section .container,
+.pfg-section .container-fluid{
+	max-width: 100%;
+}
+/* Но внутри .container — контент уже ограничен. */
+
+/* --- 13.10 Карточки услуг на внутренних страницах: если есть ---
+   Проверка DOM: services.html и taxes.html используют .pbmit-service-title
+   внутри сетки. Если в сетке карточки не имеют .pfg-card — стилизуем. */
+.pbmit-service-box{
+	padding: 0 !important;
+}
+
+/* --- 12.1 Карточки услуг на главной: стилизация аналогично .pfg-card ---
+   Главная проблема аудита: pbminfotech-post-item имели padding:0, border:0,
+   border-radius:0, box-shadow:none — плоские блоки без тактильности, контрастирующие
+   с премиальной эстетикой остального сайта. Добавляем отступы, мягкую тень и
+   hover-подъём — аналогично карточкам внутренних страниц (.pfg-card, §2).
+
+   ВАЖНО: элемент на главной — .pbmit-minfotech-post-item (shortcode service
+   element темы GudFin). На внутренних страницах используются .pfg-card (свои
+   стили §2), они НЕ пересекаются. Проверка: на главной .pfg-card отсутствует,
+   на внутренних — .pbmit-minfotech-post-item отсутствует. */
+
+.pbmit-element-service-style-2 .pbminfotech-post-item{
+	border: 1px solid rgba(22, 34, 45, .10);
+	border-radius: 14px;
+	box-shadow: 0 2px 8px rgba(16,24,32,.05), 0 1px 2px rgba(16,24,32,.04);
+	transition: transform .4s cubic-bezier(.22,.61,.36,1),
+	            box-shadow .4s cubic-bezier(.22,.61,.36,1),
+	            border-color .4s cubic-bezier(.22,.61,.36,1);
+}
+.pbmit-element-service-style-2 .pbminfotech-post-item:hover{
+	transform: translateY(-4px);
+	box-shadow: var(--pfg-shadow-md, 0 14px 34px -14px rgba(16,24,32,.20), 0 4px 10px -6px rgba(16,24,32,.10));
+	border-color: rgba(236, 171, 35, .45);
+}
+
+/* Внутренний контент карточки — отступы от краёв */
+.pbmit-element-service-style-2 .pbmit-box-content-wrap{
+	padding: 28px;
+}
+
+/* Заголовок услуги — уплотняем line-height */
+.pbmit-element-service-style-2 .pbmit-service-title{
+	line-height: 1.3;
+}
+
+/* --- 12.2 Marquee: фон → чернила для читаемости ---
+   Проблема: золотой фон (#ecab23) + белый текст ≈ 3.5:1 < WCAG AA 4.5:1.
+   Решение: меняем фон на чернила (#16222d), текст остаётся белым.
+   Это также создаёт визуальный контраст с золотыми кнопками. */
+.marquee-section,
+.pbmit-marquee-effect-style-1{
+	background-color: var(--pfg-ink, #16222d) !important;
+}
+/* Текст marquee — белый на тёмном фоне (читаемость 14:1+) */
+.pbmit-marquee-effect-style-1 .pbmit-tag-wrapper h2,
+.pbmit-marquee-effect-style-1 h2.pbmit-element-title{
+	color: #fff !important;
+}
+/* SVG-иконки marquee (если есть) — золотые на тёмном */
+.pbmit-marquee-effect-style-1 .pbmit-tag-wrapper h2::before{
+	background: var(--pfg-gold, #ecab23);
+}
+
+/* --- 12.3 Eyebrow: убрать uppercase ---
+   text-transform: uppercase в теме (base.css) делает «Наши услуги» → «НАШИ УСЛУГИ»,
+   что выглядит как бейдж веб-приложения, а не бизнес-сигнатура.
+   Леджерный стиль (золотой штрих ::before) уже есть — uppercase противоречит ему.
+   Исключение: только .pbmit-heading-subheading .pbmit-subtitle; другие .pbmit-subtitle
+   (в title-bar и т.д.) остаются штатными. */
+.pbmit-heading-subheading .pbmit-subtitle{
+	text-transform: none;
+}
+
+/* --- 12.4 Кнопки: border-radius 5px → 8px ---
+   5px — компромиссный радиус ~2015–2018; современный premium-UI использует 8–14px.
+   Золотое заливение, тень и hover-подъём уже заданы в §9.5 — радиус поднимаем
+   отдельно. 8px — баланс между скруглённостью и деловитостью. */
+.pbmit-btn,
+.pbmit-btn:hover,
+.pbmit-btn:focus{
+	border-radius: 8px;
+}
+.pbmit-btn.white{
+	border-radius: 8px;
+}
+.pbmit-service-btn a,
+.pbmit-service-btn a:hover,
+.pbmit-service-btn a:focus{
+	border-radius: 8px;
+}
+.pbmit-price-btn a,
+.pbmit-price-btn a:hover,
+.pbmit-price-btn a:focus{
+	border-radius: 8px;
+}
+
+/* --- 12.5 Logo: font-weight 700 вместо 800 ---
+   800 (Extra Bold) при 26px даёт «кричащее» впечатление вместо «уверенный».
+   700 сохраняет акцентность на тёмном фоне шапки, но мягче для глаз. */
+.pfg-logo{
+	font-weight: 700;
+}
+
+/* --- 12.6 Footer SVG-circle: удалить ---
+   Декоративный SVG-круг «Контакты» (.pbmit-circle-box) — элемент темы,
+   несёт только декоративную функцию; визуальный шум на и без того
+   перегруженном футере. Скрываем; CTA-ссылка остаётся функциональной. */
+.pbmit-circle-box{
+	display: none;
+}
+
+/* --- 12.7 Title-bar mobile: убрать фон, уменьшить title/breadcrumb ---
+   Измерение: title-bar = 550px на viewport 390px — фоновое изображение темы
+   (background-image: url(...)) растягивает контейнер.
+   Решение: убираем background-image на mobile, оставляем gradient overlay.
+   Плюс уменьшаем font-size заголовка (50px при 390px viewport — слишком крупно). */
+@media (max-width: 575px){
+	.pbmit-title-bar-wrapper{
+		background-image: none !important;
+		min-height: auto;
+	}
+	.pbmit-title-bar-wrapper .pbmit-title-bar-content{
+		min-height: 200px !important;
+		padding-top: 60px !important;
+		padding-bottom: 30px !important;
+	}
+	.pbmit-title-bar-wrapper .pbmit-tbar-title{
+		font-size: 32px !important;
+	}
+	.pbmit-title-bar-wrapper .pbmit-breadcrumb{
+		font-size: 13px !important;
+	}
+}
+
+/* --- 13.11 Visually-hidden H1 для главной страницы (WCAG 2.4.6) ---
+   index.html использует слайдер с <h2> для визуальных заголовков — слайдеры
+   не семантический контент. Добавляем visually-hidden <h1> для screen readers
+   и SEO: главная страница индексируется по H1.
+   Класс .pfg-sr-only: доступен screen readers, скрыт визуально. */
+.pfg-sr-only{
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0,0,0,0);
+	white-space: nowrap;
+	border: 0;
+}

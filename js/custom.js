@@ -1,10 +1,3 @@
-/* ==========================================================================
-   PrimeFinance Group — кастомный JS поверх темы GudFin.
-   1) Мобильное меню (в теме у #menu-toggle нет обработчика).
-   2) Форма заявки → отправка в WhatsApp с префиллом.
-   3) Плавающая кнопка WhatsApp на всех страницах.
-   4) Замедление бегущей строки (marquee) — была нечитаемо быстрой.
-   ========================================================================== */
 (function () {
 	'use strict';
 
@@ -15,9 +8,11 @@
 		initWhatsAppFloat();
 		initLeadForm();
 		initMarqueeSpeed();
+		initSvgAria();
+		initSearchA11y();
 	});
 
-	/* --- 1. Мобильное меню -------------------------------------------------
+	/* --- 1. Мобильное меню -----------------------------------------------
 	   CSS темы открывает панель по классу .active на контейнере навигации
 	   (.active .pbmit-menu-wrap / .active .pbmit-mobile-menu-bg). Кнопка
 	   #menu-toggle уже есть в разметке, но обработчик отсутствует. */
@@ -58,7 +53,7 @@
 		});
 	}
 
-	/* --- 2. Плавающая кнопка WhatsApp -------------------------------------- */
+	/* --- 2. Плавающая кнопка WhatsApp --------------------------------- */
 	function initWhatsAppFloat() {
 		if (document.querySelector('.pfg-whatsapp-float')) return;
 		var a = document.createElement('a');
@@ -71,7 +66,7 @@
 		document.body.appendChild(a);
 	}
 
-	/* --- 3. Форма заявки → WhatsApp ----------------------------------------
+	/* --- 3. Форма заявки → WhatsApp ------------------------------------
 	   Бэкенда нет (статический сайт). Форма с классом .pfg-form собирает поля
 	   и открывает чат WhatsApp с готовым текстом обращения. */
 	function initLeadForm() {
@@ -149,4 +144,59 @@
 			if (ticks >= MAX_TICKS) clearInterval(timer);
 		}, 100);
 	}
-})();
+
+	/* --- 5. aria-hidden для декоративных SVG соцсетей (WCAG 4.1.2) -----
+	   SVG-иконки в .pbmit-social-links и .pbmit-footer-social-icon несут
+	   только декоративную функцию. Добавляем aria-hidden, чтобы screen reader
+	   не объявлял их как «graphic» или «image».
+	   Идемпотентно: не переписываем уже установленный aria-hidden. */
+	function initSvgAria() {
+		document.querySelectorAll('.pbmit-social-links svg, .pbmit-footer-social-icon svg').forEach(function (svg) {
+			if (!svg.getAttribute('aria-hidden')) {
+				svg.setAttribute('aria-hidden', 'true');
+			}
+		});
+	}
+
+	/* --- 6. Доступное имя поля поиска (WCAG 1.3.1 «Info and Relationships», A)
+	   Тема даёт input[type=search].search-field только с placeholder="Поиск …",
+	   без <label>/aria-label → у поля нет программно доступного имени (placeholder
+	   именем не считается). Поле скрыто до клика по иконке, но нарушение
+	   фиксируется на всех страницах. HTML вендорный — проставляем имя из JS-слоя.
+	   Идемпотентно: не перетираем уже заданный aria-label. */
+	function initSearchA11y() {
+		document.querySelectorAll('input.search-field, .pbmit-search-form input[type="search"]').forEach(function (inp) {
+			if (!inp.getAttribute('aria-label')) {
+				inp.setAttribute('aria-label', 'Поиск по сайту');
+			}
+		});
+	}
+
+	/* --- 7. Swiper H1-дубликат → aria-hidden (WCAG 2.4.1) ---
+	   Swiper.js клонирует первый слайд в конец DOM для бесшовной анимации.
+	   Слайд содержит <h1 class="pbmit-slider-title"> — возникает MULTI_H1.
+	   После инициализации скрываем дубликат из accessibility tree.
+	   Идемпотентно. */
+	function initSwiperA11y() {
+		var ticks = 0;
+		var MAX_TICKS = 100; // ~10 c при 100-мс шаге
+		var timer = setInterval(function () {
+			ticks++;
+			var sliders = document.querySelectorAll('.swiper-slider');
+			sliders.forEach(function (swEl) {
+				if (!swEl.swiper) return; // ещё не инициализирован
+				// swiper-slide-duplicate создаётся после init
+				var dup = swEl.querySelector('.swiper-slide-duplicate');
+				if (dup) {
+					var h = dup.querySelector('h1, h2');
+					if (h && !h.getAttribute('aria-hidden')) {
+						h.setAttribute('aria-hidden', 'true');
+						h.setAttribute('tabindex', '-1');
+					}
+				}
+			});
+			if (ticks >= MAX_TICKS) clearInterval(timer);
+		}, 100);
+	}
+
+	})();
