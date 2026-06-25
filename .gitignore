@@ -1,17 +1,27 @@
+# Зависимости
 node_modules/
+
+# OS
 .DS_Store
 Thumbs.db
+
+# Логи
 *.log
 
-# Артефакты смоук-теста и UI-аудита (скриншоты браузера)
-.gsd-build/shot-*.jpeg
-.gsd-build/audit-shots/
+# Диагностические дампы UI-аудитов и скриншоты браузера
+# (складываются инструментами Playwright/chrome-devtools — не входят в поставку)
 .playwright-mcp/
+screenshots/
 
-# Рабочие артефакты сборки (не входят в поставку)
-.gsd-build/img-backup/
-.gsd-build/md5.*
-.gsd-build/*.snap
+# Корень не должен захламляться скриншотами/макетами от аудитов
+/*.png
+/*.jpeg
+/*.jpg
+/*.webp
+/*.gif
+/conversation.md
+/index-*.md
+/services-*.md
 
 # Python bytecode cache
 __pycache__/
