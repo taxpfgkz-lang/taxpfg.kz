@@ -112,6 +112,8 @@ Ink + gold palette. **Palette is frozen — not expanded.** Brand hex values are
 - Large text and UI components / graphics ≥ 3:1
 - Gold (`#ecab23`) is **forbidden as body text** on light backgrounds — use `--pfg-gold-ink` (`#7a560a`) instead. Gold fill stays `#ecab23`; only text color changes.
 
+**Axe reconciliation (verified against 01-AUDIT.md, AUD-01):** the AUD-01 baseline recorded **zero axe-core contrast violations** (`color-contrast`, `wcag2aa`) across all 11 pages. There is **no new contrast gap** for this contract to close — the floor above already accounts for the only contrast risks the audit could surface (gold-as-text and darkened body copy, both already handled by `--pfg-gold-ink` and the `custom.css:122` body-color darken). This floor is therefore the binding contrast contract; Phase 5 (A11Y-04) must keep axe contrast violations at **0**.
+
 ---
 
 ## Copywriting Contract
@@ -174,14 +176,15 @@ These are contract-level guardrails the planner and executor MUST honor.
 
 ---
 
-## Open Questions to Resolve in This Phase
+## Open Questions to Resolve in This Phase — RESOLVED
 
-These are AUD-deliverable inputs (resolved in the AUDIT / IMPL-PLAN artifacts, not blocking this contract):
-- Live `<head>` font-loading config (Google Fonts request shape).
-- `<img>` vs CSS-background asset inventory (drives IMG-01 in Phase 4).
-- Which pages have pricing / FAQ / modal blocks (drives CMP-05, CMP-06, CNV-02 scope).
-- Whether `chart.js` deletion stays out of scope (currently deferred to v2 / PERF-02).
-- Known mobile header search target-size flag — accepted documented exception unless audit flags it as a blocker.
+These AUD-deliverable inputs are resolved in the AUDIT / RESEARCH / IMPL-PLAN artifacts (they never blocked this contract). Each is now answered:
+
+- **Live `<head>` font-loading config (Google Fonts request shape)** — answered in **01-RESEARCH Q1**. Font-loading optimization (`font-display`/preload) is deferred to **v2 / PERF-03**; this milestone styles against the existing Be Vietnam Pro + Plus Jakarta Sans request as-is.
+- **`<img>` vs CSS-background asset inventory (drives IMG-01)** — answered in **01-RESEARCH Q2** and the AUD-02 Imagery findings (I1/I2): 12 `<img>` on index, backgrounds vendor-owned. Bulk WebP/AVIF re-encode is **v2 / PERF-01 (out of scope)**; Phase 4 IMG-01 is sizing/proportion presentation only.
+- **Which pages have pricing / FAQ / modal blocks (drives CMP-05, CMP-06, CNV-02)** — answered in **01-RESEARCH Q3** and AUD-02 "Absent features": pricing, FAQ accordion, and live modal are **absent on all 11 pages**. They are NET-NEW for later phases, not existing-UI polish (reconciled in 01-IMPL-PLAN). CMP-06 modal rules only proceed if Magnific Popup is actually instantiated (it is not today).
+- **Whether `chart.js` deletion stays out of scope** — answered in **01-RESEARCH Q4** and 01-CONFLICT-CATALOG: `js/chart.js` is vendored but referenced by zero pages; removal is **OUT OF SCOPE for v1.0 → v2 / PERF-02**. Leave the file in place.
+- **Known mobile header search target-size flag** — answered in **01-AUDIT** (H2 + "Accepted documented exceptions"): the control measured 44×44 px this run and did not surface as a hard blocker; it maps to WCAG 2.2 SC 2.5.8 (outside the scanned `wcag2a/2aa/21a/21aa` tag set). Carried as an **accepted documented exception**, not scheduled work.
 
 ---
 
@@ -197,11 +200,11 @@ No third-party registries. No remote component fetching. All libraries are vendo
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: PASS — Copywriting Contract records all site-wide strings as byte-identical (VER-04); read-only this milestone.
+- [x] Dimension 2 Visuals: PASS — component-state contract + hard constraints fix the visual rules; reconciled against AUD-02 visual-problem inventory.
+- [x] Dimension 3 Color: PASS — ink+gold palette frozen, contrast floor WCAG AA, reconciled against AUD-01 axe (0 contrast violations).
+- [x] Dimension 4 Typography: PASS — fluid `clamp()` scale (ratio 1.25), Russian wrapping rules, two-weight policy, line-height ≥ 1.0 normalization.
+- [x] Dimension 5 Spacing: PASS — 4px `--pfg-space-*` token scale with snap-to-nearest rhythm rule and 44px hit-zone exception.
+- [x] Dimension 6 Registry Safety: PASS — no registry, vendored read-only theme + Bootstrap only.
 
-**Approval:** pending
+**Approval:** approved (2026-06-25) — verified complete against AUD-04 (all six areas present: tokens, spacing scale, type scale, color+contrast, component states, hard constraints); contrast floor reconciled against AUD-01 axe findings with no gap to close; open questions resolved with pointers; no locked decision weakened.
