@@ -30,7 +30,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Conflict catalog documents the `custom.css` ↔ vendor `!important` ledger (~59 baseline) plus the do-not-touch theme class/attribute list (`swiper-*`, `data-aos*`, `pbmit-*`).
   4. UI design contract fixes tokens, spacing scale, type scale, color+contrast, component states/rules, and hard constraints (visual-only, vendor read-only, no `@layer`, focus-always, scoped-motion).
   5. Implementation plan states which files (`custom.css`/`base.css`/`custom.js`) change, why, and in what order.
-**Plans**: TBD
+**Plans**: 4 plans
+- [ ] 01-01-PLAN.md — AUD-01 Lighthouse + axe baseline (regression floor) for all 11 pages
+- [ ] 01-02-PLAN.md — AUD-03 !important ledger (59) + do-not-touch namespaces + chart.js disposition
+- [ ] 01-03-PLAN.md — AUD-02 visual-problem inventory by block-type (DOM-measured, 5 viewports)
+- [ ] 01-04-PLAN.md — AUD-04 contract verification/sign-off + AUD-05 implementation plan
 **Notes**: No code edits in this phase, so the recurring implementation gate does not apply. AUD-01 baseline numbers become the regression floor that Phase 5 (A11Y-04, VER-01) is measured against. Resolve open questions from research/SUMMARY.md here (live `<head>` font-loading config; `<img>` vs CSS-background asset inventory; which pages have pricing/FAQ/modal; whether `chart.js` deletion stays out).
 **UI hint**: yes
 
@@ -95,7 +99,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Baseline Audit + UI Design Contract | 0/TBD | Not started | - |
+| 1. Baseline Audit + UI Design Contract | 0/4 | Not started | - |
 | 2. Design Tokens + Primitives | 0/TBD | Not started | - |
 | 3. Components | 0/TBD | Not started | - |
 | 4. Conversion Blocks + Imagery | 0/TBD | Not started | - |
