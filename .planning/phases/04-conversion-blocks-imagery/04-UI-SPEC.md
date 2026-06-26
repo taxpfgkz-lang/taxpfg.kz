@@ -1,10 +1,11 @@
 ---
 phase: 4
 slug: conversion-blocks-imagery
-status: draft
+status: approved
 shadcn_initialized: false
 preset: none
 created: 2026-06-27
+reviewed_at: 2026-06-26T23:51:38Z
 master_contract: ../01-baseline-audit-ui-design-contract/01-UI-SPEC.md
 ---
 
