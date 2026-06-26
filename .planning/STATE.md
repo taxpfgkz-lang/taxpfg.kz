@@ -95,7 +95,8 @@ None yet.
 
 [Issues that affect future work]
 
-- Open questions to resolve in Phase 1: live `<head>` font-loading config; `<img>` vs CSS-background asset inventory; which pages have pricing/FAQ/modal; whether `chart.js` deletion stays out of scope (currently out).
+- ✓ RESOLVED in Phase 1: font-loading config (@import base.css:16-19), img inventory (12 <img>, CSS-bg dominant), pricing/FAQ/modal (all absent → net-new), chart.js (unused → out-of-scope v2).
+- **SCOPE CHANGE 2026-06-26 (Phase 3):** markup-read-only LIFTED by Юрий — HTML edits allowed broadly (unblocks FAQ/pricing net-new). Vendor read-only (swiper-*/data-aos*/pbmit-*, vendor files) STILL holds; VER-04 behavior-identity (form→WhatsApp/analytics/routing/JSON-LD) STILL hard; shared chrome = change-all-11 atomic.
 - No automated tests exist — Playwright DOM-measured checks + axe/Lighthouse are the only QA. Workflow API proxy may fail (memory note); duplicate critical checks manually.
 - Known accepted exception: mobile header search target-size flag (theme off-canvas layout) — not a new violation.
 
