@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Baseline Audit + UI Design Contract** - Capture the Lighthouse/axe floor and lock the rules before any code changes (documents only) (completed 2026-06-25)
 - [x] **Phase 2: Design Tokens + Primitives** - Consolidate the `:root` token sheet, spacing scale, and fluid type scale everything inherits (completed 2026-06-25)
-- [ ] **Phase 3: Components** - Style buttons, forms, cards, nav, FAQ, and modals with all interaction states
+- [x] **Phase 3: Components** - Style buttons, forms, cards, nav, FAQ, and modals with all interaction states (completed 2026-06-26)
 - [ ] **Phase 4: Conversion Blocks + Imagery** - Tune hero, pricing, CTA hierarchy, footer parity, and imagery; resolve the sticky-CTA vs WhatsApp collision
 - [ ] **Phase 5: Accessibility Pass + Cross-Device Verification** - Prove a11y ≥ baseline across all 11 pages at every breakpoint with logic untouched
 
@@ -88,7 +88,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Service cards, navigation (sticky header + mobile off-canvas menu), the FAQ accordion, and modals (if Magnific Popup is instantiated) render consistently with correct ARIA and focus management, without breaking theme JS (CMP-03, CMP-04, CMP-05, CMP-06).
   4. Headings, subheadings, CTAs, blocks, and cards read as one visual system across all 11 pages (VIS-01).
 
-**Plans**: 1/3 plans executed
+**Plans**: 3/3 plans complete
 **Notes**: Research flag YES — enumerate per-page component coverage (which pages have pricing/FAQ/modal) by walking each page, and confirm Magnific Popup is actually instantiated before writing modal rules. Recurring gate applies in full (multi-breakpoint DOM-measured Playwright + axe 0-new + JS smoke + change-all-11 grep + behavior-diff guard + `!important` budget). Style by adding `.pfg-*` classes; never rename/remove theme JS hooks; no `filter`/`transform`/`backdrop-filter` on off-canvas-menu ancestors.
 **UI hint**: yes
 
@@ -102,7 +102,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 3** *(blocked on Wave 2)*
 
-- [ ] 03-03-PLAN.md — финальный phase-gate: DOM @5vp + axe + Lighthouse vs AUD-01 floor + VER-04 smoke + human-check
+- [x] 03-03-PLAN.md — финальный phase-gate: DOM @5vp + axe + Lighthouse vs AUD-01 floor + VER-04 smoke + human-check
 
 ### Phase 4: Conversion Blocks + Imagery
 
@@ -147,6 +147,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Baseline Audit + UI Design Contract | 4/5 | Complete    | 2026-06-25 |
 | 2. Design Tokens + Primitives | 2/2 | Complete    | 2026-06-25 |
-| 3. Components | 2/3 | In Progress|  |
+| 3. Components | 3/3 | Complete   | 2026-06-26 |
 | 4. Conversion Blocks + Imagery | 0/TBD | Not started | - |
 | 5. Accessibility Pass + Cross-Device Verification | 0/TBD | Not started | - |
