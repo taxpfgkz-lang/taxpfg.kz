@@ -351,6 +351,7 @@
 a:focus-visible,
 button:focus-visible,
 [role="button"]:focus-visible,
+summary:focus-visible,
 .pbmit-btn:focus-visible{
 	outline: 2px solid var(--pfg-gold);
 	outline-offset: 3px;
@@ -381,7 +382,8 @@ button:focus-visible,
 	.pbmit-btn:active,
 	.pbmit-header-style-1 .site-navigation ul.navigation > li > a::after,
 	.pbmit-ihbox-style-15 .pbmit-ihbox-icon,
-	.pbmit-ihbox-style-15 .pbmit-element-title{
+	.pbmit-ihbox-style-15 .pbmit-element-title,
+	.pfg-faq-item summary::after{
 		transition: none !important;
 		transform: none !important;
 	}
@@ -1175,3 +1177,92 @@ button:focus-visible,
    height:100% схлопывается, мобильное меню ломается. Поэтому в этой секции и впредь
    НЕ применять filter/transform/backdrop-filter к предкам off-canvas меню. Новых
    декларативных правил навигации не добавляем — пробелов состояний нет. */
+
+/* --- 14.7 FAQ-аккордеон (CMP-05) — native <details>/<summary> ---
+   Net-new компонент на services.html и contacts.html. Класс .pfg-faq (НЕ .accordion):
+   theme-handler scripts.js:309 биндится на «.accordion .accordion-item» — наш класс
+   его не матчит, интерференции нет. <details> даёт клавиатуру/[open]/AT-семантику без JS.
+   Стилизуем токенами Фазы 2; специфичность 0,2,0 + source-order бьёт vendor без important-флага. */
+.pfg-faq{
+	border-top: 1px solid var(--pfg-hairline);
+}
+.pfg-faq-item{
+	border-bottom: 1px solid var(--pfg-hairline);
+}
+/* summary: >=16px (--pfg-fs-body 16→18) против iOS focus-zoom (Pitfall 4, как F1 у инпутов).
+   list-style:none + скрытый webkit-маркер — рисуем свой золотой chevron через ::after. */
+.pfg-faq-item summary{
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--pfg-space-4);
+	padding: var(--pfg-space-4) 0;
+	font-family: var(--pbmit-heading-typography-font-family, inherit);
+	font-size: var(--pfg-fs-body);
+	font-weight: 600;
+	line-height: var(--pfg-lh-tight);
+	color: var(--pfg-ink);
+	list-style: none;
+	text-transform: none; /* кириллица: не даём теме капитализировать вопрос */
+	transition: color var(--pfg-tf-fast);
+}
+.pfg-faq-item summary::-webkit-details-marker{ display: none; }
+.pfg-faq-item summary::marker{ content: ""; } /* Firefox/standard маркер тоже убираем */
+/* Свой chevron: золотой «˅», поворот на 180° при раскрытии. */
+.pfg-faq-item summary::after{
+	content: "";
+	flex: 0 0 auto;
+	width: 10px;
+	height: 10px;
+	margin-left: auto;
+	border-right: 2px solid var(--pfg-gold);
+	border-bottom: 2px solid var(--pfg-gold);
+	transform: rotate(45deg);
+	transform-origin: center;
+	transition: transform var(--pfg-tf-fast);
+}
+.pfg-faq-item[open] > summary::after{
+	transform: rotate(-135deg); /* стрелка вверх — раскрыто */
+}
+.pfg-faq-item summary:hover{
+	color: var(--pfg-gold-ink); /* мягкий hover (золото-текст на светлом, AA) */
+}
+.pfg-faq-panel{
+	padding: 0 0 var(--pfg-space-4);
+	color: var(--pbmit-body-typography-color, inherit);
+}
+.pfg-faq-panel p{ margin: 0; line-height: var(--pfg-lh-body); }
+
+/* --- 14.8 FT1 (AUD-02 P1): тап-зона футер-ссылок ОБЕИХ колонок >=44px ---
+   DOM-измерено @390/360 (Playwright, 2026-06-26) ПЕРЕД фиксом:
+     • «Услуги» (.pbmit-two-column-menu) = 46.5px — уже покрыта правилом 10.3 (≤575px);
+     • «Разделы» (.pbmit-footer-widget-col-2 .widget>ul.menu, БЕЗ two-column-обёртки) = 26px
+       — старый селектор 10.3 её НЕ достаёт (Pitfall 1).
+   Root-cause = промах селектора, не глубина padding. Фикс — правило на ОБЩИЙ предок обеих
+   групп: .site-footer .widget ul.menu li a. line-height ~26px + 9+9px padding ≈ 44px.
+   Специфичность 0,4,1 ≥ vendor + source-order → без important-флага. CSS-only (разметка футера
+   идентична на 11 страницах, но НЕ трогается) → change-all-11 НЕ триггерится. */
+.site-footer .widget ul.menu li a{
+	display: inline-block;
+	padding-top: 9px;
+	padding-bottom: 9px;
+}
+
+/* --- 14.9 F2 (AUD-02 P1): хит-зона лейбла согласия >=44px ---
+   DOM-измерено @390 = 36.375px ПЕРЕД фиксом (на 360 текст переносится в 2 строки → 54px,
+   но на 390 одна строка = 36px < 44). .pfg-consent — flex-обёртка label (стр.43-50).
+   Поднимаем хит-зону вертикальным padding + min-height; align-items уже flex-start.
+   CSS-only, без important-флага. */
+.pfg-form .pfg-consent{
+	min-height: 44px;
+	padding: 4px 0;
+}
+
+/* --- 14.10 CMP-06 модалки — честный DESCOPE (не код, а фиксация решения) ---
+   Magnific Popup загружен на 11 страницах, НО инициализирующих триггеров ноль:
+   grep по всем *.html на pbmin-lightbox-video | pbmit-lightbox | magnificPopup | mfp-
+   = 0 совпадений (DOM/grep-подтверждено фаза 1 AUD-02 + research Q6, перепроверено 2026-06-26).
+   Контракт гейтит модальные правила «только если Magnific инстанцирован» → стили модалки,
+   focus-trap и разметка НЕ создаются (удовлетворение через отсутствие, не дефект). Если
+   модалку инстанцируют позже — это отдельная задача со своим focus-trap/ARIA. */
