@@ -1,12 +1,12 @@
 ---
 phase: 01-baseline-audit-ui-design-contract
-verified: 2026-06-26T00:00:00Z
+verified: 2026-06-26T12:41:05Z
 status: passed
 score: 5/5 must-haves verified
 behavior_unverified: 0
 overrides_applied: 0
-re_verification: # No — initial verification
-  previous_status: none
+re_verification: # Re-stamped after AUD-05 doc rename (IMPL-PLAN→IMPLEMENTATION, commit 0d0e3a4). No must_have affected — artifact content unchanged, only filename moved out of the *-PLAN.md glob. Original verdict (5/5 passed) stands.
+  previous_status: passed
 ---
 
 # Phase 1: Baseline Audit + UI Design Contract Verification Report
