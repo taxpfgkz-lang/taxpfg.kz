@@ -98,7 +98,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 2** *(blocked on Wave 1)*
 
-- [ ] 03-02-PLAN.md — CMP-05 FAQ net-new (native `<details>` .pfg-faq на services/contacts + CSS) + FT1/F2 тап-зоны >=44px + CMP-06 descope
+- [x] 03-02-PLAN.md — CMP-05 FAQ net-new (native `<details>` .pfg-faq на services/contacts + CSS) + FT1/F2 тап-зоны >=44px + CMP-06 descope
 
 **Wave 3** *(blocked on Wave 2)*
 
@@ -147,6 +147,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Baseline Audit + UI Design Contract | 4/5 | Complete    | 2026-06-25 |
 | 2. Design Tokens + Primitives | 2/2 | Complete    | 2026-06-25 |
-| 3. Components | 1/3 | In Progress|  |
+| 3. Components | 2/3 | In Progress|  |
 | 4. Conversion Blocks + Imagery | 0/TBD | Not started | - |
 | 5. Accessibility Pass + Cross-Device Verification | 0/TBD | Not started | - |

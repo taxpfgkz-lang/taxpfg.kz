@@ -33,8 +33,8 @@
 - [x] **CMP-02**: Формы и инпуты — единый стиль, видимые labels, состояния focus/error/success, корректные мобильные клавиатуры; поведение формы→WhatsApp не меняется
 - [x] **CMP-03**: Карточки услуг — единый стиль, выравнивание, spacing, hover-состояние
 - [x] **CMP-04**: Навигация (sticky header + мобильное меню) — консистентный вид и состояния; theme-JS не ломается
-- [ ] **CMP-05**: FAQ-аккордеон — корректная клавиатурная доступность и ARIA, единый вид
-- [ ] **CMP-06**: Модалки (если используются Magnific Popup) — единый стиль и фокус-менеджмент
+- [x] **CMP-05**: FAQ-аккордеон — корректная клавиатурная доступность и ARIA, единый вид
+- [x] **CMP-06**: Модалки (если используются Magnific Popup) — единый стиль и фокус-менеджмент
 
 ### Conversion Blocks
 
@@ -107,8 +107,8 @@
 | CMP-02 | Phase 3 | Complete |
 | CMP-03 | Phase 3 | Complete |
 | CMP-04 | Phase 3 | Complete |
-| CMP-05 | Phase 3 | Pending |
-| CMP-06 | Phase 3 | Pending |
+| CMP-05 | Phase 3 | Complete |
+| CMP-06 | Phase 3 | Complete |
 | CNV-01 | Phase 4 | Pending |
 | CNV-02 | Phase 4 | Pending |
 | CNV-03 | Phase 4 | Pending |
