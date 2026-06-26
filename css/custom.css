@@ -1094,3 +1094,51 @@ button:focus-visible,
 	box-shadow: none;
 	transform: none;
 }
+
+/* --- 14.3 Статус формы: НЕ-цветовая аффорданс (CMP-02, WCAG 1.4.1) ---
+   Раздел про форму (стр.51-53) задавал .is-error/.is-ok ТОЛЬКО цветом (#d33/#1a9e57).
+   Опора на оттенок недоступна при цветовой слепоте (WCAG 1.4.1 «Use of Color»).
+   Сообщение само по себе текстовое (js/custom.js:84,105 — семантический носитель,
+   role=status aria-live=polite в разметке, contacts.html:273), но визуальный сигнал
+   состояния был только цветным. Добавляем ИЗБЫТОЧНЫЙ не-цветовой признак: префикс-глиф
+   через ::before (⚠ / ✓ — юникод, без иконочного шрифта и без сетевого запроса),
+   левую цветную рамку и усиление веса. Глиф в ::before декоративен и НЕ озвучивается
+   скринридером (текст статуса несёт смысл), поэтому aria-hidden не требуется.
+   НИКАКИХ правок js/custom.js — классы выставляет существующий initLeadForm,
+   поведение форма→WhatsApp байт-идентично (VER-04). Глиф показываем только когда
+   класс состояния присутствует (пустой rest-статус остаётся чистым). */
+.pfg-form .pfg-form-status.is-error,
+.pfg-form .pfg-form-status.is-ok{
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	padding: 8px 12px;
+	font-weight: 600;
+	border-left: 3px solid currentColor;
+	border-radius: var(--pfg-radius-sm);
+}
+.pfg-form .pfg-form-status.is-error::before,
+.pfg-form .pfg-form-status.is-ok::before{
+	flex: 0 0 auto;
+	font-weight: 700;
+	line-height: inherit;
+}
+.pfg-form .pfg-form-status.is-error::before{ content: "\26A0";  /* ⚠ предупреждение */ }
+.pfg-form .pfg-form-status.is-ok::before{    content: "\2713";  /* ✓ галочка */ }
+
+/* --- 14.4 Навигация: документирование scope (CMP-04, enforcement) ---
+   Это ДОКУМЕНТАЦИЯ существующих решений, не новые правила — состояния навигации
+   уже полны и здоровы:
+     • rest/hover/active — растущее золотое подчёркивание ::after (раздел 9.4,
+       стр.458-471), декоративная моторика которого уже в scoped reduced-motion
+       блоке (стр.382);
+     • focus-visible — общее золотое кольцо a:focus-visible (стр.351-358, AA);
+     • тап-таргеты N1/N2 навигации >=44px (AUD-02, положительная находка) — правок
+       не требуют.
+   ВАЖНО (off-canvas-safe, повтор инварианта стр.426-433): «стеклянный» слой шапки
+   намеренно gated >=1201px. Ниже 1200px тема превращает меню в off-canvas-панель
+   .pbmit-menu-wrap{position:fixed;height:100%} внутри .pbmit-header-content; любой
+   filter/transform/backdrop-filter на её предке делает его containing-block →
+   height:100% схлопывается, мобильное меню ломается. Поэтому в этой секции и впредь
+   НЕ применять filter/transform/backdrop-filter к предкам off-canvas меню. Новых
+   декларативных правил навигации не добавляем — пробелов состояний нет. */
