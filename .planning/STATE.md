@@ -6,14 +6,14 @@ current_phase: 3
 current_phase_name: Components
 status: executing
 stopped_at: ROADMAP.md + STATE.md written, REQUIREMENTS.md traceability updated
-last_updated: "2026-06-26T13:29:41.326Z"
+last_updated: "2026-06-26T13:41:53.254Z"
 last_activity: 2026-06-26
-last_activity_desc: Phase 2 complete, transitioned to Phase 3
+last_activity_desc: Phase 3 execution started
 progress:
   total_phases: 5
   completed_phases: 2
-  total_plans: 6
-  completed_plans: 6
+  total_plans: 9
+  completed_plans: 7
   percent: 40
 ---
 
@@ -24,14 +24,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-25)
 
 **Core value:** Сайт выглядит дорого, единообразно и убедительно на desktop/tablet/mobile, а conversion-блоки чисто конвертируют посетителя в лид — без изменения бизнес-логики.
-**Current focus:** Phase 2 — Design Tokens + Primitives
+**Current focus:** Phase 3 — Components
 
 ## Current Position
 
-Phase: 3 — Components
-Plan: Not started
+Phase: 3 (Components) — EXECUTING
+Plan: 2 of 3
 Status: Ready to execute
-Last activity: 2026-06-26 — Phase 2 complete, transitioned to Phase 3
+Last activity: 2026-06-26 — Phase 3 execution started
 
 Progress: [██████████] 100%
 
@@ -62,6 +62,7 @@ Progress: [██████████] 100%
 | Phase 01 P04 | 14m | 2 tasks | 2 files |
 | Phase 02 P01 | 6min | 1 tasks | 1 files |
 | Phase 02 P02 | 20min | 3 tasks | 1 files |
+| Phase 03 P01 | 18min | 3 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -84,6 +85,9 @@ Recent decisions affecting current work:
 - [Phase ?]: [Phase 2 P01]: Токены объявлены аддитивно в :root (custom.css); существующие --pfg-* байт-идентичны; clamp() maxes зеркалят vendor desktop-px (h1 58..h6 22) — desktop без регрессии; z-index:9999 -> --pfg-z-float (единственный consumer); !important остаётся 59
 - [Phase ?]: 02-02: line-height policy via unitless --pfg-lh-display at vendor specificity + source-order, no net-new !important (budget 59)
 - [Phase ?]: 02-02: Russian preposition non-breaking DEFERRED (markup/JS); delivered text-wrap balance/pretty
+- [Phase ?]: Ghost-tier (.pbmit-btn.pfg-ghost): hover = золотая подложка rgba(.12), не заливка — заливка зарезервирована за primary
+- [Phase ?]: C2 height-jitter — не min-height-баг: same-row spread=0px на всех ширинах (DOM-замер), min-height не добавлен, только align-items:stretch
+- [Phase ?]: Бюджет !important — литеральный grep: в комментариях избегать токена !important, формулировать «без форсирования каскада»
 
 ### Pending Todos
 
@@ -113,6 +117,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-25T22:18:04.515Z
+Last session: 2026-06-26T13:41:53.243Z
 Stopped at: ROADMAP.md + STATE.md written, REQUIREMENTS.md traceability updated
 Resume file: None

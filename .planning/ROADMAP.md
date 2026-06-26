@@ -88,13 +88,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Service cards, navigation (sticky header + mobile off-canvas menu), the FAQ accordion, and modals (if Magnific Popup is instantiated) render consistently with correct ARIA and focus management, without breaking theme JS (CMP-03, CMP-04, CMP-05, CMP-06).
   4. Headings, subheadings, CTAs, blocks, and cards read as one visual system across all 11 pages (VIS-01).
 
-**Plans**: 3 plans
+**Plans**: 1/3 plans executed
 **Notes**: Research flag YES — enumerate per-page component coverage (which pages have pricing/FAQ/modal) by walking each page, and confirm Magnific Popup is actually instantiated before writing modal rules. Recurring gate applies in full (multi-breakpoint DOM-measured Playwright + axe 0-new + JS smoke + change-all-11 grep + behavior-diff guard + `!important` budget). Style by adding `.pfg-*` classes; never rename/remove theme JS hooks; no `filter`/`transform`/`backdrop-filter` on off-canvas-menu ancestors.
 **UI hint**: yes
 
 **Wave 1**
 
-- [ ] 03-01-PLAN.md — CMP-01/02/03/04 + VIS-01: состояния кнопок (:disabled+ghost), non-color статус формы, выравнивание карточек C2, nav-scope, единый визуальный язык (css/custom.css)
+- [x] 03-01-PLAN.md — CMP-01/02/03/04 + VIS-01: состояния кнопок (:disabled+ghost), non-color статус формы, выравнивание карточек C2, nav-scope, единый визуальный язык (css/custom.css)
 
 **Wave 2** *(blocked on Wave 1)*
 
@@ -147,6 +147,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Baseline Audit + UI Design Contract | 4/5 | Complete    | 2026-06-25 |
 | 2. Design Tokens + Primitives | 2/2 | Complete    | 2026-06-25 |
-| 3. Components | 0/3 | Not started | - |
+| 3. Components | 1/3 | In Progress|  |
 | 4. Conversion Blocks + Imagery | 0/TBD | Not started | - |
 | 5. Accessibility Pass + Cross-Device Verification | 0/TBD | Not started | - |

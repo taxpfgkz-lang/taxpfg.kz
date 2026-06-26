@@ -23,16 +23,16 @@
 
 ### Visual Hierarchy & Layout
 
-- [ ] **VIS-01**: Единая визуальная иерархия — заголовки, подзаголовки, CTA, блоки, карточки выглядят системно на всех страницах
+- [x] **VIS-01**: Единая визуальная иерархия — заголовки, подзаголовки, CTA, блоки, карточки выглядят системно на всех страницах
 - [x] **VIS-02**: Выравнивания и сетка приведены к единому spacing scale; нет визуального дрейфа между 11 страницами
 - [x] **VIS-03**: Цвета и контраст приведены к WCAG AA; золото не используется как body-текст там, где теряется контраст
 
 ### Components
 
-- [ ] **CMP-01**: Кнопки — единая иерархия primary/secondary/ghost, состояния hover/focus/active/disabled, читаемый контраст
-- [ ] **CMP-02**: Формы и инпуты — единый стиль, видимые labels, состояния focus/error/success, корректные мобильные клавиатуры; поведение формы→WhatsApp не меняется
-- [ ] **CMP-03**: Карточки услуг — единый стиль, выравнивание, spacing, hover-состояние
-- [ ] **CMP-04**: Навигация (sticky header + мобильное меню) — консистентный вид и состояния; theme-JS не ломается
+- [x] **CMP-01**: Кнопки — единая иерархия primary/secondary/ghost, состояния hover/focus/active/disabled, читаемый контраст
+- [x] **CMP-02**: Формы и инпуты — единый стиль, видимые labels, состояния focus/error/success, корректные мобильные клавиатуры; поведение формы→WhatsApp не меняется
+- [x] **CMP-03**: Карточки услуг — единый стиль, выравнивание, spacing, hover-состояние
+- [x] **CMP-04**: Навигация (sticky header + мобильное меню) — консистентный вид и состояния; theme-JS не ломается
 - [ ] **CMP-05**: FAQ-аккордеон — корректная клавиатурная доступность и ARIA, единый вид
 - [ ] **CMP-06**: Модалки (если используются Magnific Popup) — единый стиль и фокус-менеджмент
 
@@ -100,13 +100,13 @@
 | TOK-01 | Phase 2 | Complete |
 | TOK-02 | Phase 2 | Complete |
 | TOK-03 | Phase 2 | Complete |
-| VIS-01 | Phase 3 | Pending |
+| VIS-01 | Phase 3 | Complete |
 | VIS-02 | Phase 2 | Complete |
 | VIS-03 | Phase 2 | Complete |
-| CMP-01 | Phase 3 | Pending |
-| CMP-02 | Phase 3 | Pending |
-| CMP-03 | Phase 3 | Pending |
-| CMP-04 | Phase 3 | Pending |
+| CMP-01 | Phase 3 | Complete |
+| CMP-02 | Phase 3 | Complete |
+| CMP-03 | Phase 3 | Complete |
+| CMP-04 | Phase 3 | Complete |
 | CMP-05 | Phase 3 | Pending |
 | CMP-06 | Phase 3 | Pending |
 | CNV-01 | Phase 4 | Pending |
