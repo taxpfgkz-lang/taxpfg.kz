@@ -1126,6 +1126,39 @@ button:focus-visible,
 .pfg-form .pfg-form-status.is-error::before{ content: "\26A0";  /* ⚠ предупреждение */ }
 .pfg-form .pfg-form-status.is-ok::before{    content: "\2713";  /* ✓ галочка */ }
 
+/* --- 14.5 Карточки: диагностика C2 height-jitter + гарантия выравнивания (CMP-03) ---
+   ДИАГНОСТИКА ПЕРЕД ФИКСОМ (Playwright getBoundingClientRect @1024/768/1440, реальный
+   DOM на services/consulting/accounting-recovery, http://127.0.0.1:8080, 2026-06-26):
+   соседние .pfg-card в ОДНОМ grid-ряду уже РАВНЫ по высоте на всех ширинах —
+     • services @1024: row=[275,275,275] spread=0px; @768: [248,248]/[248,248] spread=0px;
+       @1440: [248,248,248,248] spread=0px;
+     • consulting @1024: [299,299] spread=0px; @768: [408,408]; @1440: [252,252];
+     • accounting-recovery @1024: [386,386]; @768: [522,522]; @1440: [331,331].
+   ВЫВОД: C2 — это НЕ same-row min-height-баг. Аудиторские «283px@1024 vs 256px@768» —
+   это cross-breakpoint reflow (одна и та же карточка по-разному переносит текст на
+   разной ширине), что ОЖИДАЕМО и приемлемо для адаптивной сетки. CSS Grid с неявным
+   align-items:stretch уже растягивает дорожку ряда, а .pfg-card{height:100%} (стр.72)
+   заполняет её — поэтому spread=0. Min-height/жёсткие px НЕ нужны (нарушили бы reflow).
+   Добавляем лишь ЯВНЫЙ align-items:stretch на .pfg-grid как defensive-документацию
+   инварианта (на случай если вендор/будущая правка переопределит computed-значение
+   'normal' на нестягивающее). Селектор 0,1,0 = собственный .pfg-grid, без форсирования каскада. */
+.pfg-grid{ align-items: stretch; }
+
+/* --- 14.6 VIS-01: единый визуальный язык — enforcement ---
+   Проверка консистентности (grep по 11 HTML, 2026-06-26), НЕ новые токены/правила:
+     • eyebrow — единый носитель .pbmit-subtitle на всех страницах (404:1, about:7,
+       accounting:8, recovery:8, consulting:8, contacts:5, index:4, privacy:11,
+       registration:8, services:5, taxes:9), стилизован одной леджерной сигнатурой
+       (раздел 9.2, стр.397-420);
+     • кнопки — единый носитель .pbmit-btn везде (нет per-page дивергентных CTA-классов);
+       иерархия primary/secondary(.white/.blackish)/ghost(.pfg-ghost) — разделы 9.5/14.1/14.2;
+     • карточки — единый носитель .pfg-card на 7 страницах с .pfg-grid (about/recovery/
+       consulting/contacts/registration/services/taxes), общая стилизация раздел 9.8;
+     • фокус-кольцо — общее золотое a/button/.pbmit-btn:focus-visible (стр.351-358).
+   Палитра заморожена (бренд-цвета не расширяются), всё питается токенами Фазы 2 (--pfg-*).
+   Дивергентных per-page классов карточек/CTA не обнаружено → расхождений сводить нечего;
+   единый язык подтверждён без новых правил. */
+
 /* --- 14.4 Навигация: документирование scope (CMP-04, enforcement) ---
    Это ДОКУМЕНТАЦИЯ существующих решений, не новые правила — состояния навигации
    уже полны и здоровы:
