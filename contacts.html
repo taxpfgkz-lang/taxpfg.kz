@@ -99,7 +99,7 @@
 											<div class="pbmit-menu-wrap">
 												<div>
 													<ul class="navigation clearfix" id="pbmit-top-menu">
-														<li class="active"><a href="index.html">Главная</a></li>
+														<li class=""><a href="index.html">Главная</a></li>
 														<li><a href="about.html">О компании</a></li>
 														<li class="dropdown">
 															<a href="services.html">Услуги</a>
@@ -107,11 +107,11 @@
 																<li><a href="accounting.html">Бухгалтерское сопровождение</a></li>
 																<li><a href="taxes.html">Налоги и отчётность</a></li>
 																<li><a href="registration.html">Регистрация и сопровождение бизнеса</a></li>
-																<li><a href="accounting-recovery.html">Восстановление и постановка учёта</a></li>
+																<li><a href="accounting-recovery.html">Восстановление и наведение порядка в учёте</a></li>
 																<li><a href="consulting.html">Консультации и помощь юриста</a></li>
 															</ul>
 														</li>
-														<li><a href="contacts.html">Контакты</a></li>
+														<li class="active"><a href="contacts.html">Контакты</a></li>
 													</ul>
 												</div>
 											</div>
@@ -202,7 +202,8 @@
 			</div>
 			<div class="pfg-card">
 				<h3>Компания</h3>
-				<p>ТОО «PRIMEFINANCE GROUP (PFG)»</p>
+				<p>ТОО «PrimeFinance Group»</p>
+<p>Директор: Сарсенбаева С. А.</p>
 				<!-- [PFG] Директор и БИН требуют проверки — добавить после уточнения у клиента -->
 				<!-- [PFG] График работы уточнить у клиента -->
 				<p>Сайт: <a href="index.html">taxpfg.kz</a></p>
@@ -240,6 +241,52 @@
 				<span class="pbmit-icon-list-text">в каком состоянии сейчас бухгалтерия и есть ли сроки.</span>
 			</li>
 		</ul>
+	</div>
+</section>
+
+<!-- [PFG] FAQ-аккордеон (CMP-05). Native <details>/<summary>: клавиатура (Enter/Space),
+     [open]-состояние и AT-семантика бесплатно, без JS. Класс .pfg-faq, НЕ .accordion
+     (иначе theme-handler scripts.js:309 перехватил бы клики). Размещён ПЕРЕД формой —
+     снимает возражения до заявки. Контент page-specific (обращение/онбординг/сроки)
+     → НЕ shared chrome. -->
+<section class="pfg-section pfg-faq-section">
+	<div class="container">
+		<div class="pbmit-heading-subheading">
+			<p class="pbmit-subtitle">Частые вопросы</p>
+			<h2 class="pbmit-title">Прежде чем написать</h2>
+		</div>
+		<div class="pfg-faq">
+			<details class="pfg-faq-item">
+				<summary>Как с вами связаться?</summary>
+				<div class="pfg-faq-panel">
+					<p>Заполните форму ниже, напишите в WhatsApp на +7 707 237 00 50 или позвоните по тому же номеру. Ответим в рабочее время и подскажем, с чего начать.</p>
+				</div>
+			</details>
+			<details class="pfg-faq-item">
+				<summary>Что писать в заявке?</summary>
+				<div class="pfg-faq-panel">
+					<p>Достаточно коротко описать вашу форму бизнеса (ИП, ТОО или планируете открыть) и задачу: какое направление интересует и в каком состоянии сейчас учёт. Остальное уточним при разговоре.</p>
+				</div>
+			</details>
+			<details class="pfg-faq-item">
+				<summary>Как проходит онбординг нового клиента?</summary>
+				<div class="pfg-faq-panel">
+					<p>После заявки мы созваниваемся, уточняем детали и условия, заключаем договор и получаем нужные доступы. Затем принимаем дела, проверяем текущее состояние учёта и переходим к сопровождению.</p>
+				</div>
+			</details>
+			<details class="pfg-faq-item">
+				<summary>Как быстро вы отвечаете?</summary>
+				<div class="pfg-faq-panel">
+					<p>На сообщения в рабочее время отвечаем в течение нескольких часов. Если вопрос срочный и связан со сроками отчётности — постарайтесь отметить это в заявке, возьмём в приоритет.</p>
+				</div>
+			</details>
+			<details class="pfg-faq-item">
+				<summary>Как передать документы для работы?</summary>
+				<div class="pfg-faq-panel">
+					<p>Документы и доступы передаются в электронном виде удобным способом — мессенджер, почта или общая папка. Для очной передачи можно согласовать встречу в офисе в Алматы.</p>
+				</div>
+			</details>
+		</div>
 	</div>
 </section>
 
@@ -373,7 +420,7 @@
 <li><a href="index.html">Главная</a></li>
 <li><a href="about.html">О компании</a></li>
 <li><a href="services.html">Услуги</a></li>
-<li><a href="contacts.html">Контакты</a></li>
+<li class="active"><a href="contacts.html">Контакты</a></li>
 </ul>
 								</aside>
 							</div>
@@ -385,7 +432,7 @@
 <li><a href="accounting.html">Бухгалтерское сопровождение</a></li>
 <li><a href="taxes.html">Налоги и отчётность</a></li>
 <li><a href="registration.html">Регистрация бизнеса</a></li>
-<li><a href="accounting-recovery.html">Восстановление учёта</a></li>
+<li><a href="accounting-recovery.html">Восстановление и наведение порядка в учёте</a></li>
 <li><a href="consulting.html">Консультации и юрист</a></li>
 </ul>
 									</div>
