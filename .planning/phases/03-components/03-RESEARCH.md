@@ -377,22 +377,25 @@ status.className = 'pfg-form-status is-ok';
 | A3 | Adding `<summary>` to the existing `:focus-visible` group gives it the gold ring | Code Examples (CMP-05) | LOW — `<summary>` is focusable; the existing ring targets `a/button/[role=button]/.pbmit-btn`. `<summary>` matches none → must be added explicitly. Verify focus ring renders on Tab. |
 | A4 | C2 card-height jitter is content/track-driven, equalized by grid stretch + content normalization, not a min-height bug | Q3 | MEDIUM — `.pfg-card{height:100%}` only fills a stretched track; `.pfg-grid` uses `auto-fit minmax`. Planner should DOM-measure adjacent cards in a row at 1024 vs 768 to confirm whether a `min-height` token or content trim is the right lever. |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Exact FAQ content (questions/answers) for services.html and contacts.html**
    - What we know: CONTEXT marks count + wording as Claude's Discretion ("reasonable minimum for the services on each page"). Services page covers 5 service lines (footer "Услуги" menu enumerates them).
    - What's unclear: Which specific questions convert best for this accounting/tax firm.
    - Recommendation: Planner drafts 4-6 service-oriented Q&A per page in correct Russian sentence case (pricing, onboarding, document handoff, deadlines). Net-new Russian copy is the only new text (master contract allows).
+   - **RESOLVED:** execution-time authoring task in plan 03-02 Task 1 (Claude's Discretion content, 4-6 Q&A/page).
 
 2. **Which footer column(s) actually measure 26px (FT1 scope)**
    - What we know: Two distinct footer menus exist — "Разделы" (`col-md-2 .widget>ul.menu`, no two-column wrapper) and "Услуги" (`.pbmit-two-column-menu>ul.menu`). The existing 44px rule covers only the latter, and only ≤575px.
    - What's unclear: Whether both groups read 26px, or only the uncovered "Разделы" group, at 390/360.
    - Recommendation: DOM-measure both at 390/360 first; write one rule reaching the common ancestor `.site-footer .widget ul.menu li a` so both are covered regardless.
+   - **RESOLVED:** plan 03-02 Task 2 mandates DOM-measuring BOTH columns @390/360 before finalizing, then applies a common-ancestor rule robust to either.
 
 3. **C2 height-jitter lever (min-height token vs content normalization)**
    - What we know: `.pfg-card{height:100%}`; `.pfg-grid` is `auto-fit minmax(260px,1fr)`; jitter is 283@1024 vs 256@768 (cosmetic, no clipping per AUD).
    - What's unclear: Whether the jitter is acceptable reflow or needs an explicit `min-height`.
    - Recommendation: Confirm grid track `align-items:stretch` makes same-row cards equal (the AUD finding is about *cross-breakpoint* difference, which is expected reflow). Likely document as acceptable; only add `min-height` if same-row cards are unequal.
+   - **RESOLVED:** plan 03-01 Task 3 uses diagnosis-before-fix — DOM-confirm same-row equality first; add min-height only if unequal, else document cross-breakpoint reflow as acceptable.
 
 ## Environment Availability
 
