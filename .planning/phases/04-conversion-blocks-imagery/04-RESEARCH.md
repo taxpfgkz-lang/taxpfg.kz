@@ -314,17 +314,19 @@ Not a rename/refactor/migration phase — presentation-only edits to CSS + net-n
 | A4 | Title-bar tablet tier needs one net-new `!important` (cited) to beat vendor `min-height:550px` | T1, !important budget | Low — if a non-`!important` selector wins, even better; verify rendered box |
 | A5 | Imagery wrapper selectors for `object-fit` target theme wrappers; exact selector to be confirmed against live DOM | IMG-01 | Medium — wrong selector could distort logos/icons; verify before locking |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Hero CTA copy vs contract**
    - What we know: Hero markup says «Наши услуги»/«Подробнее»×2 (`index.html:178/209/240`); contract says hero primary CTA is «Получить консультацию» "existing byte-identical" — but that string is on services/contacts, not the hero.
    - What's unclear: Whether CNV-01 expects a (forbidden) retext or just visual polish.
    - Recommendation: Treat as visual polish only (A1). If a stakeholder wants the hero CTA reworded, raise it as an explicit copy-change request outside VER-04. Planner should add a `checkpoint:human-verify` if it intends any hero text change.
+   - **RESOLVED:** locked by CONTEXT decision A1 (hero = visual polish only, copy read-only VER-04); encoded in plan 04-02 (guards `git diff index.html` empty, refuses retext).
 
 2. **Footer content divergence — normalize or preserve?**
    - What we know: Two intentional-looking string differences exist beyond `.active`: (a) recovery-service label — 8 pages say «Восстановление учёта», others say the full «Восстановление и наведение порядка в учёте»; (b) the footer CTA heading — 10 pages «Обсудим!», contacts.html «Обсудить сотрудничество.».
    - What's unclear: Whether these are bugs (should be unified for credibility/parity) or deliberate.
    - Recommendation: If CNV-04 markup is opened anyway, unify the recovery label to one string across 11 (change-all-11, one commit) for credibility; leave `.active` per-page. The CTA-heading variance is copy → treat as read-only unless flagged. Confirm with stakeholder before editing copy.
+   - **RESOLVED:** plan 04-03 keeps footer CSS-only (no markup flatten); the two copy strings are preserved as read-only (not treated as bugs this phase). Copy-unification deferred to an explicit stakeholder request — out of scope for CSS-only footer parity.
 
 ## Environment Availability
 
