@@ -1266,3 +1266,61 @@ summary:focus-visible,
    Контракт гейтит модальные правила «только если Magnific инстанцирован» → стили модалки,
    focus-trap и разметка НЕ создаются (удовлетворение через отсутствие, не дефект). Если
    модалку инстанцируют позже — это отдельная задача со своим focus-trap/ARIA. */
+
+/* --- ЭТАП 15 — CNV-02 тарифные карты (services.html only, НЕ shared chrome) ---
+   Net-new pricing-блок. Карты наследуют .pfg-card (hairline+тень+hover-подъём, §9.8)
+   и .pfg-grid (align-items:stretch + height:100% → равная высота ряда «бесплатно»,
+   стр.72/1147). Здесь добавляем ТОЛЬКО специфику тарифа поверх примитивов.
+   Всё на токенах Фазы 2 (--pfg-*), без хардкод-hex/px (исключение — установленный
+   ранее #1b1b1b: текст-на-золоте, держит AA). Net-new важных-override = 0:
+   правила выигрывают собственной специфичностью (.pfg-pricing-* + контекст), каскад
+   темы не трогаем. Дата 2026-06-27. */
+
+/* Карта-тариф — flex-колонка, чтобы CTA прижался к низу (margin-top:auto) и нижний
+   край кнопок выровнялся в ряду независимо от длины списка услуг. */
+.pfg-pricing-tier{
+	display: flex;
+	flex-direction: column;
+	gap: var(--pfg-space-4);
+}
+.pfg-pricing-tier .pbmit-btn{ margin-top: auto; }
+
+/* Список услуг внутри тарифа: ровный вертикальный ритм на 4px-сетке. */
+.pfg-pricing-tier ul{
+	margin: 0;
+	padding-left: var(--pfg-space-6);
+	display: flex;
+	flex-direction: column;
+	gap: var(--pfg-space-2);
+}
+
+/* Ценовая строка — крупный акцент чернилами, без золотой заливки. */
+.pfg-pricing-price{
+	font-size: var(--pfg-fs-h4);
+	font-weight: 600;
+	line-height: var(--pfg-lh-tight);
+	color: var(--pfg-ink);
+	margin: 0;
+}
+
+/* Единственный популярный тариф: золото живёт в РАМКЕ и бейдже, НЕ в заливке карты —
+   тело остаётся AA-читаемым (санкционировано reserved-for списком мастера: ровно один
+   highlight). Усиленная тень приподнимает карту в визуальной иерархии. */
+.pfg-pricing-tier--popular{
+	border-color: var(--pfg-gold);
+	box-shadow: var(--pfg-shadow-md);
+}
+
+/* Бейдж «Популярный»: золотая плашка, текст #1b1b1b (AA на золоте, как кнопки).
+   text-transform:none — тема иначе капитализирует русские слова (см. конвенцию). */
+.pfg-pricing-badge{
+	align-self: flex-start;
+	background: var(--pfg-gold);
+	color: #1b1b1b;
+	font-size: var(--pfg-fs-label);
+	font-weight: 600;
+	line-height: 1;
+	padding: var(--pfg-space-2) var(--pfg-space-3);
+	border-radius: var(--pfg-radius-sm);
+	text-transform: none;
+}
