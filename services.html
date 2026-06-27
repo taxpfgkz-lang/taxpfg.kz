@@ -449,6 +449,88 @@
 	</div>
 </section>
 
+<!-- [PFG] Тарифные пакеты (CNV-02). Net-new блок: три tier-карты на базе примитивов
+     Фазы 3 (.pfg-card + .pfg-grid даёт равную высоту в ряду через align-items:stretch
+     + height:100%). РОВНО одна карта-highlight с золотым акцентом — санкционировано
+     reserved-for списком мастера: «единственный популярный тариф».
+     Цены без точных цифр («от … ₸ / мес», «по запросу») — бизнес не подтвердил тарифы,
+     перенесено в v2. Per-tier CTA — прямая ссылка wa.me (как плавающая WhatsApp-кнопка),
+     НЕ форма, без JS. target=_blank rel=noopener — реверс-табнаббинг (T-04-01).
+     Контент page-specific (услуги) → НЕ shared chrome, только services.html. -->
+<section class="pfg-section pfg-pricing-section">
+	<div class="container">
+		<div class="pbmit-heading-subheading">
+			<p class="pbmit-subtitle">Тарифы</p>
+			<h2 class="pbmit-title">Пакеты бухгалтерского сопровождения</h2>
+		</div>
+		<div class="pfg-prose">
+			<p class="pfg-lead">Выберите формат под масштаб бизнеса. Точную стоимость рассчитаем под ваши обороты и систему налогообложения — напишите нам, и мы подберём оптимальный пакет.</p>
+		</div>
+		<div class="pfg-grid pfg-pricing">
+			<div class="pfg-card pfg-pricing-tier">
+				<h3>ИП на упрощёнке</h3>
+				<p class="pfg-pricing-price">от 25 000 ₸ / мес</p>
+				<ul>
+					<li>Ведение учёта и упрощённая декларация (форма 910)</li>
+					<li>Расчёт налогов, ОПВ, социальных и медицинских отчислений</li>
+					<li>Сдача отчётности в налоговую и фонды в срок</li>
+					<li>Консультации по текущим вопросам учёта</li>
+				</ul>
+				<a href="https://wa.me/77072370050" class="pbmit-btn white" target="_blank" rel="noopener">
+					<span class="pbmit-button-content-wrapper">
+						<span class="pbmit-button-text-wrap">
+							<span class="pbmit-button-text">
+								<span>Получить консультацию</span>
+							</span>
+						</span>
+					</span>
+				</a>
+			</div>
+			<div class="pfg-card pfg-pricing-tier pfg-pricing-tier--popular">
+				<span class="pfg-pricing-badge">Популярный</span>
+				<h3>ТОО на общем режиме</h3>
+				<p class="pfg-pricing-price">от 60 000 ₸ / мес</p>
+				<ul>
+					<li>Полное ведение бухгалтерского и налогового учёта</li>
+					<li>Расчёт зарплаты, кадровый учёт и отчётность по сотрудникам</li>
+					<li>Декларации по КПН, НДС и сопровождение в кабинете налогоплательщика</li>
+					<li>Контроль первичной документации и взаиморасчётов</li>
+					<li>Персональный бухгалтер и приоритетные ответы</li>
+				</ul>
+				<a href="https://wa.me/77072370050" class="pbmit-btn" target="_blank" rel="noopener">
+					<span class="pbmit-button-content-wrapper">
+						<span class="pbmit-button-text-wrap">
+							<span class="pbmit-button-text">
+								<span>Получить консультацию</span>
+							</span>
+						</span>
+					</span>
+				</a>
+			</div>
+			<div class="pfg-card pfg-pricing-tier">
+				<h3>Премиум</h3>
+				<p class="pfg-pricing-price">по запросу</p>
+				<ul>
+					<li>Учёт для группы компаний и сложных структур</li>
+					<li>Управленческая отчётность и аналитика для собственника</li>
+					<li>Сопровождение налоговых проверок и оптимизация нагрузки</li>
+					<li>Настройка и автоматизация 1С под ваши процессы</li>
+					<li>Выделенная команда и финансовый консалтинг</li>
+				</ul>
+				<a href="https://wa.me/77072370050" class="pbmit-btn white" target="_blank" rel="noopener">
+					<span class="pbmit-button-content-wrapper">
+						<span class="pbmit-button-text-wrap">
+							<span class="pbmit-button-text">
+								<span>Получить консультацию</span>
+							</span>
+						</span>
+					</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
 <!-- [PFG] FAQ-аккордеон (CMP-05). Native <details>/<summary>: бесплатная клавиатура
      (Enter/Space), [open]-состояние и корректная AT-семантика без JS. Класс .pfg-faq,
      НЕ .accordion — иначе theme-handler scripts.js:309 (биндится на .accordion .accordion-item
