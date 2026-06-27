@@ -5,15 +5,15 @@ milestone_name: milestone
 current_phase: 4
 current_phase_name: Conversion Blocks + Imagery
 status: executing
-stopped_at: ROADMAP.md + STATE.md written, REQUIREMENTS.md traceability updated
-last_updated: "2026-06-27T00:17:44.329Z"
-last_activity: 2026-06-26
-last_activity_desc: Phase 3 complete, transitioned to Phase 4
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-06-27T00:25:16.444Z"
+last_activity: 2026-06-27
+last_activity_desc: Phase 4 execution started
 progress:
   total_phases: 5
   completed_phases: 3
-  total_plans: 9
-  completed_plans: 9
+  total_plans: 13
+  completed_plans: 10
   percent: 60
 ---
 
@@ -24,14 +24,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-25)
 
 **Core value:** Сайт выглядит дорого, единообразно и убедительно на desktop/tablet/mobile, а conversion-блоки чисто конвертируют посетителя в лид — без изменения бизнес-логики.
-**Current focus:** Phase 3 — Components
+**Current focus:** Phase 4 — Conversion Blocks + Imagery
 
 ## Current Position
 
-Phase: 4 — Conversion Blocks + Imagery
-Plan: Not started
+Phase: 4 (Conversion Blocks + Imagery) — EXECUTING
+Plan: 2 of 4
 Status: Ready to execute
-Last activity: 2026-06-26 — Phase 3 complete, transitioned to Phase 4
+Last activity: 2026-06-27 — Phase 4 execution started
 
 Progress: [█████████░] 89%
 
@@ -66,6 +66,7 @@ Progress: [█████████░] 89%
 | Phase 03 P01 | 18min | 3 tasks | 1 files |
 | Phase 03 P02 | 18min | 3 tasks | 3 files |
 | Phase 03 P03 | 32min | 3 tasks | 0 files |
+| Phase 04 P01 | 20min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -92,6 +93,7 @@ Recent decisions affecting current work:
 - [Phase ?]: C2 height-jitter — не min-height-баг: same-row spread=0px на всех ширинах (DOM-замер), min-height не добавлен, только align-items:stretch
 - [Phase ?]: Бюджет !important — литеральный grep: в комментариях избегать токена !important, формулировать «без форсирования каскада»
 - [Phase ?]: [Phase 3 P03]: Phase-gate доказан DOM-измерением — 55 комбинаций без h-скролла, axe=0+color-contrast=0 на 11, Lighthouse a11y=floor (min 95), FT1/F2>=44px, FAQ клик+клавиатура+focus-ring, VER-04 behavior-identical, !important=59 — floor для Phase 5
+- [Phase ?]: [Phase 4 P01]: CNV-02 pricing — 3 тарифа на services.html, ровно один золотой highlight (ТОО на общем режиме); цены индикативные (от …₸/по запросу), точные → v2; per-tier CTA wa.me direct-link (target=_blank rel=noopener), без JS; !important=59 (no net-new); только services.html+custom.css, js байт-идентичен; Playwright PASS на 5vp
 
 ### Pending Todos
 
@@ -121,6 +123,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-26T14:17:48.113Z
-Stopped at: ROADMAP.md + STATE.md written, REQUIREMENTS.md traceability updated
+Last session: 2026-06-27T00:25:16.434Z
+Stopped at: Completed 04-01-PLAN.md
 Resume file: None
