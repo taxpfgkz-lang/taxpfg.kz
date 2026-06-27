@@ -2,18 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 4
-current_phase_name: Conversion Blocks + Imagery
 status: executing
-stopped_at: Completed 04-01-PLAN.md
-last_updated: "2026-06-27T00:25:16.444Z"
+last_updated: "2026-06-27T00:31:58.961Z"
 last_activity: 2026-06-27
-last_activity_desc: Phase 4 execution started
 progress:
   total_phases: 5
   completed_phases: 3
   total_plans: 13
-  completed_plans: 10
+  completed_plans: 11
   percent: 60
 ---
 
@@ -29,11 +25,11 @@ See: .planning/PROJECT.md (updated 2026-06-25)
 ## Current Position
 
 Phase: 4 (Conversion Blocks + Imagery) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 Status: Ready to execute
-Last activity: 2026-06-27 — Phase 4 execution started
+Last activity: 2026-06-27
 
-Progress: [█████████░] 89%
+Progress: [█████████░] 85%
 
 ## Performance Metrics
 
@@ -67,6 +63,7 @@ Progress: [█████████░] 89%
 | Phase 03 P02 | 18min | 3 tasks | 3 files |
 | Phase 03 P03 | 32min | 3 tasks | 0 files |
 | Phase 04 P01 | 20min | 2 tasks | 2 files |
+| Phase 04 P02 | 2min | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -94,6 +91,8 @@ Recent decisions affecting current work:
 - [Phase ?]: Бюджет !important — литеральный grep: в комментариях избегать токена !important, формулировать «без форсирования каскада»
 - [Phase ?]: [Phase 3 P03]: Phase-gate доказан DOM-измерением — 55 комбинаций без h-скролла, axe=0+color-contrast=0 на 11, Lighthouse a11y=floor (min 95), FT1/F2>=44px, FAQ клик+клавиатура+focus-ring, VER-04 behavior-identical, !important=59 — floor для Phase 5
 - [Phase ?]: [Phase 4 P01]: CNV-02 pricing — 3 тарифа на services.html, ровно один золотой highlight (ТОО на общем режиме); цены индикативные (от …₸/по запросу), точные → v2; per-tier CTA wa.me direct-link (target=_blank rel=noopener), без JS; !important=59 (no net-new); только services.html+custom.css, js байт-идентичен; Playwright PASS на 5vp
+- [Phase ?]: CNV-01 подтверждён без правок: Phase-2 политика --pfg-lh-display уже даёт lh>=fs в hero (DOM-замер Playwright 1440:170/195.5, 1024:120/138)
+- [Phase ?]: CNV-03 закрыт по отсутствию: sticky мобильной CTA нет, .pfg-whatsapp-float — единственный float, коллизия невозможна; комментарий в custom.css, js байт-идентичен
 
 ### Pending Todos
 
@@ -123,6 +122,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-27T00:25:16.434Z
+Last session: 2026-06-27T00:31:40.993Z
 Stopped at: Completed 04-01-PLAN.md
 Resume file: None
