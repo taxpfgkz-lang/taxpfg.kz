@@ -117,9 +117,25 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. The footer is unified and credibility-oriented, identical across all 11 pages (CNV-04).
   5. Images and icons share a consistent style with correct sizes and proportions and no visual junk (IMG-01).
 
-**Plans**: TBD
+**Plans**: 4 plans
 **Notes**: Research flag YES — the sticky-CTA/WhatsApp reconciliation and pricing-tier layout need a small design spike (fold WhatsApp into the bar, or offset/hide one when the other is in view). Footer is shared chrome → change-all-11 grep (returns 11) + multi-page screenshot diff in one atomic commit. Recurring gate applies in full. Image work here is presentation/sizing only — payload/WebP optimization is a deferred v2 milestone.
 **UI hint**: yes
+
+**Wave 1**
+
+- [ ] 04-01-PLAN.md — CNV-02 net-new pricing block on services.html (3 tiers, 1 gold highlight, per-tier wa.me CTA) + .pfg-pricing-* CSS
+
+**Wave 2** *(blocked on Wave 1)*
+
+- [ ] 04-02-PLAN.md — CNV-01 hero lh/trust visual polish (no copy change) + CNV-03 documented-absence resolution (no JS)
+
+**Wave 3** *(blocked on Wave 2)*
+
+- [ ] 04-03-PLAN.md — CNV-04 footer parity + mobile density (CSS-only) + IMG-01 object-fit + T1 title-bar @768 tier
+
+**Wave 4** *(blocked on Wave 3)*
+
+- [ ] 04-04-PLAN.md — phase gate: DOM @5vp + axe + Lighthouse vs AUD-01 floor + VER-04 smoke + human-verify
 
 ### Phase 5: Accessibility Pass + Cross-Device Verification
 
