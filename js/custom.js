@@ -18,6 +18,7 @@
 		initSearchA11y();
 		initHeaderContact();
 		initStickyCta();
+		initTrustCounters();
 	});
 
 	/* --- 1. Мобильное меню -----------------------------------------------
@@ -263,6 +264,40 @@
 		   (в шапке там нет места для контакта рядом с длинным логотипом). Скролл-
 		   гейт не нужен — для рекламного трафика контакт должен быть с первого
 		   экрана. На 577px+ полоса скрыта (там контакт несут иконки шапки). */
+	}
+
+	/* --- 10. Анимация счётчиков доверия (D6, Волна 3) ---------------
+	   Инициализирует numinate для .pfg-trust-number при появлении в области
+	   видимости. Паттерн взят из scripts.js:10-28 (тема использует waypoint +
+	   numinate для анимированных чисел). Идемпотентно: класс .completed
+	   предотвращает повторный запуск при возврате к секции. */
+	function initTrustCounters() {
+		var counters = document.querySelectorAll('.pfg-trust-number[data-appear-animation="animateDigits"]');
+		if (!counters.length || typeof jQuery === 'undefined' || !jQuery.fn.waypoint || !jQuery.fn.numinate) return;
+
+		counters.forEach(function(el) {
+			var $el = jQuery(el);
+			$el.html('0');
+			$el.waypoint(function(direction) {
+				if (!$el.hasClass('completed')) {
+					var from = parseInt($el.data('from')) || 0;
+					var to = parseInt($el.data('to')) || 0;
+					var interval = parseInt($el.data('interval')) || 1;
+					var after = $el.data('after') || '';
+
+					$el.numinate({
+						format: '%counter%' + after,
+						from: from,
+						to: to,
+						runningInterval: 2000,
+						stepUnit: interval,
+						onComplete: function(elem) {
+							$el.addClass('completed');
+						}
+					});
+				}
+			}, { offset: '85%' });
+		});
 	}
 
 	})();
