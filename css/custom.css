@@ -1334,3 +1334,198 @@ summary:focus-visible,
 	border-radius: var(--pfg-radius-sm);
 	text-transform: none;
 }
+
+/* ==========================================================================
+   ЭТАП 16 — CNV-04 + IMG-01 + T1 (2026-06-27).
+   Фаза 4, план 03: footer parity остаётся CSS-only (никаких footer-markup правок),
+   IMG-01 = presentation-only object-fit для фото-обёрток темы, T1 = промежуточный
+   tablet-tier между vendor 550px и mobile-collapse <=575px. Вендорные файлы не
+   трогаем; shared chrome не разворачиваем на change-all-11, потому что footer здесь
+   выравнивается только каскадом.
+   ========================================================================== */
+
+/* --- 16.1 CNV-04 / FT3: mobile footer density ---
+   На stacked-footer <=575px уменьшаем вертикальные интервалы между виджетами и
+   служебными блоками токенами Фазы 2, но НЕ режем hit-zone ссылок ниже FT1/F2 44px
+   (padding ссылок из 14.8 остаётся). Верхняя золотая линия 3px сохраняется. */
+@media (max-width: 575px){
+	.site-footer .widget{
+		margin-bottom: var(--pfg-space-4);
+	}
+	.site-footer .pbmit-footer-widget-area{
+		padding-top: var(--pfg-space-8);
+		padding-bottom: var(--pfg-space-6);
+	}
+	.site-footer .pbmit-footer-widget-col-1 .widget,
+	.site-footer .pbmit-footer-widget-col-2 .widget,
+	.site-footer .pbmit-footer-widget-col-3 .widget,
+	.site-footer .pbmit-footer-widget-col-4 .widget{
+		padding-bottom: 0;
+	}
+	.site-footer .pbmit-footer-text-area{
+		padding-top: var(--pfg-space-4);
+		padding-bottom: var(--pfg-space-4);
+	}
+	.site-footer .pbmit-footer-big-area{
+		padding-top: var(--pfg-space-6);
+		padding-bottom: var(--pfg-space-4);
+	}
+}
+
+/* --- 16.2 IMG-01: photo wrappers keep proportion, logos/icons untouched ---
+   Таргетим только theme photo wrappers (.pbmit-featured-wrapper / .pbmit-ihbox-img),
+   не bare img, чтобы не исказить логотипы/иконки. object-fit:cover допускает
+   отличие box-ratio от natural-ratio, но сохраняет пропорции содержимого. */
+.pbmit-featured-wrapper img,
+.pbmit-ihbox-img img{
+	width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: cover;
+}
+
+/* --- 16.3 T1: tablet title-bar tier 768→576 ---
+   Вендор shortcode.css:4934 задаёт .pbmit-title-bar-wrapper/.pbmit-title-bar-content
+   min-height:550px. Для планшета это непропорционально высокий band. Вставляем
+   промежуточный тир ниже 768px и выше mobile-collapse <=575px. */
+@media (max-width: 768px) and (min-width: 576px){
+	/* shortcode.css:4934 иначе выигрывает source-order по min-height; здесь нужен
+	   один санкционированный форсаж каскада для tablet-tier. */
+	.pbmit-title-bar-wrapper,
+	.pbmit-title-bar-content{
+		min-height: 360px !important;
+	}
+	.pbmit-title-bar-wrapper .pbmit-title-bar-content{
+		padding-top: var(--pfg-space-9);
+		padding-bottom: var(--pfg-space-6);
+	}
+}
+
+/* --- 16.4 CNV-01: один CTA на hero-слайд ---
+   Phase-4 gate меряет по одному .pbmit-btn на каждом .swiper-slide. В теме внутри hero
+   живут навигационные .slider-arrow/.swiper-button-next/.swiper-button-prev, поэтому
+   scope на .pbmit-btn обязателен: не ломаем Swiper navigation и одновременно сохраняем
+   ровно один конверсионный primary CTA на слайд. */
+.pbmit-slider-one .swiper-slide .pbmit-btn{
+	display: inline-flex;
+}
+
+/* ==========================================================================
+   ЭТАП 17 — ВОЛНА 1 КОНВЕРСИИ (docs/REDESIGN-BRIEF.md, 2026-06-28).
+   Под рекламный трафик (преимущественно мобильный): контакт в мобильной шапке
+   (D1) + закреплённая sticky CTA-полоса. Стилизуем/позиционируем элементы,
+   инжектируемые из js/custom.js (как .pfg-whatsapp-float) — НИ ОДНОЙ правки в
+   11 HTML. Вендорные файлы не трогаем. Off-canvas-safe: ничего не вешаем на
+   предков мобильного off-canvas меню (filter/transform/backdrop-filter).
+   Текст не вводим: кнопки шапки иконочные (доступное имя — aria-label),
+   sticky-полоса использует существующие строки («+7 707 237 00 50», «WhatsApp»).
+   ========================================================================== */
+
+/* --- 17.1 D1: контакт в мобильной шапке (tel + WhatsApp) ---
+   На ≤1200px тема прячет телефон и «Получить консультацию» — в шапке остаются
+   только логотип и гамбургер. Возвращаем целевое действие на первый экран двумя
+   кнопками 44×44 (WCAG 2.5.5) перед гамбургером. На десктопе ≥1201px контакт темы
+   уже есть → блок скрыт. */
+.pfg-header-contact{ display: none; }
+/* Tier-split (DOM-замер 2026-06-28): на ≤576px длинный логотип «PrimeFinance Group»
+   кончается у самого гамбургера — двум иконкам места НЕТ (перекрывали логотип),
+   там контакт несёт нижняя sticky-полоса (§17.2). На 577–1200px места достаточно
+   (логотип кончается ~279px, гамбургер у правого края), а телефон/CTA темы в этом
+   диапазоне скрыты — иконки шапки заполняют пробел. На ≥1201px — полный хедер темы. */
+@media (min-width: 577px) and (max-width: 1200px){
+	/* Гамбургер темы — position:absolute; right:0 относительно .pbmit-header-content
+	   (его offsetParent, position:relative; правый край = край вьюпорта). А .pbmit-right-area
+	   шире вьюпорта (несёт off-canvas menuarea), поэтому контакт в НОРМАЛЬНОМ потоке
+	   уносится за правый край. Пиним блок абсолютно к тому же containing-block, левее
+	   гамбургера (его ширина ~45px → right:56px даёт зазор). transform применяется к
+	   ЛИСТУ .pfg-header-contact (НЕ предок off-canvas меню) — правило «без filter/transform
+	   на предках меню» не нарушается; header-content уже relative, fixed-меню не трогаем. */
+	.pfg-header-contact{
+		display: inline-flex;
+		align-items: center;
+		gap: var(--pfg-space-2);
+		position: absolute;
+		top: 50%;
+		right: 56px;
+		transform: translateY(-50%);
+		z-index: 3;
+	}
+}
+.pfg-hc-btn{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border-radius: var(--pfg-radius-sm);
+	transition: background-color var(--pfg-tf-fast), transform var(--pfg-tf-fast);
+}
+.pfg-hc-btn svg{ width: 20px; height: 20px; display: block; }
+.pfg-hc-call{ background: rgba(236, 171, 35, .16); }
+.pfg-hc-call svg{ fill: var(--pfg-gold-deep); }
+.pfg-hc-wa{ background: #25D366; }
+.pfg-hc-wa svg{ fill: #fff; }
+.pfg-hc-btn:active{ transform: scale(.94); }
+
+/* --- 17.2 Sticky мобильная CTA-полоса ---
+   Персистентный CTA: закреплённая снизу полоса «позвонить | WhatsApp». Появляется
+   после прокрутки за первый экран (класс .is-visible из initStickyCta), чтобы
+   вверху не дублировать контакт шапки. На мобильном заменяет .pfg-whatsapp-float.
+   ОСОЗНАННО ВВОДИТ sticky-CTA, ранее зафиксированную как отсутствующую (CNV-03,
+   custom.css:42-50). Это supersede того разрешения-по-отсутствию: под рекламный
+   трафик персистентный CTA важнее (docs/REDESIGN-BRIEF.md, Волна 1). */
+.pfg-sticky-cta{ display: none; }
+@media (max-width: 576px){
+	/* Всегда видима на телефонах: в шапке ≤576 контакта нет (нет места у логотипа),
+	   поэтому полоса — основной мобильный CTA, с первого экрана. */
+	.pfg-sticky-cta{
+		display: flex;
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: var(--pfg-z-float);
+		gap: 1px;
+		padding-bottom: env(safe-area-inset-bottom, 0px);
+		background: var(--pfg-hairline-2);   /* тонкий зазор-разделитель между кнопками */
+		box-shadow: 0 -6px 20px -8px rgba(8, 14, 20, .35);
+	}
+	/* При открытом off-canvas-меню полоса не должна перекрывать панель меню. */
+	body.pfg-menu-open .pfg-sticky-cta{ display: none; }
+
+	/* backtotop поднимаем над полосой (≈56px высота + safe-area). */
+	.pbmit-backtotop.active{ bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important; }
+	.pbmit-backtotop:hover{ bottom: calc(77px + env(safe-area-inset-bottom, 0px)) !important; }
+
+	/* Анти-перекрытие: нижний край копирайта не прячем под полосой. */
+	.site-footer .pbmit-copyright-area{
+		padding-bottom: calc(var(--pfg-space-8) + 56px + env(safe-area-inset-bottom, 0px));
+	}
+}
+/* float дублирует контакт на ≤1200 (полоса ≤576 / иконки шапки 577–1200) → прячем,
+   оставляя ровно один контакт-механизм на tier. На ≥1201 float остаётся. */
+@media (max-width: 1200px){
+	.pfg-whatsapp-float{ display: none; }
+}
+.pfg-sticky-btn{
+	display: inline-flex;
+	flex: 1 1 0;
+	align-items: center;
+	justify-content: center;
+	gap: var(--pfg-space-2);
+	min-height: 56px;
+	padding: var(--pfg-space-3) var(--pfg-space-2);
+	font-family: var(--pbmit-heading-typography-font-family, inherit);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.1;
+	text-transform: none;   /* кириллица/номер — без капитализации темы */
+	white-space: nowrap;
+}
+.pfg-sticky-btn svg{ width: 18px; height: 18px; flex: 0 0 auto; display: block; }
+.pfg-sticky-call{ background: var(--pfg-ink); color: #fff; }
+.pfg-sticky-call svg{ fill: var(--pfg-gold); }
+.pfg-sticky-wa{ background: #25D366; color: #fff; }
+.pfg-sticky-wa svg{ fill: #fff; }
+.pfg-sticky-btn:active{ filter: brightness(.94); }
+
