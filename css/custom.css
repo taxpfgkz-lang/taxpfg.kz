@@ -1529,3 +1529,32 @@ summary:focus-visible,
 .pfg-sticky-wa svg{ fill: #fff; }
 .pfg-sticky-btn:active{ filter: brightness(.94); }
 
+/* ==========================================================================
+   ЭТАП 18 — ВОЛНА 2: HERO (docs/REDESIGN-BRIEF.md, 2026-06-28).
+   D2 (золотой CTA) сделан разметкой (index.html: снят .white с 3 hero-кнопок →
+   стандартный золотой .pbmit-btn). Здесь D3 — оффер первого экрана.
+   Только оформление; текст не меняем; scope строго на .pbmit-slider-one.
+   ========================================================================== */
+
+/* --- 18.1 D3: оффер слайдера в зону видимости + показ на mobile ---
+   Вендор сажает .pbmit-slider-desc через .video-content-area (position:absolute,
+   justify-content:end) внизу-справа: на 900h desktop оффер уходит за фолд
+   (DOM-замер y905–980 при высоте слайдера 1000px), а на ≤768 тема его прячет
+   (display:none). Возвращаем оффер в ПОТОК под заголовок/кнопку, слева, читаемо,
+   на всех ширинах. Без !important: специфичность .pbmit-slider-one .* (0,2,0) +
+   source-order (custom.css после responsive.css) бьёт vendor 0,1,0. */
+.pbmit-slider-one .video-content-area{
+	position: static;
+	justify-content: flex-start;
+	display: flex;
+}
+.pbmit-slider-one .pbmit-shape-bg{
+	display: block;
+}
+.pbmit-slider-one .pbmit-slider-desc{
+	text-align: left;
+	max-width: 62ch;
+	margin-top: var(--pfg-space-6);
+	text-shadow: 0 2px 18px rgba(8, 14, 20, .45);   /* читаемость на фото, как у заголовка (§9.7) */
+}
+
