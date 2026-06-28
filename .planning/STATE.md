@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-06-25)
 Phase: 4 (Conversion Blocks + Imagery) — EXECUTING
 Plan: 3 of 4
 Status: Ready to execute
-Last activity: 2026-06-27
+Last activity: 2026-06-28 — Quick task 260628-h3e (Волна 1 конверсии: мобильный контакт + sticky CTA)
 
 Progress: [█████████░] 85%
 
@@ -93,6 +93,7 @@ Recent decisions affecting current work:
 - [Phase ?]: [Phase 4 P01]: CNV-02 pricing — 3 тарифа на services.html, ровно один золотой highlight (ТОО на общем режиме); цены индикативные (от …₸/по запросу), точные → v2; per-tier CTA wa.me direct-link (target=_blank rel=noopener), без JS; !important=59 (no net-new); только services.html+custom.css, js байт-идентичен; Playwright PASS на 5vp
 - [Phase ?]: CNV-01 подтверждён без правок: Phase-2 политика --pfg-lh-display уже даёт lh>=fs в hero (DOM-замер Playwright 1440:170/195.5, 1024:120/138)
 - [Phase ?]: CNV-03 закрыт по отсутствию: sticky мобильной CTA нет, .pfg-whatsapp-float — единственный float, коллизия невозможна; комментарий в custom.css, js байт-идентичен
+- [Quick 260628-h3e]: CNV-03 SUPERSEDED — введена мобильная sticky CTA-полоса (≤576px, всегда видима) + контакт tel/WhatsApp в шапке (577–1200px); инжект из общего custom.js (0 правок в 11 HTML), float скрыт ≤1200. Ради конверсии под рекламный трафик (docs/REDESIGN-BRIEF.md, Волна 1). D7 (обрезка заголовков услуг) — DOM-замером подтверждено отсутствие (flow-root), кода нет.
 
 ### Pending Todos
 
@@ -108,6 +109,12 @@ None yet.
 - **SCOPE CHANGE 2026-06-26 (Phase 3):** markup-read-only LIFTED by Юрий — HTML edits allowed broadly (unblocks FAQ/pricing net-new). Vendor read-only (swiper-*/data-aos*/pbmit-*, vendor files) STILL holds; VER-04 behavior-identity (form→WhatsApp/analytics/routing/JSON-LD) STILL hard; shared chrome = change-all-11 atomic.
 - No automated tests exist — Playwright DOM-measured checks + axe/Lighthouse are the only QA. Workflow API proxy may fail (memory note); duplicate critical checks manually.
 - Known accepted exception: mobile header search target-size flag (theme off-canvas layout) — not a new violation.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260628-h3e | Волна 1 конверсии — мобильный контакт в шапке + sticky CTA + D7 verify | 2026-06-28 | c0a8bc7 | [260628-h3e-1-sticky-cta](./quick/260628-h3e-1-sticky-cta/) |
 
 ## Deferred Items
 
