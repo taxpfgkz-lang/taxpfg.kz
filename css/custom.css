@@ -2234,3 +2234,63 @@ section:has(.pfg-form){
 	object-fit: cover;
 	border-radius: 5px;
 }
+
+/* ==========================================================================
+   ЭТАП 25 — ФУТЕР: редизайн CTA-колонки (2026-06-29).
+   Проблема: font-size:96px (shortcode.css:4502) — heading «Обсудить
+   сотрудничество.» overflow поверх колонок «Разделы»/«Услуги»/«Контакты».
+   Крутящаяся кнопка абсолютно позиционирована внутри heading-wrap и
+   визуально конфликтует с текстом. Паддинг big-area-wrapper (110px/70px)
+   завышен. Решение: понижаем размер heading до читаемого, убираем крутящийся
+   button из потока (скрываем — contacts.html содержит все контактные данные),
+   сжимаем отступы. Цветовые токены и структура остаются.
+   ========================================================================== */
+
+/* --- 25.1 Heading: уменьшаем с 96px до адаптивного clamp ---
+   «Обсудить сотрудничество.» = 24 символа. На col-xl-4 (~400px) при 44px
+   текст переносится на 2 ровные строки без переполнения.
+   clamp(32px, 3vw, 44px): на 360→32px, на 1280→38px, на 1440→43px, max 44px. */
+.pbmit-footer-style-1 .footer-heading-wrap .pbmit-custom-title h2{
+	font-size: clamp(32px, 3vw, 44px) !important;
+	line-height: 1.2 !important;
+	letter-spacing: -0.5px !important;
+}
+
+/* --- 25.2 Крутящаяся кнопка: скрываем (декоративный виджет темы, захламляет
+   область заголовка и позиционируется поверх текста через position:absolute) --- */
+.pbmit-footer-style-1 .footer-heading-wrap .pbmit-hover-button{
+	display: none !important;
+}
+
+/* --- 25.3 Сжимаем верхний/нижний паддинг big-area-wrapper (было 110px/70px) --- */
+.pbmit-footer-style-1 .pbmit-footer-big-area-wrapper{
+	padding: 60px 0 50px !important;
+	gap: 40px !important;
+}
+
+/* --- 25.4 Добавляем WhatsApp CTA под heading в футер ---
+   Вместо удалённого spinning-button — лаконичная кнопка «Обратная связь». */
+.pbmit-footer-style-1 .footer-heading-wrap{
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.pfg-footer-cta-btn{
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 12px 24px;
+	background: var(--pfg-gold);
+	color: #1b1b1b !important;
+	font-size: 15px;
+	font-weight: 600;
+	border-radius: var(--pfg-radius);
+	text-decoration: none;
+	width: fit-content;
+	transition: background var(--pfg-tf-fast), transform var(--pfg-tf-fast);
+}
+.pfg-footer-cta-btn:hover{
+	background: var(--pfg-gold-deep);
+	transform: translateY(-2px);
+	color: #1b1b1b !important;
+}
