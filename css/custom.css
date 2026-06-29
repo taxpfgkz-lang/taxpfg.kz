@@ -1467,6 +1467,43 @@ summary:focus-visible,
 .pfg-hc-wa svg{ fill: #fff; }
 .pfg-hc-btn:active{ transform: scale(.94); }
 
+/* --- 17.1b Кнопка меню (.nav-menu-toggle) — третий элемент ряда контакт-кнопок ---
+   Вендор (responsive.css:796-809 @≤1200, :2151-2160 @≤767) рисует гамбургер как
+   белую плашку 55×55 (45×45 на ≤767) radius:5px с иконкой-сеткой 40×40 (30×30 @≤767)
+   тёмного цвета — она выпадает из ряда золотая-телефон / зелёный-WhatsApp (.pfg-hc-btn).
+   Приводим к тому же набору: габарит 44×44, radius var(--pfg-radius-sm), золотой-тинт
+   фон и gold-deep иконка 20×20 — один-в-один с .pfg-hc-call (телефон). Позиционирование
+   темы (position:absolute; right:0; translateY(-50%)) НЕ трогаем — оно ставит кнопку
+   у правого края. Гейт ≤1200 совпадает с .pfg-header-contact: на ≥1201 у темы полное
+   меню, гамбургер не показывается. .nav-menu-toggle — лист (не предок off-canvas
+   меню), поэтому background/radius безопасны (правило «без filter/transform на предках
+   меню» не нарушается). */
+@media (max-width: 1200px){
+	.site-header .nav-menu-toggle{
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		line-height: 1;
+		border-radius: var(--pfg-radius-sm);
+		background: rgba(236, 171, 35, .16);   /* = .pfg-hc-call */
+		transition: background-color var(--pfg-tf-fast), transform var(--pfg-tf-fast);
+	}
+	.site-header .nav-menu-toggle svg,
+	.site-header .nav-menu-toggle svg g{
+		width: 20px;
+		height: 20px;
+		/* !important: единым правилом перебиваем и обычный svg, и sticky-клон
+		   (.pbmit-header-style-1 .pbmit-sticky-header .nav-menu-toggle svg, responsive.css:822-824,
+		   спец. 0,3,1) — иначе у иконки клона остаётся тёмная заливка темы. */
+		fill: var(--pfg-gold-deep) !important;
+	}
+	/* :active масштаб как у .pfg-hc-btn, но СОХРАНЯЕМ вендорный translateY(-50%)
+	   (кнопка position:absolute), иначе она прыгнет вниз при нажатии. */
+	.site-header .nav-menu-toggle:active{ transform: translate(0, -50%) scale(.94); }
+}
+
 /* --- 17.2 Sticky мобильная CTA-полоса ---
    Персистентный CTA: закреплённая снизу полоса «позвонить | WhatsApp». Появляется
    после прокрутки за первый экран (класс .is-visible из initStickyCta), чтобы
@@ -1613,6 +1650,131 @@ summary:focus-visible,
 	}
 	.pfg-trust-section{
 		padding: var(--pfg-space-8) 0;
+	}
+}
+
+/* ==========================================================================
+   ЭТАП 20 — ВОЛНА 4: HERO 100VH + ТИПОГРАФИКА ПЕРВОГО ЭКРАНА (2026-06-29).
+   Live UI-проход с Юрием по index.html. Три правки на hero (.pbmit-slider-one):
+   (1) высота = высота экрана, (2) заголовок чуть меньше, (3) оффер виднее/выше/
+   аккуратнее. Вендор (read-only): .pbmit-slider-item height:1000/880/700px фикс.
+   (shortcode.css:5263, responsive.css:528/1466) — не матчит вьюпорт → обрезка
+   снизу или пустоты. Заголовок 170px (shortcode.css:5286). Оффер 20px прижат к
+   низу. Scope строго .pbmit-slider-one; текст и разметку слайдов не трогаем.
+   ========================================================================== */
+
+/* --- 20.1 Hero = высота экрана (100svh) ---
+   svh (small viewport height), не vh: на мобильных схлопывание адресной строки не
+   даёт скачок/перекрытие контента. height:100vh — фолбэк для старых движков. min-
+   height-страховка на коротких ландшафтных экранах. Переопределяем все 3 вендорных
+   тира (1000/880/700) одним правилом: спецификность 0,2,0 == вендор, выигрыш по
+   source-order (custom.css грузится последним), без !important. */
+.pbmit-slider-one .pbmit-slider-item{
+	height: 100vh;
+	height: 100svh;
+	min-height: 640px;
+}
+/* Контейнер слайда — flex-колонка с ВЕРТИКАЛЬНЫМ ЦЕНТРИРОВАНИЕМ: заголовок → кнопка
+   → оффер идут единым блоком по центру высоты экрана. Прежний вариант (заголовок к
+   верху + оффер к низу через margin-top:auto) давал «улёт вверх» и пустой низ —
+   смотрелось рвано. Вендор уже даёт .container{height:-webkit-fill-available}. */
+.pbmit-slider-one .pbmit-slider-item > .container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;   /* вертикальный центр */
+	align-items: center;       /* горизонтальный центр всего блока */
+}
+/* Контент (заголовок+кнопка) — колонкой по центру. Вендор: width:max-content +
+   padding-top:305px тянул влево-вверх. Обнуляем top (центрируется родителем),
+   раскладываем по центру, кнопка центрируется как flex-элемент. */
+.pbmit-slider-one .pbmit-slider-content{
+	padding-top: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: auto;
+	text-align: center;
+}
+/* Оффер — единым блоком по центру под кнопкой. Vendor + Bootstrap тянули
+   .video-content-area в правый-нижний угол (.d-flex .align-items-end
+   .justify-content-end — все с !important), поэтому центрируем с !important
+   (custom.css §CSS-архитектура: !important только против темы, что иначе не бьётся). */
+.pbmit-slider-one .video-content-area{
+	align-items: center !important;
+	justify-content: center !important;
+	margin-top: var(--pfg-space-6);
+}
+
+/* --- 20.2 Заголовок: одна строка по центру (≥768px) ---
+   Юрий: заголовок одной строкой по центру. Разметка: убраны <br> в 3 слайдах.
+   white-space:nowrap держит одну строку; размер в vw (7.4vw) удерживает самый
+   длинный заголовок («Регистрация ИП и ТОО», 20 симв.) в пределах .container без
+   горизонтального скролла; clamp-потолок 122px против гигантизма на >1650px.
+   ТОЛЬКО ≥768px: на мобильном одна строка из 20 симв. вылезает за экран и режется
+   (DOM-замер 390px: ширина 453>375 → обрезка по краям). Ниже 768 заголовок
+   переносится естественно в 2 строки и центрируется через text-align:center
+   родителя .pbmit-slider-content (§20.1) — читаемый кегль на основном (мобильном)
+   трафике важнее буквального «одной строкой». lh 1.15 (§9.7) сохраняется. */
+@media (min-width: 768px){
+	.pbmit-slider-one .pbmit-slider-title{
+		font-size: clamp(56px, 7.4vw, 122px);
+		white-space: nowrap;
+		text-align: center;
+		padding-bottom: 28px;
+		letter-spacing: -1px;
+	}
+}
+
+/* --- 20.3 Оффер первого экрана: по центру под кнопкой, 2 строки (desktop ≥992) ---
+   Юрий: описание по центру под кнопкой в две строки. 20px на фото-фоне тонет →
+   22px/500. Центрируем (text-align:center бьёт vendor end / §18.1 left). Подложка
+   обнимает текст (inline-block) с лёгким blur — читается как намеренная плашка по
+   центру; золотой левый штрих убран (он был для левой композиции). max-width:none
+   и перенос по <br> в разметке держат ровно 2 строки. backdrop-filter допустим:
+   .pbmit-slider-desc НЕ предок off-canvas меню (ограничение custom.css:382-389). */
+@media (min-width: 768px){
+	.pbmit-slider-one .pbmit-slider-desc{
+		font-size: 22px;
+		line-height: 32px;
+		font-weight: 500;
+		text-align: center !important;
+		max-width: none;
+		display: inline-block;
+		padding: 14px 28px;
+		background: rgba(15, 24, 32, .42);
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+		border-radius: var(--pfg-radius-sm);
+		border-bottom: 2px solid var(--pfg-gold);   /* тонкий золотой акцент, симметрично центру */
+	}
+}
+
+/* --- 20.4 Оффер на мобильном: показать под кнопкой по центру (Юрий, 2026-06-29) ---
+   Вендор прячет оффер на телефоне: .pbmit-shape-bg{display:none!important} (≤768,
+   responsive.css:2081) и .video-content-area{display:none!important} (≤479,
+   responsive.css:3422). Возвращаем оффер под заголовок/кнопку, по центру, читаемо.
+   !important обязателен — бьём вендорные !important (равная спецификность 0,2,0 +
+   source-order: custom.css грузится последним). Декоративный .pbmit-shape-bg:before
+   (blur-блоб 950px, left:-30%) на узком экране вылез бы за край → h-scroll, поэтому
+   гасим его и даём оффру собственную компактную плашку. <br> прячем — на узком
+   экране ранний разрыв некрасив, абзац идёт естественным переносом по центру.
+   .pbmit-slider-desc НЕ предок off-canvas меню — blur-фон допустим. */
+@media (max-width: 767px){
+	.pbmit-slider-one .pbmit-shape-bg{ display: block !important; }
+	.pbmit-slider-one .pbmit-shape-bg:before{ display: none; }
+	.pbmit-slider-one .video-content-area{ display: flex !important; }
+	.pbmit-slider-one .pbmit-slider-desc br{ display: none; }
+	.pbmit-slider-one .pbmit-slider-desc{
+		font-size: 15px;
+		line-height: 22px;
+		font-weight: 500;
+		text-align: center;
+		max-width: 90vw;
+		margin-top: 0;
+		padding: 12px 18px;
+		background: rgba(15, 24, 32, .48);
+		border-radius: var(--pfg-radius-sm);
+		border-bottom: 2px solid var(--pfg-gold);
 	}
 }
 

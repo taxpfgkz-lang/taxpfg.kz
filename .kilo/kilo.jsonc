@@ -1,0 +1,18 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "instructions": [
+    ".claude/CLAUDE.md",
+    "AGENTS.md"
+  ],
+  "skills": {
+    "paths": [
+      "C:/Users/Администратор/.claude/plugins/cache/superpowers-marketplace/superpowers/5.1.0/skills"
+    ]
+  },
+  "plugin": [
+    "file:///C:/Users/Администратор/.claude/plugins/cache/superpowers-marketplace/superpowers/5.1.0/.opencode/plugins/superpowers.js"
+  ],
+  "permission": {
+    "bash": "allow"
+  }
+}

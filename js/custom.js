@@ -39,6 +39,20 @@
 		function closeMenu() {
 			nav.classList.remove('active');
 			document.body.classList.remove('pfg-menu-open');
+			/* Меню темы (js/gsap-animation.js:141-148) открывается классом .active на
+			   <body> и на .pbmit-navbar > div, а НЕ на нашем #site-navigation. Снимаем
+			   те же классы — иначе панель не уезжает. Особенно важно для крестика-клона
+			   в sticky-шапке: тема вешает обработчик закрытия только на ОРИГИНАЛ
+			   (gsap-animation.js:146), у клона .closepanel обработчика нет. remove
+			   идемпотентен — итог всегда «закрыто». */
+			document.body.classList.remove('active');
+			/* .pbmit-navbar — и оригинал, и КЛОН в sticky-шапке (scripts.js клонирует
+			   шапку вместе с классом .active на nav). Снимаем .active со всех navbar,
+			   их div-детей и mega-wrap — иначе у клона остаётся активный предок и его
+			   .pbmit-menu-wrap не уезжает. */
+			document.querySelectorAll('.pbmit-navbar, .pbmit-navbar > div, .mega-menu-wrap').forEach(function (el) {
+				el.classList.remove('active');
+			});
 		}
 
 		toggle.addEventListener('click', function (e) {
@@ -48,6 +62,21 @@
 
 		// Клик по затемнённому фону — закрыть
 		if (bg) bg.addEventListener('click', closeMenu);
+
+		/* Крестик «Закрыть» (.closepanel) тема инжектит в .pbmit-mobile-menu-bg
+		   (gsap-animation.js:145) и навешивает обработчик ТОЛЬКО на оригинал; в клоне
+		   sticky-шапки крестик остаётся без обработчика → меню не закрывалось. Делегируем
+		   клик по любому .closepanel (и по затемнённому фону) на closeMenu. Фаза ВСПЛЫТИЯ
+		   (не capture): срабатываем ПОСЛЕ возможного toggle темы, а closeMenu идемпотентен
+		   (remove), поэтому итог всегда «закрыто» — без риска повторного открытия. */
+		document.addEventListener('click', function (e) {
+			var t = e.target;
+			if (!t || !t.closest) return;
+			if (t.closest('.closepanel') ||
+				(t.classList && t.classList.contains('pbmit-mobile-menu-bg'))) {
+				closeMenu();
+			}
+		});
 
 		// Клик по обычной ссылке меню (без подменю) — закрыть
 		nav.querySelectorAll('ul.navigation a').forEach(function (a) {

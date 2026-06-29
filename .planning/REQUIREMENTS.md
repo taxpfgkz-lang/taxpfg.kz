@@ -38,9 +38,9 @@
 
 ### Conversion Blocks
 
-- [ ] **CNV-01**: Hero — чёткий value-prop, единственный заметный primary CTA, trust-сигналы выше сгиба
+- [x] **CNV-01**: Hero — чёткий value-prop, единственный заметный primary CTA, trust-сигналы выше сгиба
 - [x] **CNV-02**: Pricing/тарифы — понятная подача пакетов, выделение «популярного», ясное размещение CTA
-- [ ] **CNV-03**: CTA по сайту — сильная визуальная иерархия, понятные, не перегруженные; разрешён конфликт sticky-mobile-CTA ↔ плавающая WhatsApp-кнопка
+- [x] **CNV-03**: CTA по сайту — сильная визуальная иерархия, понятные, не перегруженные; разрешён конфликт sticky-mobile-CTA ↔ плавающая WhatsApp-кнопка
 - [ ] **CNV-04**: Footer — единый, credibility-ориентированный вид, согласован на всех 11 страницах
 
 ### Imagery & Icons
@@ -109,9 +109,9 @@
 | CMP-04 | Phase 3 | Complete |
 | CMP-05 | Phase 3 | Complete |
 | CMP-06 | Phase 3 | Complete |
-| CNV-01 | Phase 4 | Pending |
+| CNV-01 | Phase 4 | Complete |
 | CNV-02 | Phase 4 | Complete |
-| CNV-03 | Phase 4 | Pending |
+| CNV-03 | Phase 4 | Complete |
 | CNV-04 | Phase 4 | Pending |
 | IMG-01 | Phase 4 | Pending |
 | A11Y-01 | Phase 5 | Pending |
