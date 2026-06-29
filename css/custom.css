@@ -2335,6 +2335,5 @@ section:has(.pfg-form){
 	width: auto;
 }
 .pbmit-copyright-area .col-md-4.text-md-end{
-	flex: 0 0 auto;
-	width: auto;
+	display: none !important;
 }
