@@ -9,7 +9,7 @@
   font-family: var(--pbmit-heading-typography-font-family, sans-serif);
   font-weight: 800;
   font-size: 26px;
-  line-height: 1;
+  line-height: 44px;
   letter-spacing: -0.5px;
   color: var(--pbmit-white-color, #fff);
   white-space: nowrap;
@@ -330,10 +330,10 @@
 /* 4. Футер «Услуги» (.pbmit-two-column-menu): отменяем 2-колоночную раскладку
    (shortcode.css:4533-4539 задаёт flex+li width:50% — 5 пунктов разбиваются
    на 3+2 неравные колонки, выглядят неряшливо). Делаем единую колонку везде. */
-.site-footer .widget .pbmit-two-column-menu ul.menu{
+.site-footer .widget .pbmit-two-column-menu ul.menu {
   display: block !important;
 }
-.site-footer .widget .pbmit-two-column-menu ul.menu li{
+.site-footer .widget .pbmit-two-column-menu ul.menu li {
   width: 100% !important;
   padding-right: 0;
 }
@@ -2118,8 +2118,8 @@ summary:focus-visible,
    ========================================================================== */
 
 /* --- 21.1 Зазор между рядами карточек --- */
-.pbmit-element-service-style-2 .row{
-	row-gap: var(--pfg-space-6);
+.pbmit-element-service-style-2 .row {
+  row-gap: var(--pfg-space-6);
 }
 
 /* --- 21.2 Полный заголовок: сбрасываем обрезку ---
@@ -2129,36 +2129,36 @@ summary:focus-visible,
    font-size понижен с 24px (shortcode.css:2796) до 20px — в трёх-колоночной сетке
    при ширине ~236px контента «Бухгалтерское сопровождение» обтекает аккуратно. */
 .pbmit-element-service-style-2 .pbmit-service-title,
-.pbmit-element-service-style-2 .pbmit-service-title a{
-	display: block !important;
-	overflow: hidden !important;
-	-webkit-line-clamp: unset !important;
-	line-clamp: unset !important;
-	text-overflow: clip !important;
-	white-space: normal;
-	font-size: 20px !important;
-	line-height: 1.35 !important;
+.pbmit-element-service-style-2 .pbmit-service-title a {
+  display: block !important;
+  overflow: hidden !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  text-overflow: clip !important;
+  white-space: normal;
+  font-size: 20px !important;
+  line-height: 1.35 !important;
 }
 
 /* --- 21.3 Полное описание (shortcode.css:2807-2816 — line-clamp:3 + display:-webkit-box) --- */
-.pbmit-element-service-style-2 .pbmit-service-description{
-	display: block !important;
-	overflow: hidden !important;
-	-webkit-line-clamp: unset !important;
-	line-clamp: unset !important;
+.pbmit-element-service-style-2 .pbmit-service-description {
+  display: block !important;
+  overflow: hidden !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
 }
 
 /* --- 21.4 Равновысокие карточки ---
    Bootstrap row align-items:stretch уже есть; нужно сделать колонку flex-column,
    чтобы pbminfotech-post-item растянулся на её полную высоту. */
 .pbmit-element-service-style-2 .pbmit-box-area,
-.pbmit-element-service-style-2 .pbmit-info-area{
-	display: flex;
-	flex-direction: column;
+.pbmit-element-service-style-2 .pbmit-info-area {
+  display: flex;
+  flex-direction: column;
 }
 .pbmit-element-service-style-2 .pbminfotech-post-item,
-.pbmit-element-service-style-2 .pbmit-title-button-wrapper{
-	flex: 1;
+.pbmit-element-service-style-2 .pbmit-title-button-wrapper {
+  flex: 1;
 }
 
 /* ==========================================================================
@@ -2174,27 +2174,27 @@ summary:focus-visible,
 
 /* --- 22.1 Desktop (>1300px): contentbox растягивается до высоты фото-панелей --- */
 @media (min-width: 1301px) {
-	.pbmit-element-static-box-style-1 .pbmit-ele-static-box{
-		display: flex;
-		flex-direction: column;
-	}
-	.pbmit-element-static-box-style-1 .pbmit-contentbox{
-		flex: 1;
-		display: flex !important;
-		flex-direction: column;
-		justify-content: center;
-	}
+  .pbmit-element-static-box-style-1 .pbmit-ele-static-box {
+    display: flex;
+    flex-direction: column;
+  }
+  .pbmit-element-static-box-style-1 .pbmit-contentbox {
+    flex: 1;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 /* --- 22.2 Mobile (<768px): фото одинаковой высоты через object-fit:cover ---
    responsive-img.img имеет width:100% но не имеет height → разные пропорции
    трёх фото дают разные высоты карточек. Фиксируем высоту и обрезаем по центру. */
 @media (max-width: 767px) {
-	.pbmit-static-box-style-1 .pbmit-responsive-img img{
-		height: 220px !important;
-		width: 100% !important;
-		object-fit: cover;
-	}
+  .pbmit-static-box-style-1 .pbmit-responsive-img img {
+    height: 220px !important;
+    width: 100% !important;
+    object-fit: cover;
+  }
 }
 
 /* ==========================================================================
@@ -2204,8 +2204,8 @@ summary:focus-visible,
    (иначе останется заголовок «Напишите нам» без контента).
    CSS :has() поддерживается всеми современными браузерами (Can I Use >93%).
    ========================================================================== */
-section:has(.pfg-form){
-	display: none !important;
+section:has(.pfg-form) {
+  display: none !important;
 }
 
 /* ==========================================================================
@@ -2221,26 +2221,29 @@ section:has(.pfg-form){
    Решение: position:relative на контейнере + position:absolute на Swiper-элементе
    (top/right/bottom/left:0) — тогда Swiper получает definite height, и его дети
    могут использовать height:100% корректно. */
-.pbmit-element-static-box-style-2 .swiper-static-slide-images{
-	position: relative;
+.pbmit-element-static-box-style-2 .swiper-static-slide-images {
+  position: relative;
 }
-.pbmit-element-static-box-style-2 .swiper-static-slide-images .swiper-slider{
-	position: absolute !important;
-	top: 0 !important;
-	left: 0 !important;
-	right: 0 !important;
-	bottom: 0 !important;
-	width: 100% !important;
+.pbmit-element-static-box-style-2 .swiper-static-slide-images .swiper-slider {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
 }
 .pbmit-element-static-box-style-2 .swiper-static-slide-images .swiper-wrapper,
-.pbmit-element-static-box-style-2 .swiper-static-slide-images .swiper-slide{
-	height: 100% !important;
+.pbmit-element-static-box-style-2 .swiper-static-slide-images .swiper-slide {
+  height: 100% !important;
 }
-.pbmit-element-static-box-style-2 .swiper-static-slide-images .swiper-slide img{
-	height: 100% !important;
-	width: 100%;
-	object-fit: cover;
-	border-radius: 5px;
+.pbmit-element-static-box-style-2
+  .swiper-static-slide-images
+  .swiper-slide
+  img {
+  height: 100% !important;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 /* ==========================================================================
@@ -2258,57 +2261,59 @@ section:has(.pfg-form){
    «Обсудить сотрудничество.» = 24 символа. На col-xl-4 (~400px) при 44px
    текст переносится на 2 ровные строки без переполнения.
    clamp(32px, 3vw, 44px): на 360→32px, на 1280→38px, на 1440→43px, max 44px. */
-.pbmit-footer-style-1 .footer-heading-wrap .pbmit-custom-title h2{
-	font-size: clamp(32px, 3vw, 44px) !important;
-	line-height: 1.2 !important;
-	letter-spacing: -0.5px !important;
+.pbmit-footer-style-1 .footer-heading-wrap .pbmit-custom-title h2 {
+  font-size: clamp(32px, 3vw, 44px) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.5px !important;
 }
 
 /* --- 25.2 Крутящаяся кнопка: скрываем (декоративный виджет темы, захламляет
    область заголовка и позиционируется поверх текста через position:absolute) --- */
-.pbmit-footer-style-1 .footer-heading-wrap .pbmit-hover-button{
-	display: none !important;
+.pbmit-footer-style-1 .footer-heading-wrap .pbmit-hover-button {
+  display: none !important;
 }
 
 /* --- 25.3 Сжимаем верхний/нижний паддинг big-area-wrapper (было 110px/70px) --- */
-.pbmit-footer-style-1 .pbmit-footer-big-area-wrapper{
-	padding: 60px 0 50px !important;
-	gap: 40px !important;
+.pbmit-footer-style-1 .pbmit-footer-big-area-wrapper {
+  padding: 60px 0 50px !important;
+  gap: 40px !important;
 }
 
 /* --- 25.4 Добавляем WhatsApp CTA под heading в футер ---
    Вместо удалённого spinning-button — лаконичная кнопка «Обратная связь». */
-.pbmit-footer-style-1 .footer-heading-wrap{
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
+.pbmit-footer-style-1 .footer-heading-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-.pfg-footer-cta-btn{
-	display: inline-flex;
-	align-items: center;
-	gap: 10px;
-	padding: 12px 24px;
-	background: var(--pfg-gold);
-	color: #1b1b1b !important;
-	font-size: 15px;
-	font-weight: 600;
-	border-radius: var(--pfg-radius);
-	text-decoration: none;
-	width: fit-content;
-	transition: background var(--pfg-tf-fast), transform var(--pfg-tf-fast);
+.pfg-footer-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: var(--pfg-gold);
+  color: #1b1b1b !important;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--pfg-radius);
+  text-decoration: none;
+  width: fit-content;
+  transition:
+    background var(--pfg-tf-fast),
+    transform var(--pfg-tf-fast);
 }
-.pfg-footer-cta-btn:hover{
-	background: var(--pfg-gold-deep);
-	transform: translateY(-2px);
-	color: #1b1b1b !important;
+.pfg-footer-cta-btn:hover {
+  background: var(--pfg-gold-deep);
+  transform: translateY(-2px);
+  color: #1b1b1b !important;
 }
 
 /* --- 25.5 Выравниваем отступ под заголовком «Контакты» ---
    shortcode.css:4558 обнуляет margin-bottom на .pbmit-footer-widget-col-4 .widget-title
    (в теме там был newsletter-виджет без отступа). У нас адрес — нужен тот же 25px
    что у «Разделы» и «Услуги» (shortcode.css:4530). */
-.pbmit-footer-style-1 .pbmit-footer-widget-col-4 .widget .widget-title{
-	margin-bottom: 25px !important;
+.pbmit-footer-style-1 .pbmit-footer-widget-col-4 .widget .widget-title {
+  margin-bottom: 25px !important;
 }
 
 /* ==========================================================================
@@ -2325,18 +2330,18 @@ section:has(.pfg-form){
 /* --- 26.1 Копирайт-строка: центральная пустая колонка скрыта ---
    После скрытия .tween-effect-wrap центральный .col-md-4 становится пустым.
    Перераспределяем строку: копирайт слева, WhatsApp справа. */
-.pbmit-copyright-area .col-md-4:has(.tween-effect-wrap){
-	display: none !important;
+.pbmit-copyright-area .col-md-4:has(.tween-effect-wrap) {
+  display: none !important;
 }
-.pbmit-copyright-area .row{
-	justify-content: space-between;
+.pbmit-copyright-area .row {
+  justify-content: space-between;
 }
-.pbmit-copyright-area .col-md-4:first-child{
-	flex: 0 0 auto;
-	width: auto;
+.pbmit-copyright-area .col-md-4:first-child {
+  flex: 0 0 auto;
+  width: auto;
 }
-.pbmit-copyright-area .col-md-4.text-md-end{
-	display: none !important;
+.pbmit-copyright-area .col-md-4.text-md-end {
+  display: none !important;
 }
 
 /* ==========================================================================
@@ -2350,86 +2355,88 @@ section:has(.pfg-form){
    Scope: НЕ .pfg-footer-cta-btn (у него свой padding). */
 .site-footer .widget ul.menu li a,
 .site-footer .pbmit-heading-desc a,
-.pbmit-footer-copyright-text-area a{
-	min-height: 44px;
-	display: inline-flex;
-	align-items: center;
-	padding-top: 4px;
-	padding-bottom: 4px;
+.pbmit-footer-copyright-text-area a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 /* --- 27.2 Кнопки «Подробнее» в карточках услуг (33px → ≥44px) ---
    .pbmit-service-btn a — hover-reveal кнопка в .pbmit-element-service-style-2 */
-.pbmit-service-btn a{
-	min-height: 44px;
-	display: inline-flex;
-	align-items: center;
-	padding-top: 8px;
-	padding-bottom: 8px;
+.pbmit-service-btn a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 /* --- 27.3 Логотип-ссылка на touch-устройствах (31px → ≥44px) ---
    На desktop (>1200px) мышь — не критично. На tablet/mobile — tap-target. */
-@media (max-width: 1200px){
-	.pfg-logo-link{
-		min-height: 44px;
-		display: inline-flex;
-		align-items: center;
-	}
+@media (max-width: 1200px) {
+  .pfg-logo-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
 }
 
 /* --- 27.4 Title-bar H1 на tablet 576–768px (70px → 48px) ---
    Вендор оставляет 70px до ≤575px. При 768px «Консультации и помощь
    налогового юриста» переносится на 3 строки и обрезает «Политику
    конфиденциальности» (scrollWidth > clientWidth). */
-@media (max-width: 768px) and (min-width: 576px){
-	.pbmit-title-bar-wrapper .pbmit-tbar-title{
-		font-size: 48px !important;
-		line-height: 1.15 !important;
-	}
+@media (max-width: 768px) and (min-width: 576px) {
+  .pbmit-title-bar-wrapper .pbmit-tbar-title {
+    font-size: 48px !important;
+    line-height: 1.15 !important;
+  }
 }
 
 /* --- 27.5 Хлебные крошки на mobile: tap-target (22px → ≥44px) --- */
-@media (max-width: 575px){
-	.pbmit-title-bar-wrapper .pbmit-breadcrumb a{
-		min-height: 44px;
-		display: inline-flex;
-		align-items: center;
-		padding-top: 8px;
-		padding-bottom: 8px;
-	}
+@media (max-width: 575px) {
+  .pbmit-title-bar-wrapper .pbmit-breadcrumb a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
 }
 
 /* --- 27.6 Тарифные карточки services.html — одиночная на tablet не центрирована ---
    При 768px третья карточка остаётся одна в строке прижатой влево.
    pfg-pricing-grid: justify-content + auto-fit дают симметричный ряд. */
-@media (max-width: 900px){
-	.pfg-pricing-grid{
-		justify-content: center !important;
-	}
-	.pfg-pricing-tier:last-child:nth-child(odd){
-		justify-self: center;
-	}
+@media (max-width: 900px) {
+  .pfg-pricing-grid {
+    justify-content: center !important;
+  }
+  .pfg-pricing-tier:last-child:nth-child(odd) {
+    justify-self: center;
+  }
 }
 
 /* --- 27.7 Скрытый sticky-header: overflow fix ---
-   Клон шапки (scrollWidth 1190–1568px) при clientWidth 390–768px.
-   Не видим пользователю, но overflow:hidden предотвращает edge cases. */
-.pbmit-sticky-header{
-	overflow: hidden;
+   overflow:hidden обрезал dropdown-подменю «Услуги» в sticky-шапке
+   (position:absolute дочерний элемент клипается родителем с overflow:hidden).
+   Убираем; scrollWidth-overflow клона невидим пользователю — page-wrapper
+   уже имеет overflow-x:hidden, утечки горизонтального скролла нет. */
+.pbmit-sticky-header {
+  overflow: visible;
 }
 
 /* --- 27.8 eyebrow .pbmit-subtitle: минимум 13px ---
    На consulting и ряде страниц рендерится 12px из-за вендорного наследования. */
-.pbmit-heading-subheading .pbmit-subtitle{
-	font-size: 13px;
+.pbmit-heading-subheading .pbmit-subtitle {
+  font-size: 13px;
 }
 
 /* --- 27.9 404.html: CTA-кнопки не перекрываются sticky-bar ---
    На mobile pfg-sticky-cta (56px) перекрывает нижние кнопки .pfg-cta-actions.
    Добавляем padding-bottom только когда есть sticky-bar (≤576px). */
-@media (max-width: 576px){
-	.pfg-cta-actions{
-		padding-bottom: 68px;
-	}
+@media (max-width: 576px) {
+  .pfg-cta-actions {
+    padding-bottom: 68px;
+  }
 }
