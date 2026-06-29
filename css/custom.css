@@ -912,9 +912,18 @@ summary:focus-visible,
       Заголовок страницы (title-bar) остаётся единственным H1 на каждой странице.
    ========================================================================== */
 
-/* 1. Убираем анимированный текст-дублёр логотипа из футера */
-.pbmit-tween-effect-wrap {
-  display: none;
+/* 1. Убираем анимированный текст-дублёр логотипа из футера.
+   В HTML класс без pbmit- (.tween-effect-wrap), поэтому добавляем оба селектора. */
+.pbmit-tween-effect-wrap,
+.tween-effect-wrap {
+  display: none !important;
+}
+
+/* 1b. Блок «Почта / Адрес / Телефон» (.ihbox-style-15-wrap) дублирует
+   информацию из колонки «Контакты» выше и содержит email, который не нужен.
+   Скрываем целиком — контент разметки сохранён. */
+.ihbox-style-15-wrap {
+  display: none !important;
 }
 
 /* 2. Логотип — презентационный, не семантический H1.
@@ -2299,4 +2308,33 @@ section:has(.pfg-form){
    что у «Разделы» и «Услуги» (shortcode.css:4530). */
 .pbmit-footer-style-1 .pbmit-footer-widget-col-4 .widget .widget-title{
 	margin-bottom: 25px !important;
+}
+
+/* ==========================================================================
+   ЭТАП 26 — ФУТЕР: убрать дубли и watermark (2026-06-29).
+   Проблема 1: .tween-effect-wrap (HTML) не совпадал с .pbmit-tween-effect-wrap
+   (CSS) → «PrimeFinance» watermark не скрывался и выезжал за экран.
+   Проблема 2: .ihbox-style-15-wrap (Почта/Адрес/Телефон) дублирует колонку
+   «Контакты» выше и добавляет email, который не нужен.
+   Решение: оба блока скрыты CSS (display:none). Разметка сохранена.
+   Копирайт-строка: центральная col скрыта (была под watermark), копирайт
+   и WhatsApp делим поровну через flex.
+   ========================================================================== */
+
+/* --- 26.1 Копирайт-строка: центральная пустая колонка скрыта ---
+   После скрытия .tween-effect-wrap центральный .col-md-4 становится пустым.
+   Перераспределяем строку: копирайт слева, WhatsApp справа. */
+.pbmit-copyright-area .col-md-4:has(.tween-effect-wrap){
+	display: none !important;
+}
+.pbmit-copyright-area .row{
+	justify-content: space-between;
+}
+.pbmit-copyright-area .col-md-4:first-child{
+	flex: 0 0 auto;
+	width: auto;
+}
+.pbmit-copyright-area .col-md-4.text-md-end{
+	flex: 0 0 auto;
+	width: auto;
 }
