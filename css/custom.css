@@ -2292,3 +2292,11 @@ section:has(.pfg-form){
 	transform: translateY(-2px);
 	color: #1b1b1b !important;
 }
+
+/* --- 25.5 Выравниваем отступ под заголовком «Контакты» ---
+   shortcode.css:4558 обнуляет margin-bottom на .pbmit-footer-widget-col-4 .widget-title
+   (в теме там был newsletter-виджет без отступа). У нас адрес — нужен тот же 25px
+   что у «Разделы» и «Услуги» (shortcode.css:4530). */
+.pbmit-footer-style-1 .pbmit-footer-widget-col-4 .widget .widget-title{
+	margin-bottom: 25px !important;
+}
