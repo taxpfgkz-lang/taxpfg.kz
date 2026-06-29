@@ -2337,3 +2337,98 @@ section:has(.pfg-form){
 .pbmit-copyright-area .col-md-4.text-md-end{
 	display: none !important;
 }
+
+/* ==========================================================================
+   ЭТАП 27 — СИСТЕМНЫЙ UI-АУДИТ: 85 проблем на 11 страницах × 3 viewport
+   (2026-06-29). Workflow-аудит + анализ → 8 классов правок. Только CSS,
+   вендорные файлы не трогаем.
+   ========================================================================== */
+
+/* --- 27.1 Футер: tap-target ссылок (19–20px → ≥44px) ---
+   Телефон, «Обратная связь», пункты меню, копирайт — все 11 страниц.
+   Scope: НЕ .pfg-footer-cta-btn (у него свой padding). */
+.site-footer .widget ul.menu li a,
+.site-footer .pbmit-heading-desc a,
+.pbmit-footer-copyright-text-area a{
+	min-height: 44px;
+	display: inline-flex;
+	align-items: center;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+/* --- 27.2 Кнопки «Подробнее» в карточках услуг (33px → ≥44px) ---
+   .pbmit-service-btn a — hover-reveal кнопка в .pbmit-element-service-style-2 */
+.pbmit-service-btn a{
+	min-height: 44px;
+	display: inline-flex;
+	align-items: center;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+/* --- 27.3 Логотип-ссылка на touch-устройствах (31px → ≥44px) ---
+   На desktop (>1200px) мышь — не критично. На tablet/mobile — tap-target. */
+@media (max-width: 1200px){
+	.pfg-logo-link{
+		min-height: 44px;
+		display: inline-flex;
+		align-items: center;
+	}
+}
+
+/* --- 27.4 Title-bar H1 на tablet 576–768px (70px → 48px) ---
+   Вендор оставляет 70px до ≤575px. При 768px «Консультации и помощь
+   налогового юриста» переносится на 3 строки и обрезает «Политику
+   конфиденциальности» (scrollWidth > clientWidth). */
+@media (max-width: 768px) and (min-width: 576px){
+	.pbmit-title-bar-wrapper .pbmit-tbar-title{
+		font-size: 48px !important;
+		line-height: 1.15 !important;
+	}
+}
+
+/* --- 27.5 Хлебные крошки на mobile: tap-target (22px → ≥44px) --- */
+@media (max-width: 575px){
+	.pbmit-title-bar-wrapper .pbmit-breadcrumb a{
+		min-height: 44px;
+		display: inline-flex;
+		align-items: center;
+		padding-top: 8px;
+		padding-bottom: 8px;
+	}
+}
+
+/* --- 27.6 Тарифные карточки services.html — одиночная на tablet не центрирована ---
+   При 768px третья карточка остаётся одна в строке прижатой влево.
+   pfg-pricing-grid: justify-content + auto-fit дают симметричный ряд. */
+@media (max-width: 900px){
+	.pfg-pricing-grid{
+		justify-content: center !important;
+	}
+	.pfg-pricing-tier:last-child:nth-child(odd){
+		justify-self: center;
+	}
+}
+
+/* --- 27.7 Скрытый sticky-header: overflow fix ---
+   Клон шапки (scrollWidth 1190–1568px) при clientWidth 390–768px.
+   Не видим пользователю, но overflow:hidden предотвращает edge cases. */
+.pbmit-sticky-header{
+	overflow: hidden;
+}
+
+/* --- 27.8 eyebrow .pbmit-subtitle: минимум 13px ---
+   На consulting и ряде страниц рендерится 12px из-за вендорного наследования. */
+.pbmit-heading-subheading .pbmit-subtitle{
+	font-size: 13px;
+}
+
+/* --- 27.9 404.html: CTA-кнопки не перекрываются sticky-bar ---
+   На mobile pfg-sticky-cta (56px) перекрывает нижние кнопки .pfg-cta-actions.
+   Добавляем padding-bottom только когда есть sticky-bar (≤576px). */
+@media (max-width: 576px){
+	.pfg-cta-actions{
+		padding-bottom: 68px;
+	}
+}
