@@ -2199,3 +2199,38 @@ summary:focus-visible,
 section:has(.pfg-form){
 	display: none !important;
 }
+
+/* ==========================================================================
+   ЭТАП 24 — БЛОК «КАК МЫ РАБОТАЕМ»: картинка на полную высоту шагов (2026-06-29).
+   Проблема: .swiper-static-slide-images уже занимает 613px (flex stretch), но
+   Swiper внутри берёт высоту от img (319px) — ниже картинки пустое место.
+   Прокидываем height:100% по всей цепочке .swiper-slider → wrapper → slide → img.
+   !important нужен: Swiper JS ставит inline height на .swiper-wrapper,
+   перебиваем его; border-radius сохраняем как у вендора (shortcode.css:6177).
+   ========================================================================== */
+/* .swiper-static-slide-images уже 613px от flex-stretch, но height:100% на детях
+   не работает — flex-stretch не даёт «definite height» для percentage-расчётов.
+   Решение: position:relative на контейнере + position:absolute на Swiper-элементе
+   (top/right/bottom/left:0) — тогда Swiper получает definite height, и его дети
+   могут использовать height:100% корректно. */
+.pbmit-element-static-box-style-2 .swiper-static-slide-images{
+	position: relative;
+}
+.pbmit-element-static-box-style-2 .swiper-static-slide-images .swiper-slider{
+	position: absolute !important;
+	top: 0 !important;
+	left: 0 !important;
+	right: 0 !important;
+	bottom: 0 !important;
+	width: 100% !important;
+}
+.pbmit-element-static-box-style-2 .swiper-static-slide-images .swiper-wrapper,
+.pbmit-element-static-box-style-2 .swiper-static-slide-images .swiper-slide{
+	height: 100% !important;
+}
+.pbmit-element-static-box-style-2 .swiper-static-slide-images .swiper-slide img{
+	height: 100% !important;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 5px;
+}
