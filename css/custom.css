@@ -1105,15 +1105,11 @@ summary:focus-visible,
   overflow-x: hidden;
 }
 
-/* --- 13.9 Все контейнеры секций: единый max-width контента ---
-   Проверка DOM: контейнеры секций на десктопе варьируются 1170-1380px.
-   Широкие контейнеры (container-fluid) на внутренних страницах могут давать
-   слишком широкую сетку. Ограничиваем внутренние сетки по max-width. */
-.pfg-section .container,
-.pfg-section .container-fluid {
-  max-width: 100%;
-}
-/* Но внутри .container — контент уже ограничен. */
+/* --- 13.9 Контейнеры секций: убран неверный max-width:100% ---
+   Ранее стояло max-width:100% — это отменяло тему (responsive.css:3530 задаёт
+   max-width:1444px при ≥1201px). В итоге контент растягивался на весь экран
+   (1905px при 1920px viewport). Правило удалено — тема применяет 1444px сама.
+   .container-fluid оставляем без ограничения (он по определению fluid). */
 
 /* --- 13.10 Карточки услуг на внутренних страницах: если есть ---
    Проверка DOM: services.html и taxes.html используют .pbmit-service-title
@@ -2417,13 +2413,19 @@ section:has(.pfg-form) {
   }
 }
 
-/* --- 27.7 Скрытый sticky-header: overflow fix ---
-   overflow:hidden обрезал dropdown-подменю «Услуги» в sticky-шапке
-   (position:absolute дочерний элемент клипается родителем с overflow:hidden).
-   Убираем; scrollWidth-overflow клона невидим пользователю — page-wrapper
-   уже имеет overflow-x:hidden, утечки горизонтального скролла нет. */
+/* --- 27.7 Sticky-header: overflow + контейнер ---
+   overflow:hidden обрезал dropdown — возвращаем visible.
+   shortcode.css задаёт max-width:none на .pbmit-sticky-header > .container,
+   из-за чего sticky-шапка растягивается на весь экран (нет контейнера).
+   Переопределяем до 1444px — то же значение что у основной шапки
+   (responsive.css:3530 @media min-width:1201px). */
 .pbmit-sticky-header {
   overflow: visible;
+}
+@media (min-width: 1201px) {
+  .pbmit-header-style-1 .pbmit-sticky-header.pbmit-fixed-header > .container {
+    max-width: 1444px !important;
+  }
 }
 
 /* --- 27.8 eyebrow .pbmit-subtitle: минимум 13px ---
