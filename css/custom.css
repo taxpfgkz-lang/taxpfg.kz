@@ -1233,18 +1233,19 @@ summary:focus-visible,
 
 /* --- 12.7 Title-bar mobile: убрать фон, уменьшить title/breadcrumb ---
    Измерение: title-bar = 550px на viewport 390px — фоновое изображение темы
-   (background-image: url(...)) растягивает контейнер.
-   Решение: убираем background-image на mobile, оставляем gradient overlay.
-   Плюс уменьшаем font-size заголовка (50px при 390px viewport — слишком крупно). */
+   (background-image: url(...)) растягивала контейнер без min-height.
+   Теперь min-height задаём на .pbmit-title-bar-content явно, поэтому
+   background-image возвращаем — на мобильном фото выглядит хорошо.
+   Увеличиваем padding-top чтобы контент не прилипал к фиксированному хедеру. */
 @media (max-width: 575px) {
   .pbmit-title-bar-wrapper {
-    background-image: none !important;
-    min-height: auto;
+    background-position: center center;
+    min-height: 0;
   }
   .pbmit-title-bar-wrapper .pbmit-title-bar-content {
-    min-height: 200px !important;
-    padding-top: 60px !important;
-    padding-bottom: 30px !important;
+    min-height: 240px !important;
+    padding-top: 80px !important;
+    padding-bottom: 40px !important;
   }
   .pbmit-title-bar-wrapper .pbmit-tbar-title {
     font-size: 32px !important;
