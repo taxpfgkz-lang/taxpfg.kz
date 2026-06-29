@@ -4,40 +4,54 @@
    ========================================================================== */
 
 /* --- Текстовый логотип (вместо SVG «Gudfin») --- */
-.pfg-logo{
-	display: inline-block;
-	font-family: var(--pbmit-heading-typography-font-family, sans-serif);
-	font-weight: 800;
-	font-size: 26px;
-	line-height: 1;
-	letter-spacing: -0.5px;
-	color: var(--pbmit-white-color, #fff);
-	white-space: nowrap;
+.pfg-logo {
+  display: inline-block;
+  font-family: var(--pbmit-heading-typography-font-family, sans-serif);
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: -0.5px;
+  color: var(--pbmit-white-color, #fff);
+  white-space: nowrap;
 }
-.pfg-logo span{ color: var(--pbmit-global-color, #f59f46); }
-.pfg-logo--dark{ color: var(--pbmit-blackish-color, #1b1b2b); }
+.pfg-logo span {
+  color: var(--pbmit-global-color, #f59f46);
+}
+.pfg-logo--dark {
+  color: var(--pbmit-blackish-color, #1b1b2b);
+}
 
 /* у темы две версии лого (обычная и для sticky); показываем нужную */
-.pbmit-sticky-logo{ display:none; }
+.pbmit-sticky-logo {
+  display: none;
+}
 
 /* --- Плавающая кнопка WhatsApp --- */
-.pfg-whatsapp-float{
-	position: fixed;
-	right: 22px;
-	bottom: 22px;
-	z-index: var(--pfg-z-float);   /* TOK-01: единственный z-index вынесен в токен */
-	width: 56px;
-	height: 56px;
-	border-radius: 50%;
-	background: #25D366;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 6px 20px rgba(0,0,0,.25);
-	transition: transform .2s ease;
+.pfg-whatsapp-float {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: var(
+    --pfg-z-float
+  ); /* TOK-01: единственный z-index вынесен в токен */
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
 }
-.pfg-whatsapp-float:hover{ transform: scale(1.08); }
-.pfg-whatsapp-float svg{ width: 30px; height: 30px; fill: #fff; }
+.pfg-whatsapp-float:hover {
+  transform: scale(1.08);
+}
+.pfg-whatsapp-float svg {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+}
 
 /* CNV-03 (Фаза 4, разрешение по отсутствию): на сайте НЕТ закреплённой
    мобильной CTA-полосы. Единственный плавающий элемент проекта — .pfg-whatsapp-float
@@ -50,75 +64,149 @@
    это документированная фиксация отсутствия. */
 
 /* --- Форма заявки: статус и согласие --- */
-.pfg-form .pfg-consent{
-	font-size: 13px;
-	line-height: 1.4;
-	margin-top: 10px;
-	display: flex;
-	gap: 8px;
-	align-items: flex-start;
+.pfg-form .pfg-consent {
+  font-size: 13px;
+  line-height: 1.4;
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
 }
-.pfg-form .pfg-form-status{ margin-top: 12px; font-size: 14px; }
-.pfg-form .pfg-form-status.is-error{ color: #d33; }
-.pfg-form .pfg-form-status.is-ok{ color: #1a9e57; }
+.pfg-form .pfg-form-status {
+  margin-top: 12px;
+  font-size: 14px;
+}
+.pfg-form .pfg-form-status.is-error {
+  color: #d33;
+}
+.pfg-form .pfg-form-status.is-ok {
+  color: #1a9e57;
+}
 
 /* --- Мелкие утилиты --- */
-.pfg-muted{ opacity:.85; }
+.pfg-muted {
+  opacity: 0.85;
+}
 
 /* ==========================================================================
    Внутренние страницы (Этап 2): переиспользуемые утилиты содержимого.
    Тонкая визуальная доводка/адаптив — Этап 6.
    ========================================================================== */
-.pfg-section{ padding: 80px 0; }
-.pfg-section--alt{ background: var(--pbmit-light-color, #f6f7f9); }
+.pfg-section {
+  padding: 80px 0;
+}
+.pfg-section--alt {
+  background: var(--pbmit-light-color, #f6f7f9);
+}
 /* TOK-03: body-роли на флюидные токены + orphan/widow-guard.
    .pfg-lead/.pfg-prose уже владеют размером → подключаем var() напрямую (декларация→применение).
    text-wrap:pretty убирает «висячие» слова в конце абзаца (graceful degrade ~88%).
    ВАЖНО: per-word неразрывность коротких русских предлогов (в/и/с/к/на/по/от) CSS-средствами
    НЕВОЗМОЖНА — нужен &nbsp; в read-only разметке или JS-проход → DEFERRED (вне scope фазы). */
-.pfg-lead{ font-size: var(--pfg-fs-body); line-height: var(--pfg-lh-body); text-wrap: pretty; }
-.pfg-prose p{ margin-bottom: 16px; line-height: var(--pfg-lh-body); text-wrap: pretty; }
+.pfg-lead {
+  font-size: var(--pfg-fs-body);
+  line-height: var(--pfg-lh-body);
+  text-wrap: pretty;
+}
+.pfg-prose p {
+  margin-bottom: 16px;
+  line-height: var(--pfg-lh-body);
+  text-wrap: pretty;
+}
 /* C1 (AUD-02): padding snap 28→24px на 4px-сетку (--pfg-space-6) — единый ритм. */
-.pfg-card{ background:#fff; border:1px solid #eef0f3; border-radius:14px; padding:var(--pfg-space-6); height:100%; }
-.pfg-card h3{ font-size:20px; margin-bottom:12px; text-wrap: balance; }
-.pfg-grid{ display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+.pfg-card {
+  background: #fff;
+  border: 1px solid #eef0f3;
+  border-radius: 14px;
+  padding: var(--pfg-space-6);
+  height: 100%;
+}
+.pfg-card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  text-wrap: balance;
+}
+.pfg-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
 /* Нумерованные шаги «как проходит работа» */
-.pfg-steps{ counter-reset: pfg; list-style:none; padding:0; margin:0; }
-.pfg-steps li{ position:relative; padding:4px 0 24px 64px; }
-.pfg-steps li:last-child{ padding-bottom:0; }
-.pfg-steps li:before{ counter-increment:pfg; content:counter(pfg,decimal-leading-zero);
-  position:absolute; left:0; top:0; width:44px; height:44px; border-radius:50%;
-  background:var(--pbmit-global-color,#f59f46); color:#fff; display:flex;
-  align-items:center; justify-content:center; font-weight:700; font-size:16px; }
-.pfg-steps li h3{ font-size:18px; margin:6px 0 6px; }
+.pfg-steps {
+  counter-reset: pfg;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.pfg-steps li {
+  position: relative;
+  padding: 4px 0 24px 64px;
+}
+.pfg-steps li:last-child {
+  padding-bottom: 0;
+}
+.pfg-steps li:before {
+  counter-increment: pfg;
+  content: counter(pfg, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--pbmit-global-color, #f59f46);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+.pfg-steps li h3 {
+  font-size: 18px;
+  margin: 6px 0 6px;
+}
 /* Контактная форма: базовые поля (детальная стилизация — Этап 6) */
-.pfg-form label{ display:block; font-weight:600; margin-bottom:14px; }
-.pfg-form .form-control, .pfg-form .form-select{ margin-top:6px; }
-.pfg-form .pfg-consent{ font-weight:400; }
-.pfg-form .pfg-policy-link{ text-decoration:underline; }
+.pfg-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.pfg-form .form-control,
+.pfg-form .form-select {
+  margin-top: 6px;
+}
+.pfg-form .pfg-consent {
+  font-weight: 400;
+}
+.pfg-form .pfg-policy-link {
+  text-decoration: underline;
+}
 /* Стрелка <select>: в теме base.css ссылается на отсутствующий images/bg/down-arrow.png (404).
    Переопределяем инлайновым SVG — без сетевого запроса, вендорный файл не трогаем. */
-.form-select{
+.form-select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='13' viewBox='0 0 11 13'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='1.6' d='M1 4.5 5.5 9 10 4.5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 22px center;
 }
-.pfg-contacts-info li{ margin-bottom:14px; }
+.pfg-contacts-info li {
+  margin-bottom: 14px;
+}
 
 /* Футер: подзаголовок CTA понижен с h1 до h2 (убираем дубль h1 на страницах);
    воспроизводим штатный вид темы (.pbmit-custom-subtitle h1 в shortcode.css). */
-.pbmit-footer-style-1 .footer-heading-wrap .pbmit-custom-subtitle h2{
+.pbmit-footer-style-1 .footer-heading-wrap .pbmit-custom-subtitle h2 {
   font-size: 13px;
   line-height: 28px;
   margin: 0;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: .78px;
+  letter-spacing: 0.78px;
   color: var(--pbmit-global-color);
 }
 
 /* Политика конфиденциальности: блок кнопок «связаться» под контактами. */
-.pfg-cta-actions{
+.pfg-cta-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -135,11 +223,15 @@
    (6.8:1 на #fff, 5.9:1 на #ecf0f4). Переменная питает body, .pbmit-subtitle,
    .pfg-lead, .pfg-prose, .right-box p и пр.; тёмные секции переопределяют
    цвет явно (shortcode.css), поэтому меняется только текст на светлом фоне. */
-:root{ --pbmit-body-typography-color: #525d62; }
+:root {
+  --pbmit-body-typography-color: #525d62;
+}
 
 /* Ссылка в копирайте футера различалась только цветом (link-in-text-block,
    1.17:1 к окружающему тексту) — добавляем подчёркивание. */
-.pbmit-footer-copyright-text-area a{ text-decoration: underline; }
+.pbmit-footer-copyright-text-area a {
+  text-decoration: underline;
+}
 
 /* Золотые кнопки: белый текст на #ecab23 = 2.01:1 (ниже AA). Текст делаем
    тёмным (#1b1b1b → ~8.5:1); фирменное золото не трогаем. Тёмнофоновые
@@ -147,12 +239,22 @@
    (фон становится золотым) тоже получают тёмный. */
 .pbmit-btn,
 .pbmit-btn:hover,
-.pbmit-btn:focus{ color: #1b1b1b; }
-.pbmit-btn .pbmit-button-text span{ color: inherit; }
-.pbmit-btn.blackish{ color: var(--pbmit-white-color, #fff); }
-.pbmit-btn.blackish:hover{ color: #1b1b1b; }
+.pbmit-btn:focus {
+  color: #1b1b1b;
+}
+.pbmit-btn .pbmit-button-text span {
+  color: inherit;
+}
+.pbmit-btn.blackish {
+  color: var(--pbmit-white-color, #fff);
+}
+.pbmit-btn.blackish:hover {
+  color: #1b1b1b;
+}
 .pbmit-bg-color-secondary .pbmit-btn:hover,
-.pbmit-bg-color-blackish .pbmit-btn:hover{ color: #1b1b1b; }
+.pbmit-bg-color-blackish .pbmit-btn:hover {
+  color: #1b1b1b;
+}
 
 /* A11y target-size (WCAG 2.2 AA): на мобильной шапке (≤1200px) видимая иконка
    поиска — слишком мелкий тап-таргет (только глиф). Расширяем хит-зону ссылки
@@ -165,24 +267,24 @@
    absolute-раскладку гамбургера — а это та самая зона-ловушка (off-canvas
    меню), поэтому НЕ трогаем. Оставляем штатные 44×44; пункт зафиксирован как
    известное ограничение темы в docs/UI-AUDIT-2026-06-23.md. */
-@media (max-width: 1200px){
-	.site-header .pbmit-header-search-btn > a{
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		min-width: 44px;
-		min-height: 44px;
-	}
+@media (max-width: 1200px) {
+  .site-header .pbmit-header-search-btn > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
 }
 /* Search-иконка: 44px hit-area на ВСЕХ вьюпортах (desktop + mobile).
    Desktop: измерение показало 35×29px — меньше WCAG 2.5.5 AA (≥44px).
    Иконка (glyph ~24px) остаётся отцентрованной; расширяется только хит-зона. */
-.pbmit-header-search-btn > a{
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	min-width: 44px;
-	min-height: 44px;
+.pbmit-header-search-btn > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 /* ==========================================================================
@@ -193,50 +295,64 @@
 /* 1. Hero (slider-one): на ≤575px заголовок 70px вылезал за правый край и
    обрезался («Бухгалтери…» вместо «Бухгалтерия под ключ»). Масштабируем под
    ширину экрана — текст помещается целиком, без горизонтального обрезания. */
-@media (max-width: 575px){
-	.pbmit-slider-one .pbmit-slider-title{
-		font-size: clamp(34px, 11vw, 52px) !important;
-		line-height: 1.12 !important;
-	}
+@media (max-width: 575px) {
+  .pbmit-slider-one .pbmit-slider-title {
+    font-size: clamp(34px, 11vw, 52px) !important;
+    line-height: 1.12 !important;
+  }
 }
 
 /* 2. Кнопка «наверх» (.pbmit-backtotop, base.css) и плавающая кнопка WhatsApp
    делили один угол и накладывались. Поднимаем «наверх» над WhatsApp и
    выравниваем по центру (WhatsApp: right22/bottom22/56px → центр 50px от края;
    кнопка 50px → right25 даёт тот же центр). */
-.pbmit-backtotop.active{ bottom: 90px !important; right: 25px !important; }
-.pbmit-backtotop:hover{ bottom: 95px !important; }
+.pbmit-backtotop.active {
+  bottom: 90px !important;
+  right: 25px !important;
+}
+.pbmit-backtotop:hover {
+  bottom: 95px !important;
+}
 
 /* 3. Мобильное меню: штатная анимация открытия ~1500мс (delay 600 + 900мс) —
    после тапа полсекунды ничего не происходит, читается как «не работает».
    Делаем отзывчивой (0.3с, без задержки). */
-@media (max-width: 1200px){
-	.pbmit-menu-wrap,
-	.active .pbmit-menu-wrap,
-	.pbmit-mobile-menu-bg,
-	.active .pbmit-mobile-menu-bg{
-		transition-duration: .3s !important;
-		transition-delay: 0s !important;
-	}
+@media (max-width: 1200px) {
+  .pbmit-menu-wrap,
+  .active .pbmit-menu-wrap,
+  .pbmit-mobile-menu-bg,
+  .active .pbmit-mobile-menu-bg {
+    transition-duration: 0.3s !important;
+    transition-delay: 0s !important;
+  }
 }
 
 /* 4. Футер «Услуги» (.pbmit-two-column-menu): две колонки стояли впритык
    (нулевой зазор, длинные пункты сталкивались). Добавляем зазор; на мобильном
    (≤575px) разворачиваем в одну колонку. */
-.site-footer .widget .pbmit-two-column-menu ul.menu li{ padding-right: 20px; }
-@media (max-width: 575px){
-	.site-footer .widget .pbmit-two-column-menu ul.menu li{ width: 100%; padding-right: 0; }
+.site-footer .widget .pbmit-two-column-menu ul.menu li {
+  padding-right: 20px;
+}
+@media (max-width: 575px) {
+  .site-footer .widget .pbmit-two-column-menu ul.menu li {
+    width: 100%;
+    padding-right: 0;
+  }
 }
 
 /* 5. Меню футера: text-transform:capitalize (shortcode.css) ломал русские
    союзы — «Налоги И Отчётность», «Консультации И Юрист». Возвращаем регистр
    как в исходном тексте. */
-.site-footer .widget ul.menu li a{ text-transform: none; }
+.site-footer .widget ul.menu li a {
+  text-transform: none;
+}
 
 /* 6. Карточки .pfg-card: h3 без line-height наследовал 45px от темы —
    2-строчные заголовки растягивались по высоте (90px) и «разваливались».
    Задаём плотный межстрочный интервал. */
-.pfg-card h3{ line-height: 1.3; }
+.pfg-card h3 {
+  line-height: 1.3;
+}
 
 /* 7. Подзаголовки-«eyebrow» (.pbmit-subtitle): pill-фон --pbmit-light-color
    (#ecf0f4) сливался и с белыми, и с серыми (.pfg-section--alt) секциями
@@ -247,13 +363,13 @@
    исходный #8a6209 падал до 4.47:1 (ниже AA). Берём чуть темнее — #7a560a:
    ≥5.4:1 даже на #ece8db, 6.6:1 на белом; тёмные секции сохраняют штатный
    золотой pill темы (переопределение ниже). */
-.pbmit-heading-subheading .pbmit-subtitle{
-	color: #7a560a;
-	background-color: rgba(236, 171, 35, .12);
+.pbmit-heading-subheading .pbmit-subtitle {
+  color: #7a560a;
+  background-color: rgba(236, 171, 35, 0.12);
 }
-.pbmit-bg-color-secondary .pbmit-heading-subheading .pbmit-subtitle{
-	color: var(--pbmit-white-color, #fff);
-	background-color: var(--pbmit-global-color);
+.pbmit-bg-color-secondary .pbmit-heading-subheading .pbmit-subtitle {
+  color: var(--pbmit-white-color, #fff);
+  background-color: var(--pbmit-global-color);
 }
 
 /* 8. Кнопки (.pbmit-btn и сервис/прайс-кнопки темы): text-transform:capitalize
@@ -269,8 +385,8 @@
 .pbmit-service-btn .pbmit-button-text span,
 .pbmit-price-btn a,
 .pbmit-price-btn .pbmit-button-text span,
-.pbmit-ihbox-btn .pbmit-btn-wrapper .pbmit-button-render span{
-	text-transform: none;
+.pbmit-ihbox-btn .pbmit-btn-wrapper .pbmit-button-render span {
+  text-transform: none;
 }
 
 /* 9. Инлайн-ссылки в тексте (.pfg-prose / .pfg-lead): tel/WhatsApp-ссылки внутри
@@ -283,8 +399,8 @@
    вне .pfg-prose, поэтому не затрагиваются. */
 .pfg-prose p a:not(.pbmit-btn),
 .pfg-prose li a:not(.pbmit-btn),
-.pfg-lead a:not(.pbmit-btn){
-	text-decoration: underline;
+.pfg-lead a:not(.pbmit-btn) {
+  text-decoration: underline;
 }
 
 /* ==========================================================================
@@ -297,62 +413,65 @@
    ========================================================================== */
 
 /* --- 9.0 Токены премиум-слоя (namespace --pfg-*; бренд-цвета не меняем) --- */
-:root{
-	--pfg-ink:            #16222d;   /* чернила — фирменный тёмный */
-	--pfg-ink-deep:       #0f1820;   /* глубже чернил — для градиентов */
-	--pfg-gold:           #ecab23;   /* фирменное золото */
-	--pfg-gold-deep:      #d6960f;   /* тёмное золото — hover (текст #1b1b1b держит AA) */
-	--pfg-gold-ink:       #7a560a;   /* золото-текст на светлом (AA ≥5.4:1) */
-	--pfg-hairline:       rgba(22, 34, 45, .10);
-	--pfg-hairline-2:     rgba(22, 34, 45, .16);
-	--pfg-paper-warm:     #f6f4ef;   /* тёплая бумага вместо холодного #ecf0f4 */
-	--pfg-shadow-sm:      0 2px 8px rgba(16,24,32,.05), 0 1px 2px rgba(16,24,32,.04);
-	--pfg-shadow-md:      0 14px 34px -14px rgba(16,24,32,.20), 0 4px 10px -6px rgba(16,24,32,.10);
-	--pfg-shadow-btn:     0 4px 14px -6px rgba(16,24,32,.30);
-	--pfg-shadow-btn-h:   0 12px 26px -8px rgba(16,24,32,.34);
-	--pfg-radius:         14px;
-	--pfg-radius-sm:      10px;
-	--pfg-ease:           cubic-bezier(.22, .61, .36, 1);
-	--pfg-tf-fast:        .25s var(--pfg-ease);
-	--pfg-tf:             .4s  var(--pfg-ease);
+:root {
+  --pfg-ink: #16222d; /* чернила — фирменный тёмный */
+  --pfg-ink-deep: #0f1820; /* глубже чернил — для градиентов */
+  --pfg-gold: #ecab23; /* фирменное золото */
+  --pfg-gold-deep: #d6960f; /* тёмное золото — hover (текст #1b1b1b держит AA) */
+  --pfg-gold-ink: #7a560a; /* золото-текст на светлом (AA ≥5.4:1) */
+  --pfg-hairline: rgba(22, 34, 45, 0.1);
+  --pfg-hairline-2: rgba(22, 34, 45, 0.16);
+  --pfg-paper-warm: #f6f4ef; /* тёплая бумага вместо холодного #ecf0f4 */
+  --pfg-shadow-sm:
+    0 2px 8px rgba(16, 24, 32, 0.05), 0 1px 2px rgba(16, 24, 32, 0.04);
+  --pfg-shadow-md:
+    0 14px 34px -14px rgba(16, 24, 32, 0.2),
+    0 4px 10px -6px rgba(16, 24, 32, 0.1);
+  --pfg-shadow-btn: 0 4px 14px -6px rgba(16, 24, 32, 0.3);
+  --pfg-shadow-btn-h: 0 12px 26px -8px rgba(16, 24, 32, 0.34);
+  --pfg-radius: 14px;
+  --pfg-radius-sm: 10px;
+  --pfg-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --pfg-tf-fast: 0.25s var(--pfg-ease);
+  --pfg-tf: 0.4s var(--pfg-ease);
 
-	/* --- TOK-02: шкала отступов (4px-grid) ---
+  /* --- TOK-02: шкала отступов (4px-grid) ---
 	   Единая 4px-сетка взамен россыпи vendor-px. Только объявление —
 	   применение (snap отступов к элементам) делается в плане 02-02.
 	   Имя = множитель базового шага 4px (space-4 = 4*4 = 16px). */
-	--pfg-space-1:   4px;
-	--pfg-space-2:   8px;
-	--pfg-space-3:   12px;
-	--pfg-space-4:   16px;
-	--pfg-space-6:   24px;
-	--pfg-space-8:   32px;
-	--pfg-space-12:  48px;
-	--pfg-space-16:  64px;
-	--pfg-space-24:  96px;
+  --pfg-space-1: 4px;
+  --pfg-space-2: 8px;
+  --pfg-space-3: 12px;
+  --pfg-space-4: 16px;
+  --pfg-space-6: 24px;
+  --pfg-space-8: 32px;
+  --pfg-space-12: 48px;
+  --pfg-space-16: 64px;
+  --pfg-space-24: 96px;
 
-	/* --- TOK-03: флюидная типографическая шкала (ratio ≈1.25) ---
+  /* --- TOK-03: флюидная типографическая шкала (ratio ≈1.25) ---
 	   clamp(MIN, предпочт., MAX). MAX каждого заголовка зеркалит текущий
 	   vendor desktop-px (base.css:223-251: h1 58 / h2 48 / h3 40 / h4 34 /
 	   h5 28 / h6 22), чтобы на 1440 desktop рендер не изменился — это фаза
 	   объявления, применение к элементам в 02-02. MIN даёт мобильную плавность.
 	   База body 16→18px. Метки/кнопки держат vendor 15px. */
-	--pfg-fs-body:    clamp(1rem, 0.95rem + 0.25vw, 1.125rem);    /* 16 → 18 */
-	--pfg-fs-label:   15px;                                       /* = vendor --pbmit-btn font-size */
-	--pfg-fs-h6:      clamp(1.125rem, 1rem + 0.5vw, 1.375rem);    /* → 22 */
-	--pfg-fs-h5:      clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);   /* → 28 */
-	--pfg-fs-h4:      clamp(1.375rem, 1.05rem + 1.2vw, 2.125rem); /* → 34 */
-	--pfg-fs-h3:      clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem);      /* → 40 */
-	--pfg-fs-h2:      clamp(1.75rem, 1.2rem + 2.4vw, 3rem);       /* → 48 */
-	--pfg-fs-display: clamp(2.125rem, 1.2rem + 4vw, 3.625rem);    /* → 58 (= h1) */
-	--pfg-lh-tight:   1.2;
-	--pfg-lh-body:    1.6;   /* = vendor --pbmit-body line-height */
-	--pfg-lh-display: 1.15;
+  --pfg-fs-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); /* 16 → 18 */
+  --pfg-fs-label: 15px; /* = vendor --pbmit-btn font-size */
+  --pfg-fs-h6: clamp(1.125rem, 1rem + 0.5vw, 1.375rem); /* → 22 */
+  --pfg-fs-h5: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem); /* → 28 */
+  --pfg-fs-h4: clamp(1.375rem, 1.05rem + 1.2vw, 2.125rem); /* → 34 */
+  --pfg-fs-h3: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem); /* → 40 */
+  --pfg-fs-h2: clamp(1.75rem, 1.2rem + 2.4vw, 3rem); /* → 48 */
+  --pfg-fs-display: clamp(2.125rem, 1.2rem + 4vw, 3.625rem); /* → 58 (= h1) */
+  --pfg-lh-tight: 1.2;
+  --pfg-lh-body: 1.6; /* = vendor --pbmit-body line-height */
+  --pfg-lh-display: 1.15;
 
-	/* --- TOK-01: z-index токен ---
+  /* --- TOK-01: z-index токен ---
 	   В custom.css ровно ОДИН хардкоженный z-index (whatsapp-float 9999,
 	   custom.css:28). Выносим его в токен. Шкалу z-index НЕ вводим —
 	   реальный consumer единственный (02-RESEARCH Open Question 2). */
-	--pfg-z-float:   9999;
+  --pfg-z-float: 9999;
 }
 
 /* --- 9.1 Глобальные микровзаимодействия + доступный фокус + reduced-motion --- */
@@ -362,10 +481,10 @@ a:focus-visible,
 button:focus-visible,
 [role="button"]:focus-visible,
 summary:focus-visible,
-.pbmit-btn:focus-visible{
-	outline: 2px solid var(--pfg-gold);
-	outline-offset: 3px;
-	border-radius: 3px;
+.pbmit-btn:focus-visible {
+  outline: 2px solid var(--pfg-gold);
+  outline-offset: 3px;
+  border-radius: 3px;
 }
 /* Уважаем системную настройку «меньше движения» — но ТОЧЕЧНО.
    РАНЕЕ здесь стоял универсальный гаситель `*,*::before,*::after{transition/
@@ -384,20 +503,22 @@ summary:focus-visible,
    взаимодействия, добавленные премиум-слоем (подъём карточек/кнопок, рост
    подчёркивания в навигации, hover info-блоков): они вестибулярно-избыточны и
    ничего не сообщают. Узкий scope, без универсального `*`. */
-@media (prefers-reduced-motion: reduce){
-	.pfg-card,
-	.pfg-card:hover,
-	.pbmit-btn,
-	.pbmit-btn:hover,
-	.pbmit-btn:active,
-	.pbmit-header-style-1 .site-navigation ul.navigation > li > a::after,
-	.pbmit-ihbox-style-15 .pbmit-ihbox-icon,
-	.pbmit-ihbox-style-15 .pbmit-element-title,
-	.pfg-faq-item summary::after{
-		transition: none !important;
-		transform: none !important;
-	}
-	html{ scroll-behavior: auto !important; }
+@media (prefers-reduced-motion: reduce) {
+  .pfg-card,
+  .pfg-card:hover,
+  .pbmit-btn,
+  .pbmit-btn:hover,
+  .pbmit-btn:active,
+  .pbmit-header-style-1 .site-navigation ul.navigation > li > a::after,
+  .pbmit-ihbox-style-15 .pbmit-ihbox-icon,
+  .pbmit-ihbox-style-15 .pbmit-element-title,
+  .pfg-faq-item summary::after {
+    transition: none !important;
+    transform: none !important;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
 }
 
 /* --- 9.2 Сигнатура: «леджерный» надзаголовок (eyebrow) ---
@@ -406,29 +527,29 @@ summary:focus-visible,
    верно (строка бухгалтерской книги), дороже и единообразно по всему сайту.
    Контраст: золото-текст #7a560a на белом 6.6:1, на #f6f4ef ~6.0:1, на тёплой
    секции about (#ece8db) ~5.4:1 — везде AA. Тёмные секции — белый текст. */
-.pbmit-heading-subheading .pbmit-subtitle{
-	display: inline-flex;
-	align-items: center;
-	gap: 12px;
-	padding: 0;
-	background-color: transparent;
-	color: var(--pfg-gold-ink);
-	font-weight: 700;
-	letter-spacing: 1.4px;
-	border-radius: 0;
+.pbmit-heading-subheading .pbmit-subtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  background-color: transparent;
+  color: var(--pfg-gold-ink);
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  border-radius: 0;
 }
-.pbmit-heading-subheading .pbmit-subtitle::before{
-	content: "";
-	display: inline-block;
-	flex: 0 0 auto;
-	width: 28px;
-	height: 2px;
-	background: var(--pfg-gold);
+.pbmit-heading-subheading .pbmit-subtitle::before {
+  content: "";
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 2px;
+  background: var(--pfg-gold);
 }
 .pbmit-bg-color-secondary .pbmit-heading-subheading .pbmit-subtitle,
-.pbmit-bg-color-blackish  .pbmit-heading-subheading .pbmit-subtitle{
-	color: var(--pbmit-white-color, #fff);
-	background-color: transparent;
+.pbmit-bg-color-blackish .pbmit-heading-subheading .pbmit-subtitle {
+  color: var(--pbmit-white-color, #fff);
+  background-color: transparent;
 }
 
 /* --- 9.3 Шапка: «стеклянная» панель (только десктоп ≥1201px) ---
@@ -443,13 +564,75 @@ summary:focus-visible,
    меню «ломается» (узкая белая полоса). На десктопе пунктов меню — обычная
    горизонтальная навигация (static-позиция), ловушки нет. Поэтому весь
    стеклянный слой включаем только с 1201px. */
-@media (min-width: 1201px){
-	.pbmit-header-style-1 .pbmit-header-content{
-		border-color: rgba(255, 255, 255, .22) !important;
-		box-shadow: 0 8px 30px -10px rgba(8, 14, 20, .45);
-		-webkit-backdrop-filter: blur(6px) saturate(115%);
-		backdrop-filter: blur(6px) saturate(115%);
-	}
+@media (min-width: 1201px) {
+  .pbmit-header-style-1 .pbmit-header-content {
+    border-color: rgba(255, 255, 255, 0.22) !important;
+    box-shadow: 0 8px 30px -10px rgba(8, 14, 20, 0.45);
+    -webkit-backdrop-filter: blur(6px) saturate(115%);
+    backdrop-filter: blur(6px) saturate(115%);
+  }
+}
+
+/* --- 9.3b Sticky-шапка: визуальный клон обычной (тёмная), а не белая вендорная ---
+   Вендор (shortcode.css:3985-4024) делает sticky БЕЛОЙ: фон rgba(white,.9), тёмный
+   логотип, тёмная навигация, скрытые CTA-кнопка и телефонный блок. Наложение нашего
+   стеклянного blur (§9.3) на ПРОЗРАЧНЫЙ header-content поверх бело-полупрозрачной
+   обёртки давало мутно-серое frosted-пятно — это и есть «серо-белое непонятное».
+   Юрий: sticky должна выглядеть КАК ОБЫЧНАЯ шапка. Делаем её тёмной (ink) — тогда
+   белый логотип, бело-золотая навигация и золотая кнопка читаются и выглядят так же,
+   как обычная шапка на тёмном фото-герое. Тень отрыва несёт обёртка.
+   Специфичность 0,5,0 (.site-header.pbmit-header-style-1 — 2 класса на одном элементе
+   + .pbmit-sticky-header.pbmit-fixed-header + цель) перебивает вендорные 0,4,0 без
+   !important. Гейт ≥1201 — как §9.3 (на ≤1200 меню off-canvas, слой не трогаем). */
+@media (min-width: 1201px) {
+  /* Тёмный «чернильный» фон вместо вендорного rgba(white,.9) (shortcode.css:3989). */
+  .site-header.pbmit-header-style-1 .pbmit-sticky-header.pbmit-fixed-header {
+    background-color: rgba(22, 34, 45, 1); /* --pfg-ink @ .92 */
+    box-shadow: 0 6px 24px -10px rgba(8, 14, 20, 0.55);
+  }
+  /* Логотип: белый (main) виден, тёмный (sticky) скрыт — как в обычной шапке
+	   (вендор shortcode.css:3992/4009 делал ровно наоборот). */
+  .site-header.pbmit-header-style-1
+    .pbmit-sticky-header.pbmit-fixed-header
+    .pbmit-main-logo {
+    display: inline-block;
+  }
+  .site-header.pbmit-header-style-1
+    .pbmit-sticky-header.pbmit-fixed-header
+    .pbmit-sticky-logo {
+    display: none;
+  }
+  /* Навигация: неактивные пункты белые (вендор shortcode.css:4019 ставил blackish),
+	   активный пункт — золото (как в обычной шапке). */
+  .site-header.pbmit-header-style-1
+    .pbmit-sticky-header.pbmit-fixed-header
+    .site-navigation
+    ul.navigation
+    > li:not(.active)
+    > a {
+    color: var(--pbmit-white-color, #fff);
+  }
+  /* CTA-кнопка: показываем (вендор shortcode.css:3995 прятал) — обычная шапка её имеет. */
+  .site-header.pbmit-header-style-1
+    .pbmit-sticky-header.pbmit-fixed-header
+    .pbmit-header-button {
+    display: block;
+  }
+  /* Телефонный блок: прячем — обычная шапка его не показывает (вендор shortcode.css:4010
+	   показывал ТОЛЬКО в sticky → рассинхрон обычной/sticky). */
+  .site-header.pbmit-header-style-1
+    .pbmit-sticky-header.pbmit-fixed-header
+    .pbmit-ihbox-style-3 {
+    display: none;
+  }
+  /* header-content: тень-отрыв теперь на обёртке → убираем дубль box-shadow от §9.3
+	   (иначе внутренняя «рамка-тень» вокруг полноширинного контента). Бордюр темы (none)
+	   оставляем: на полноширинной sticky рамка по краям экрана выглядела бы инородно. */
+  .site-header.pbmit-header-style-1
+    .pbmit-sticky-header.pbmit-fixed-header
+    .pbmit-header-content {
+    box-shadow: none;
+  }
 }
 
 /* --- 9.4 Навигация: фикс переноса + «леджерное» подчёркивание ---
@@ -457,51 +640,58 @@ summary:focus-visible,
    контент пунктов 411px не влезает в слот ~402px. Унифицируем десктоп ≥1301px
    значением 8px (как у темы на меньших ширинах): контент 355px < слот (368px
    на 1301, 402px на 1440) — перенос устранён во всём диапазоне. */
-@media (min-width: 1301px){
-	.pbmit-header-style-1 .site-navigation ul.navigation > li{
-		margin: 0 8px;
-	}
+@media (min-width: 1301px) {
+  .pbmit-header-style-1 .site-navigation ul.navigation > li {
+    margin: 0 8px;
+  }
 }
 /* Растущее слева золотое подчёркивание на hover/active (у пунктов нет штатных
    псевдоэлементов — проверено, задвоения нет). */
-.pbmit-header-style-1 .site-navigation ul.navigation > li > a{
-	position: relative;
+.pbmit-header-style-1 .site-navigation ul.navigation > li > a {
+  position: relative;
 }
-.pbmit-header-style-1 .site-navigation ul.navigation > li > a::after{
-	content: "";
-	position: absolute;
-	left: 0;
-	bottom: -4px;
-	height: 2px;
-	width: 0;
-	background: var(--pfg-gold);
-	transition: width var(--pfg-tf);
+.pbmit-header-style-1 .site-navigation ul.navigation > li > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0;
+  background: var(--pfg-gold);
+  transition: width var(--pfg-tf);
 }
 .pbmit-header-style-1 .site-navigation ul.navigation > li:hover > a::after,
-.pbmit-header-style-1 .site-navigation ul.navigation > li.active > a::after{
-	width: 100%;
+.pbmit-header-style-1 .site-navigation ul.navigation > li.active > a::after {
+  width: 100%;
 }
 
 /* --- 9.5 Кнопки: тактильность (тень + подъём + углубление золота) ---
    Текст уже тёмный #1b1b1b (Этап 8, AA). Добавляем мягкую нейтральную тень,
    подъём и углубление фона на hover (#d6960f → текст #1b1b1b ещё контрастнее).
    Анимацию padding (стрелка-свап темы) сохраняем плавной. */
-.pbmit-btn{
-	box-shadow: var(--pfg-shadow-btn);
-	transition: background-color var(--pfg-tf-fast),
-	            box-shadow .4s cubic-bezier(.22,.61,.36,1),
-	            transform var(--pfg-tf-fast),
-	            color var(--pfg-tf-fast),
-	            padding .4s ease;
+.pbmit-btn {
+  box-shadow: var(--pfg-shadow-btn);
+  transition:
+    background-color var(--pfg-tf-fast),
+    box-shadow 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform var(--pfg-tf-fast),
+    color var(--pfg-tf-fast),
+    padding 0.4s ease;
 }
-.pbmit-btn:hover{
-	background-color: var(--pfg-gold-deep);
-	box-shadow: var(--pfg-shadow-btn-h);
-	transform: translateY(-2px);
+.pbmit-btn:hover {
+  background-color: var(--pfg-gold-deep);
+  box-shadow: var(--pfg-shadow-btn-h);
+  transform: translateY(-2px);
 }
-.pbmit-btn:active{ transform: translateY(0); }
-.pbmit-btn.blackish{ box-shadow: 0 8px 22px -10px rgba(16, 24, 32, .55); }
-.pbmit-btn.blackish:hover{ background-color: var(--pfg-gold); }
+.pbmit-btn:active {
+  transform: translateY(0);
+}
+.pbmit-btn.blackish {
+  box-shadow: 0 8px 22px -10px rgba(16, 24, 32, 0.55);
+}
+.pbmit-btn.blackish:hover {
+  background-color: var(--pfg-gold);
+}
 
 /* --- 9.6 Title-bar внутренних страниц: «балансовый» градиент + читаемость ---
    Штатный overlay = rgba(0,0,0,.42) × opacity .4 ≈ 0.17 затемнения, без тени →
@@ -509,35 +699,40 @@ summary:focus-visible,
    направленным чернильным градиентом (темнее снизу-слева, где сидят крошки и
    заголовок; светлее сверху-справа — фото остаётся видимым). Трекинг −3px для
    кириллицы слишком тесный → −1.5px; добавляем мягкую тень тексту. */
-.pbmit-title-bar-wrapper::before{
-	background-color: transparent;
-	background-image:
-		linear-gradient(180deg, rgba(15,24,32,.32) 0%, rgba(15,24,32,.18) 38%, rgba(15,24,32,.66) 100%),
-		linear-gradient(105deg, rgba(15,24,32,.55) 0%, rgba(15,24,32,0) 58%);
-	opacity: 1;
+.pbmit-title-bar-wrapper::before {
+  background-color: transparent;
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(15, 24, 32, 0.32) 0%,
+      rgba(15, 24, 32, 0.18) 38%,
+      rgba(15, 24, 32, 0.66) 100%
+    ),
+    linear-gradient(105deg, rgba(15, 24, 32, 0.55) 0%, rgba(15, 24, 32, 0) 58%);
+  opacity: 1;
 }
-.pbmit-tbar-title{
-	letter-spacing: -1.5px;
-	text-shadow: 0 2px 28px rgba(8, 14, 20, .42);
-	/* HE1/T2/G2 (AUD-02): line-height policy. Vendor 70/70 (lh==fs) клипает 2-строчный
+.pbmit-tbar-title {
+  letter-spacing: -1.5px;
+  text-shadow: 0 2px 28px rgba(8, 14, 20, 0.42);
+  /* HE1/T2/G2 (AUD-02): line-height policy. Vendor 70/70 (lh==fs) клипает 2-строчный
 	   заголовок. Юнитлесс 1.15 (--pfg-lh-display) → lh>=fs на всех ширинах (вкл. mobile
 	   32px). Та же специфичность 0,1,0 что у vendor .pbmit-tbar-title, выигрыш source-order. */
-	line-height: var(--pfg-lh-display);
+  line-height: var(--pfg-lh-display);
 }
 .pbmit-breadcrumb,
-.pbmit-breadcrumb a{
-	text-shadow: 0 1px 14px rgba(8, 14, 20, .45);
+.pbmit-breadcrumb a {
+  text-shadow: 0 1px 14px rgba(8, 14, 20, 0.45);
 }
 
 /* --- 9.7 Hero (slider-one): читаемость заголовка на фото --- */
-.pbmit-slider-one .pbmit-slider-title{
-	text-shadow: 0 2px 34px rgba(8, 14, 20, .40);
-	/* HE1/G2 (AUD-02): vendor 170/150 (lh<fs) → 2-строчный кириллический заголовок
+.pbmit-slider-one .pbmit-slider-title {
+  text-shadow: 0 2px 34px rgba(8, 14, 20, 0.4);
+  /* HE1/G2 (AUD-02): vendor 170/150 (lh<fs) → 2-строчный кириллический заголовок
 	   перекрывается по вертикали на desktop 1440. Юнитлесс 1.15 (--pfg-lh-display) →
 	   lh>=fs. Та же специфичность 0,2,0 что у vendor .pbmit-slider-one .pbmit-slider-title,
 	   выигрыш source-order (custom.css грузится последним), без форсирования каскада.
 	   Phase 2 = только line-height policy; hero font-size/LCP (170px) — Phase 4. */
-	line-height: var(--pfg-lh-display);
+  line-height: var(--pfg-lh-display);
 }
 
 /* HE1/G2 (AUD-02, продолжение line-height policy): анимированный tween-заголовок
@@ -547,57 +742,68 @@ summary:focus-visible,
    (.pbmit-tween-effect-style-1.pbmit-tween-text .pbmit-element-title); выигрыш source-order
    (custom.css после responsive.css), без media-query и без форсирования каскада.
    Phase 2 = только line-height policy; font-size/анимация tween — не трогаем. */
-.pbmit-tween-effect-style-1.pbmit-tween-text .pbmit-element-title{
-	line-height: var(--pfg-lh-display);
+.pbmit-tween-effect-style-1.pbmit-tween-text .pbmit-element-title {
+  line-height: var(--pfg-lh-display);
 }
 
 /* --- 9.8 Карточки .pfg-card: hairline + мягкая тень + подъём на hover --- */
-.pfg-card{
-	border: 1px solid var(--pfg-hairline);
-	border-radius: var(--pfg-radius);
-	box-shadow: var(--pfg-shadow-sm);
-	transition: transform var(--pfg-tf),
-	            box-shadow .4s cubic-bezier(.22,.61,.36,1),
-	            border-color .4s cubic-bezier(.22,.61,.36,1);
+.pfg-card {
+  border: 1px solid var(--pfg-hairline);
+  border-radius: var(--pfg-radius);
+  box-shadow: var(--pfg-shadow-sm);
+  transition:
+    transform var(--pfg-tf),
+    box-shadow 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+    border-color 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-.pfg-card:hover{
-	transform: translateY(-4px);
-	box-shadow: var(--pfg-shadow-md);
-	border-color: rgba(236, 171, 35, .45);
+.pfg-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--pfg-shadow-md);
+  border-color: rgba(236, 171, 35, 0.45);
 }
 
 /* Тёплая бумага вместо холодной #ecf0f4 на чередующихся секциях внутр. страниц. */
-.pfg-section--alt{ background: var(--pfg-paper-warm); }
+.pfg-section--alt {
+  background: var(--pfg-paper-warm);
+}
 
 /* --- 9.9 Формы: hairline-поля + мягкое золотое фокус-кольцо --- */
 .pfg-form .form-control,
 .pfg-form .form-select,
-.pfg-form textarea.form-control{
-	/* F1 (AUD-02): vendor .form-control = 15px (style.css:2641) → iOS<16 зумит при фокусе.
+.pfg-form textarea.form-control {
+  /* F1 (AUD-02): vendor .form-control = 15px (style.css:2641) → iOS<16 зумит при фокусе.
 	   16px подавляет focus-zoom; выигрывает специфичностью 0,2,0 > 0,1,0 + source-order,
 	   без форсирования каскада. Desktop визуально почти не меняется (15→16px). */
-	font-size: 16px;
-	border: 1px solid var(--pfg-hairline-2);
-	border-radius: var(--pfg-radius-sm);
-	transition: border-color var(--pfg-tf-fast), box-shadow var(--pfg-tf-fast);
+  font-size: 16px;
+  border: 1px solid var(--pfg-hairline-2);
+  border-radius: var(--pfg-radius-sm);
+  transition:
+    border-color var(--pfg-tf-fast),
+    box-shadow var(--pfg-tf-fast);
 }
 .pfg-form .form-control:focus,
 .pfg-form .form-select:focus,
-.pfg-form textarea.form-control:focus{
-	border-color: var(--pfg-gold);
-	box-shadow: 0 0 0 3px rgba(236, 171, 35, .18);
-	outline: none;
+.pfg-form textarea.form-control:focus {
+  border-color: var(--pfg-gold);
+  box-shadow: 0 0 0 3px rgba(236, 171, 35, 0.18);
+  outline: none;
 }
 
 /* --- 9.10 Эхо сигнатуры: тонкая золотая «леджерная» линия-кап над футером --- */
-.site-footer{ border-top: 3px solid var(--pfg-gold); }
+.site-footer {
+  border-top: 3px solid var(--pfg-gold);
+}
 
 /* --- 9.11 Лёгкие микровзаимодействия для info-блоков темы (ihbox) --- */
 .pbmit-ihbox-style-15 .pbmit-ihbox-icon,
-.pbmit-ihbox-style-15 .pbmit-element-title{
-	transition: color var(--pfg-tf-fast), transform var(--pfg-tf-fast);
+.pbmit-ihbox-style-15 .pbmit-element-title {
+  transition:
+    color var(--pfg-tf-fast),
+    transform var(--pfg-tf-fast);
 }
-.pbmit-ihbox-style-15:hover .pbmit-ihbox-icon{ color: var(--pfg-gold); }
+.pbmit-ihbox-style-15:hover .pbmit-ihbox-icon {
+  color: var(--pfg-gold);
+}
 
 /* ==========================================================================
    ЭТАП 10 — ФИНАЛЬНЫЙ PRODUCTION UI-АУДИТ (frontend-design, 2026-06-23).
@@ -619,12 +825,21 @@ summary:focus-visible,
    только сплошную прозу. Надзаголовок .pbmit-subtitle над .pbmit-title остаётся
    на месте (вне .pfg-prose). Мера 60ch: у «Be Vietnam Pro» символ широкий, 72ch
    давало ~92cpl (≈827px) — всё ещё длинно; 60ch → ~680px / ~75cpl (норма). */
-.pfg-prose{ max-width: 60ch; }
-.pfg-prose .pfg-lead{ max-width: none; }   /* лид уже внутри .pfg-prose — не сужаем дважды */
-.pfg-lead{ max-width: 60ch; }
+.pfg-prose {
+  max-width: 60ch;
+}
+.pfg-prose .pfg-lead {
+  max-width: none;
+} /* лид уже внутри .pfg-prose — не сужаем дважды */
+.pfg-lead {
+  max-width: 60ch;
+}
 /* Центрированные секции (404, CTA-блоки с justify-content:center) — мера по центру. */
 .pfg-section[style*="center"] .pfg-prose,
-.pfg-section[style*="center"] .pfg-lead{ margin-left: auto; margin-right: auto; }
+.pfg-section[style*="center"] .pfg-lead {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* --- 10.2 Hero-заголовок: трекинг кириллицы на desktop ---
    Вендор: .pbmit-slider-one .pbmit-slider-title { letter-spacing:-5.1px } при
@@ -632,8 +847,10 @@ summary:focus-visible,
    подача, но кириллица при −5.1px слипается (первая видимая строка сайта читается
    как дефект). На ≤575px заголовок уже клампится разделом 8.1 (стр. ~162).
    Здесь разжимаем трекинг ТОЛЬКО на desktop ≥1201px, сохраняя характер. */
-@media (min-width: 1201px){
-	.pbmit-slider-one .pbmit-slider-title{ letter-spacing: -1px !important; }
+@media (min-width: 1201px) {
+  .pbmit-slider-one .pbmit-slider-title {
+    letter-spacing: -1px !important;
+  }
 }
 
 /* --- 10.3 Тап-таргеты футер-меню (WCAG 2.5.5 AA, ≥44px) ---
@@ -643,12 +860,12 @@ summary:focus-visible,
    закрыл. Добавляем вертикальный padding (block-раскладка на ≤575px уже включена
    разделом 8.4, конфликта нет). Десктоп-колонки не трогаем. padding 12px +
    line-height 1.5×17px (≈26px) → высота хит-зоны ≥48px (цель WCAG 2.5.5 ≥44). */
-@media (max-width: 575px){
-	.site-footer .widget .pbmit-two-column-menu ul.menu li a{
-		display: block;
-		padding: 12px 0;
-		line-height: 1.5;
-	}
+@media (max-width: 575px) {
+  .site-footer .widget .pbmit-two-column-menu ul.menu li a {
+    display: block;
+    padding: 12px 0;
+    line-height: 1.5;
+  }
 }
 
 /* --- 10.4 Чекбокс согласия в форме ---
@@ -657,13 +874,13 @@ summary:focus-visible,
    акцент в золото, не даём флекс-контейнеру .pfg-consent его сжать, добавляем
    отступ под текст. (Сам layout .pfg-consent — flex/gap — уже в разделе про
    форму, стр.43–50.) */
-.pfg-form .pfg-consent input[type="checkbox"]{
-	flex: 0 0 auto;
-	width: 18px;
-	height: 18px;
-	margin-top: 1px;
-	accent-color: var(--pfg-gold);
-	cursor: pointer;
+.pfg-form .pfg-consent input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: var(--pfg-gold);
+  cursor: pointer;
 }
 
 /* --- 10.5 Вертикальный ритм секций на мобильном ---
@@ -671,18 +888,22 @@ summary:focus-visible,
    desktop — верно, но на ≤768px 160px суммарной пустоты между блоками текста
    «разваливает» страницу. Сжимаем ритм по брейкпойнтам (mobile-first ощущение
    плотности), сохраняя «воздух» десктопа. */
-@media (max-width: 768px){
-	.pfg-section{ padding: 56px 0; }
+@media (max-width: 768px) {
+  .pfg-section {
+    padding: 56px 0;
+  }
 }
-@media (max-width: 480px){
-	.pfg-section{ padding: 44px 0; }
+@media (max-width: 480px) {
+  .pfg-section {
+    padding: 44px 0;
+  }
 }
 
 /* --- 10.6 Профилактика обрезки заголовков услуг --- */
 .pbmit-service-title,
-.pbmit-service-title a{
-	-webkit-line-clamp: 2;
-	line-clamp: 2;
+.pbmit-service-title a {
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 /* ==========================================================================
@@ -694,16 +915,20 @@ summary:focus-visible,
    ========================================================================== */
 
 /* 1. Убираем анимированный текст-дублёр логотипа из футера */
-.pbmit-tween-effect-wrap{ display: none; }
+.pbmit-tween-effect-wrap {
+  display: none;
+}
 
 /* 2. Логотип — презентационный, не семантический H1.
    На всех страницах title-bar содержит настоящий H1 (заголовок страницы).
    <h1 class="site-title"> скрыт; логотип виден через <a class="pfg-logo-link">.
    Поисковик получает единственный H1 = title-bar; логотип визуально идентичен. */
-.site-title{ display: none; }
-.site-branding .pfg-logo-link{
-	display: inline-block;
-	text-decoration: none;
+.site-title {
+  display: none;
+}
+.site-branding .pfg-logo-link {
+  display: inline-block;
+  text-decoration: none;
 }
 
 /* ==========================================================================
@@ -732,44 +957,44 @@ summary:focus-visible,
    responsive.css:145 @1200 даёт padding-top:100px — наш 80px вступает в force.
    Проверка DOM: 1440→80/80, 768→80/80, 390→80/80. */
 .section-xlt,
-.pbmit-bg-color-light.section-xlt{
-	padding-top: 80px !important;
-	padding-bottom: 80px !important;
+.pbmit-bg-color-light.section-xlt {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
 }
-@media (max-width: 768px){
-	.section-xlt,
-	.pbmit-bg-color-light.section-xlt{
-		padding-top: 56px !important;
-		padding-bottom: 56px !important;
-	}
+@media (max-width: 768px) {
+  .section-xlt,
+  .pbmit-bg-color-light.section-xlt {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+  }
 }
-@media (max-width: 480px){
-	.section-xlt,
-	.pbmit-bg-color-light.section-xlt{
-		padding-top: 44px !important;
-		padding-bottom: 44px !important;
-	}
+@media (max-width: 480px) {
+  .section-xlt,
+  .pbmit-bg-color-light.section-xlt {
+    padding-top: 44px !important;
+    padding-bottom: 44px !important;
+  }
 }
 
 /* --- 13.2 Главная: .why-choose-us-section-one (инфоблоки) ---
    Было: 130px top, 120px bottom. Эталон desktop: 80px. Перебиваем vendor.
    responsive.css:234 @1200 даёт padding:100px 0 100px — наш 80px вступает.
    Проверка DOM: 1440→80/80, 768→80/80, 390→80/80. */
-.why-choose-us-section-one{
-	padding-top: 80px !important;
-	padding-bottom: 80px !important;
+.why-choose-us-section-one {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
 }
-@media (max-width: 768px){
-	.why-choose-us-section-one{
-		padding-top: 56px !important;
-		padding-bottom: 56px !important;
-	}
+@media (max-width: 768px) {
+  .why-choose-us-section-one {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+  }
 }
-@media (max-width: 480px){
-	.why-choose-us-section-one{
-		padding-top: 44px !important;
-		padding-bottom: 44px !important;
-	}
+@media (max-width: 480px) {
+  .why-choose-us-section-one {
+    padding-top: 44px !important;
+    padding-bottom: 44px !important;
+  }
 }
 
 /* --- 13.3 Главная: .our-process-section-one (процесс) ---
@@ -777,41 +1002,41 @@ summary:focus-visible,
    responsive.css:310 @1200 даёт padding:100px 30px 140px 0 — наш 80px/80px
    вступает; margin-left:30px из vendor сохраняется (не padding).
    Проверка DOM: 1440→80/80, 768→80/80, 390→80/80. */
-.our-process-section-one{
-	padding-top: 80px !important;
-	padding-bottom: 80px !important;
+.our-process-section-one {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
 }
-@media (max-width: 768px){
-	.our-process-section-one{
-		padding-top: 56px !important;
-		padding-bottom: 56px !important;
-	}
+@media (max-width: 768px) {
+  .our-process-section-one {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+  }
 }
-@media (max-width: 480px){
-	.our-process-section-one{
-		padding-top: 44px !important;
-		padding-bottom: 44px !important;
-	}
+@media (max-width: 480px) {
+  .our-process-section-one {
+    padding-top: 44px !important;
+    padding-bottom: 44px !important;
+  }
 }
 
 /* --- 13.4 ihbox-section-one (контактный бар в шапке) ---
    Было: 37px top, 32px bottom. Делаем симметричными 34/34.
    Проверка DOM: 1440→34/34, 768→34/34, 390→34/34. */
-.ihbox-section-one{
-	padding-top: 34px !important;
-	padding-bottom: 34px !important;
+.ihbox-section-one {
+  padding-top: 34px !important;
+  padding-bottom: 34px !important;
 }
-@media (max-width: 768px){
-	.ihbox-section-one{
-		padding-top: 28px !important;
-		padding-bottom: 28px !important;
-	}
+@media (max-width: 768px) {
+  .ihbox-section-one {
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+  }
 }
-@media (max-width: 480px){
-	.ihbox-section-one{
-		padding-top: 22px !important;
-		padding-bottom: 22px !important;
-	}
+@media (max-width: 480px) {
+  .ihbox-section-one {
+    padding-top: 22px !important;
+    padding-bottom: 22px !important;
+  }
 }
 
 /* --- 13.5 about-section-one (если используется на index) ---
@@ -820,21 +1045,21 @@ summary:focus-visible,
    about-section-one перебивает внутренний padding-top. Проверка: на about.html
    этот класс не используется (там .pfg-section), значит это декоративный блок
    героя about на index.html. Держим эталонную систему. */
-.about-section-one{
-	padding-top: 80px !important;
-	padding-bottom: 80px !important;
+.about-section-one {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
 }
-@media (max-width: 768px){
-	.about-section-one{
-		padding-top: 56px !important;
-		padding-bottom: 56px !important;
-	}
+@media (max-width: 768px) {
+  .about-section-one {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+  }
 }
-@media (max-width: 480px){
-	.about-section-one{
-		padding-top: 44px !important;
-		padding-bottom: 44px !important;
-	}
+@media (max-width: 480px) {
+  .about-section-one {
+    padding-top: 44px !important;
+    padding-bottom: 44px !important;
+  }
 }
 
 /* --- 13.6 Секции с чёрным фоном (about, our-process, и т.д.) ---
@@ -842,23 +1067,23 @@ summary:focus-visible,
    Конкретно: на inner-страницах .pbmit-bg-color-secondary и чёрные секции
    используют vendor-стили. Наш эталон: 80/80. */
 .pbmit-bg-color-secondary,
-.pbmit-bg-color-blackish{
-	padding-top: 80px !important;
-	padding-bottom: 80px !important;
+.pbmit-bg-color-blackish {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
 }
-@media (max-width: 768px){
-	.pbmit-bg-color-secondary,
-	.pbmit-bg-color-blackish{
-		padding-top: 56px !important;
-		padding-bottom: 56px !important;
-	}
+@media (max-width: 768px) {
+  .pbmit-bg-color-secondary,
+  .pbmit-bg-color-blackish {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+  }
 }
-@media (max-width: 480px){
-	.pbmit-bg-color-secondary,
-	.pbmit-bg-color-blackish{
-		padding-top: 44px !important;
-		padding-bottom: 44px !important;
-	}
+@media (max-width: 480px) {
+  .pbmit-bg-color-secondary,
+  .pbmit-bg-color-blackish {
+    padding-top: 44px !important;
+    padding-bottom: 44px !important;
+  }
 }
 
 /* --- 13.7 CTA / контактные секции без .pfg-section ---
@@ -869,8 +1094,8 @@ summary:focus-visible,
 /* --- 13.8 Footer: обеспечить отсутствие горизонтального скролла ---
    Проверка DOM: footer body-scroll 0px на всех страницах. Но на широких экранах
    контейнер футера может вылезать. Добавляем overflow-x:hidden на footer. */
-.site-footer{
-	overflow-x: hidden;
+.site-footer {
+  overflow-x: hidden;
 }
 
 /* --- 13.9 Все контейнеры секций: единый max-width контента ---
@@ -878,16 +1103,16 @@ summary:focus-visible,
    Широкие контейнеры (container-fluid) на внутренних страницах могут давать
    слишком широкую сетку. Ограничиваем внутренние сетки по max-width. */
 .pfg-section .container,
-.pfg-section .container-fluid{
-	max-width: 100%;
+.pfg-section .container-fluid {
+  max-width: 100%;
 }
 /* Но внутри .container — контент уже ограничен. */
 
 /* --- 13.10 Карточки услуг на внутренних страницах: если есть ---
    Проверка DOM: services.html и taxes.html используют .pbmit-service-title
    внутри сетки. Если в сетке карточки не имеют .pfg-card — стилизуем. */
-.pbmit-service-box{
-	padding: 0 !important;
+.pbmit-service-box {
+  padding: 0 !important;
 }
 
 /* --- 12.1 Карточки услуг на главной: стилизация аналогично .pfg-card ---
@@ -901,29 +1126,36 @@ summary:focus-visible,
    стили §2), они НЕ пересекаются. Проверка: на главной .pfg-card отсутствует,
    на внутренних — .pbmit-minfotech-post-item отсутствует. */
 
-.pbmit-element-service-style-2 .pbminfotech-post-item{
-	border: 1px solid rgba(22, 34, 45, .10);
-	border-radius: 14px;
-	box-shadow: 0 2px 8px rgba(16,24,32,.05), 0 1px 2px rgba(16,24,32,.04);
-	transition: transform .4s cubic-bezier(.22,.61,.36,1),
-	            box-shadow .4s cubic-bezier(.22,.61,.36,1),
-	            border-color .4s cubic-bezier(.22,.61,.36,1);
+.pbmit-element-service-style-2 .pbminfotech-post-item {
+  border: 1px solid rgba(22, 34, 45, 0.1);
+  border-radius: 14px;
+  box-shadow:
+    0 2px 8px rgba(16, 24, 32, 0.05),
+    0 1px 2px rgba(16, 24, 32, 0.04);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+    border-color 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-.pbmit-element-service-style-2 .pbminfotech-post-item:hover{
-	transform: translateY(-4px);
-	box-shadow: var(--pfg-shadow-md, 0 14px 34px -14px rgba(16,24,32,.20), 0 4px 10px -6px rgba(16,24,32,.10));
-	border-color: rgba(236, 171, 35, .45);
+.pbmit-element-service-style-2 .pbminfotech-post-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(
+    --pfg-shadow-md,
+    0 14px 34px -14px rgba(16, 24, 32, 0.2),
+    0 4px 10px -6px rgba(16, 24, 32, 0.1)
+  );
+  border-color: rgba(236, 171, 35, 0.45);
 }
 
 /* Внутренний контент карточки — отступы от краёв */
-.pbmit-element-service-style-2 .pbmit-box-content-wrap{
-	/* C1 (AUD-02): padding snap 28→24px на 4px-сетку (--pfg-space-6) — единый ритм с .pfg-card. */
-	padding: var(--pfg-space-6);
+.pbmit-element-service-style-2 .pbmit-box-content-wrap {
+  /* C1 (AUD-02): padding snap 28→24px на 4px-сетку (--pfg-space-6) — единый ритм с .pfg-card. */
+  padding: var(--pfg-space-6);
 }
 
 /* Заголовок услуги — уплотняем line-height */
-.pbmit-element-service-style-2 .pbmit-service-title{
-	line-height: 1.3;
+.pbmit-element-service-style-2 .pbmit-service-title {
+  line-height: 1.3;
 }
 
 /* --- 12.2 Marquee: фон → чернила для читаемости ---
@@ -931,17 +1163,17 @@ summary:focus-visible,
    Решение: меняем фон на чернила (#16222d), текст остаётся белым.
    Это также создаёт визуальный контраст с золотыми кнопками. */
 .marquee-section,
-.pbmit-marquee-effect-style-1{
-	background-color: var(--pfg-ink, #16222d) !important;
+.pbmit-marquee-effect-style-1 {
+  background-color: var(--pfg-ink, #16222d) !important;
 }
 /* Текст marquee — белый на тёмном фоне (читаемость 14:1+) */
 .pbmit-marquee-effect-style-1 .pbmit-tag-wrapper h2,
-.pbmit-marquee-effect-style-1 h2.pbmit-element-title{
-	color: #fff !important;
+.pbmit-marquee-effect-style-1 h2.pbmit-element-title {
+  color: #fff !important;
 }
 /* SVG-иконки marquee (если есть) — золотые на тёмном */
-.pbmit-marquee-effect-style-1 .pbmit-tag-wrapper h2::before{
-	background: var(--pfg-gold, #ecab23);
+.pbmit-marquee-effect-style-1 .pbmit-tag-wrapper h2::before {
+  background: var(--pfg-gold, #ecab23);
 }
 
 /* --- 12.3 Eyebrow: убрать uppercase ---
@@ -950,8 +1182,8 @@ summary:focus-visible,
    Леджерный стиль (золотой штрих ::before) уже есть — uppercase противоречит ему.
    Исключение: только .pbmit-heading-subheading .pbmit-subtitle; другие .pbmit-subtitle
    (в title-bar и т.д.) остаются штатными. */
-.pbmit-heading-subheading .pbmit-subtitle{
-	text-transform: none;
+.pbmit-heading-subheading .pbmit-subtitle {
+  text-transform: none;
 }
 
 /* --- 12.4 Кнопки: border-radius 5px → 8px ---
@@ -960,36 +1192,36 @@ summary:focus-visible,
    отдельно. 8px — баланс между скруглённостью и деловитостью. */
 .pbmit-btn,
 .pbmit-btn:hover,
-.pbmit-btn:focus{
-	border-radius: 8px;
+.pbmit-btn:focus {
+  border-radius: 8px;
 }
-.pbmit-btn.white{
-	border-radius: 8px;
+.pbmit-btn.white {
+  border-radius: 8px;
 }
 .pbmit-service-btn a,
 .pbmit-service-btn a:hover,
-.pbmit-service-btn a:focus{
-	border-radius: 8px;
+.pbmit-service-btn a:focus {
+  border-radius: 8px;
 }
 .pbmit-price-btn a,
 .pbmit-price-btn a:hover,
-.pbmit-price-btn a:focus{
-	border-radius: 8px;
+.pbmit-price-btn a:focus {
+  border-radius: 8px;
 }
 
 /* --- 12.5 Logo: font-weight 700 вместо 800 ---
    800 (Extra Bold) при 26px даёт «кричащее» впечатление вместо «уверенный».
    700 сохраняет акцентность на тёмном фоне шапки, но мягче для глаз. */
-.pfg-logo{
-	font-weight: 700;
+.pfg-logo {
+  font-weight: 700;
 }
 
 /* --- 12.6 Footer SVG-circle: удалить ---
    Декоративный SVG-круг «Контакты» (.pbmit-circle-box) — элемент темы,
    несёт только декоративную функцию; визуальный шум на и без того
    перегруженном футере. Скрываем; CTA-ссылка остаётся функциональной. */
-.pbmit-circle-box{
-	display: none;
+.pbmit-circle-box {
+  display: none;
 }
 
 /* --- 12.7 Title-bar mobile: убрать фон, уменьшить title/breadcrumb ---
@@ -997,22 +1229,22 @@ summary:focus-visible,
    (background-image: url(...)) растягивает контейнер.
    Решение: убираем background-image на mobile, оставляем gradient overlay.
    Плюс уменьшаем font-size заголовка (50px при 390px viewport — слишком крупно). */
-@media (max-width: 575px){
-	.pbmit-title-bar-wrapper{
-		background-image: none !important;
-		min-height: auto;
-	}
-	.pbmit-title-bar-wrapper .pbmit-title-bar-content{
-		min-height: 200px !important;
-		padding-top: 60px !important;
-		padding-bottom: 30px !important;
-	}
-	.pbmit-title-bar-wrapper .pbmit-tbar-title{
-		font-size: 32px !important;
-	}
-	.pbmit-title-bar-wrapper .pbmit-breadcrumb{
-		font-size: 13px !important;
-	}
+@media (max-width: 575px) {
+  .pbmit-title-bar-wrapper {
+    background-image: none !important;
+    min-height: auto;
+  }
+  .pbmit-title-bar-wrapper .pbmit-title-bar-content {
+    min-height: 200px !important;
+    padding-top: 60px !important;
+    padding-bottom: 30px !important;
+  }
+  .pbmit-title-bar-wrapper .pbmit-tbar-title {
+    font-size: 32px !important;
+  }
+  .pbmit-title-bar-wrapper .pbmit-breadcrumb {
+    font-size: 13px !important;
+  }
 }
 
 /* --- 13.11 Visually-hidden H1 для главной страницы (WCAG 2.4.6) ---
@@ -1020,16 +1252,16 @@ summary:focus-visible,
    не семантический контент. Добавляем visually-hidden <h1> для screen readers
    и SEO: главная страница индексируется по H1.
    Класс .pfg-sr-only: доступен screen readers, скрыт визуально. */
-.pfg-sr-only{
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0,0,0,0);
-	white-space: nowrap;
-	border: 0;
+.pfg-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ==========================================================================
@@ -1056,18 +1288,20 @@ summary:focus-visible,
    глушит клики; для <a> класс .disabled — чисто визуальный. */
 .pbmit-btn:disabled,
 .pbmit-btn[disabled],
-.pbmit-btn.disabled{
-	opacity: .55;
-	cursor: not-allowed;
-	box-shadow: none;
-	transform: none;
+.pbmit-btn.disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
 .pbmit-btn:disabled:hover,
 .pbmit-btn[disabled]:hover,
-.pbmit-btn.disabled:hover{
-	background-color: var(--pfg-gold);   /* откатываем hover-углубление золота к покою */
-	box-shadow: none;
-	transform: none;                     /* подавляем подъём translateY(-2px) из 9.5 */
+.pbmit-btn.disabled:hover {
+  background-color: var(
+    --pfg-gold
+  ); /* откатываем hover-углубление золота к покою */
+  box-shadow: none;
+  transform: none; /* подавляем подъём translateY(-2px) из 9.5 */
 }
 
 /* --- 14.2 Кнопки: явный ghost-tier (CMP-01) ---
@@ -1082,29 +1316,38 @@ summary:focus-visible,
    text-transform:none сохраняется (кириллица, конвенция стр.215-258). Ghost не
    вводится в разметку этим планом — регистрируем доступный tier для Фазы 4.
    Селектор 0,2,0 (.pbmit-btn.pfg-ghost) перебивает базовый .pbmit-btn без форсирования каскада. */
-.pbmit-btn.pfg-ghost{
-	background-color: transparent;
-	color: var(--pfg-gold-ink);
-	box-shadow: none;
-	border: 1px solid var(--pfg-hairline-2);
+.pbmit-btn.pfg-ghost {
+  background-color: transparent;
+  color: var(--pfg-gold-ink);
+  box-shadow: none;
+  border: 1px solid var(--pfg-hairline-2);
 }
-.pbmit-btn.pfg-ghost .pbmit-button-text span{ color: inherit; }
+.pbmit-btn.pfg-ghost .pbmit-button-text span {
+  color: inherit;
+}
 .pbmit-btn.pfg-ghost:hover,
-.pbmit-btn.pfg-ghost:focus{
-	background-color: rgba(236, 171, 35, .12);   /* мягкая золотая подложка, не заливка */
-	color: var(--pfg-gold-deep);
-	border-color: var(--pfg-gold);
-	box-shadow: none;
-	transform: translateY(-2px);                 /* тот же тактильный подъём, что у primary */
+.pbmit-btn.pfg-ghost:focus {
+  background-color: rgba(
+    236,
+    171,
+    35,
+    0.12
+  ); /* мягкая золотая подложка, не заливка */
+  color: var(--pfg-gold-deep);
+  border-color: var(--pfg-gold);
+  box-shadow: none;
+  transform: translateY(-2px); /* тот же тактильный подъём, что у primary */
 }
-.pbmit-btn.pfg-ghost:active{ transform: translateY(0); }
+.pbmit-btn.pfg-ghost:active {
+  transform: translateY(0);
+}
 /* Ghost при :disabled — наследует 14.1 (opacity/not-allowed), плюс гасим подъём. */
 .pbmit-btn.pfg-ghost:disabled,
 .pbmit-btn.pfg-ghost[disabled],
-.pbmit-btn.pfg-ghost.disabled{
-	background-color: transparent;
-	box-shadow: none;
-	transform: none;
+.pbmit-btn.pfg-ghost.disabled {
+  background-color: transparent;
+  box-shadow: none;
+  transform: none;
 }
 
 /* --- 14.3 Статус формы: НЕ-цветовая аффорданс (CMP-02, WCAG 1.4.1) ---
@@ -1120,23 +1363,27 @@ summary:focus-visible,
    поведение форма→WhatsApp байт-идентично (VER-04). Глиф показываем только когда
    класс состояния присутствует (пустой rest-статус остаётся чистым). */
 .pfg-form .pfg-form-status.is-error,
-.pfg-form .pfg-form-status.is-ok{
-	display: flex;
-	align-items: flex-start;
-	gap: 8px;
-	padding: 8px 12px;
-	font-weight: 600;
-	border-left: 3px solid currentColor;
-	border-radius: var(--pfg-radius-sm);
+.pfg-form .pfg-form-status.is-ok {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  font-weight: 600;
+  border-left: 3px solid currentColor;
+  border-radius: var(--pfg-radius-sm);
 }
 .pfg-form .pfg-form-status.is-error::before,
-.pfg-form .pfg-form-status.is-ok::before{
-	flex: 0 0 auto;
-	font-weight: 700;
-	line-height: inherit;
+.pfg-form .pfg-form-status.is-ok::before {
+  flex: 0 0 auto;
+  font-weight: 700;
+  line-height: inherit;
 }
-.pfg-form .pfg-form-status.is-error::before{ content: "\26A0";  /* ⚠ предупреждение */ }
-.pfg-form .pfg-form-status.is-ok::before{    content: "\2713";  /* ✓ галочка */ }
+.pfg-form .pfg-form-status.is-error::before {
+  content: "\26A0"; /* ⚠ предупреждение */
+}
+.pfg-form .pfg-form-status.is-ok::before {
+  content: "\2713"; /* ✓ галочка */
+}
 
 /* --- 14.5 Карточки: диагностика C2 height-jitter + гарантия выравнивания (CMP-03) ---
    ДИАГНОСТИКА ПЕРЕД ФИКСОМ (Playwright getBoundingClientRect @1024/768/1440, реальный
@@ -1154,7 +1401,9 @@ summary:focus-visible,
    Добавляем лишь ЯВНЫЙ align-items:stretch на .pfg-grid как defensive-документацию
    инварианта (на случай если вендор/будущая правка переопределит computed-значение
    'normal' на нестягивающее). Селектор 0,1,0 = собственный .pfg-grid, без форсирования каскада. */
-.pfg-grid{ align-items: stretch; }
+.pfg-grid {
+  align-items: stretch;
+}
 
 /* --- 14.6 VIS-01: единый визуальный язык — enforcement ---
    Проверка консистентности (grep по 11 HTML, 2026-06-26), НЕ новые токены/правила:
@@ -1193,56 +1442,63 @@ summary:focus-visible,
    theme-handler scripts.js:309 биндится на «.accordion .accordion-item» — наш класс
    его не матчит, интерференции нет. <details> даёт клавиатуру/[open]/AT-семантику без JS.
    Стилизуем токенами Фазы 2; специфичность 0,2,0 + source-order бьёт vendor без important-флага. */
-.pfg-faq{
-	border-top: 1px solid var(--pfg-hairline);
+.pfg-faq {
+  border-top: 1px solid var(--pfg-hairline);
 }
-.pfg-faq-item{
-	border-bottom: 1px solid var(--pfg-hairline);
+.pfg-faq-item {
+  border-bottom: 1px solid var(--pfg-hairline);
 }
 /* summary: >=16px (--pfg-fs-body 16→18) против iOS focus-zoom (Pitfall 4, как F1 у инпутов).
    list-style:none + скрытый webkit-маркер — рисуем свой золотой chevron через ::after. */
-.pfg-faq-item summary{
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: var(--pfg-space-4);
-	padding: var(--pfg-space-4) 0;
-	font-family: var(--pbmit-heading-typography-font-family, inherit);
-	font-size: var(--pfg-fs-body);
-	font-weight: 600;
-	line-height: var(--pfg-lh-tight);
-	color: var(--pfg-ink);
-	list-style: none;
-	text-transform: none; /* кириллица: не даём теме капитализировать вопрос */
-	transition: color var(--pfg-tf-fast);
+.pfg-faq-item summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pfg-space-4);
+  padding: var(--pfg-space-4) 0;
+  font-family: var(--pbmit-heading-typography-font-family, inherit);
+  font-size: var(--pfg-fs-body);
+  font-weight: 600;
+  line-height: var(--pfg-lh-tight);
+  color: var(--pfg-ink);
+  list-style: none;
+  text-transform: none; /* кириллица: не даём теме капитализировать вопрос */
+  transition: color var(--pfg-tf-fast);
 }
-.pfg-faq-item summary::-webkit-details-marker{ display: none; }
-.pfg-faq-item summary::marker{ content: ""; } /* Firefox/standard маркер тоже убираем */
+.pfg-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.pfg-faq-item summary::marker {
+  content: "";
+} /* Firefox/standard маркер тоже убираем */
 /* Свой chevron: золотой «˅», поворот на 180° при раскрытии. */
-.pfg-faq-item summary::after{
-	content: "";
-	flex: 0 0 auto;
-	width: 10px;
-	height: 10px;
-	margin-left: auto;
-	border-right: 2px solid var(--pfg-gold);
-	border-bottom: 2px solid var(--pfg-gold);
-	transform: rotate(45deg);
-	transform-origin: center;
-	transition: transform var(--pfg-tf-fast);
+.pfg-faq-item summary::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  margin-left: auto;
+  border-right: 2px solid var(--pfg-gold);
+  border-bottom: 2px solid var(--pfg-gold);
+  transform: rotate(45deg);
+  transform-origin: center;
+  transition: transform var(--pfg-tf-fast);
 }
-.pfg-faq-item[open] > summary::after{
-	transform: rotate(-135deg); /* стрелка вверх — раскрыто */
+.pfg-faq-item[open] > summary::after {
+  transform: rotate(-135deg); /* стрелка вверх — раскрыто */
 }
-.pfg-faq-item summary:hover{
-	color: var(--pfg-gold-ink); /* мягкий hover (золото-текст на светлом, AA) */
+.pfg-faq-item summary:hover {
+  color: var(--pfg-gold-ink); /* мягкий hover (золото-текст на светлом, AA) */
 }
-.pfg-faq-panel{
-	padding: 0 0 var(--pfg-space-4);
-	color: var(--pbmit-body-typography-color, inherit);
+.pfg-faq-panel {
+  padding: 0 0 var(--pfg-space-4);
+  color: var(--pbmit-body-typography-color, inherit);
 }
-.pfg-faq-panel p{ margin: 0; line-height: var(--pfg-lh-body); }
+.pfg-faq-panel p {
+  margin: 0;
+  line-height: var(--pfg-lh-body);
+}
 
 /* --- 14.8 FT1 (AUD-02 P1): тап-зона футер-ссылок ОБЕИХ колонок >=44px ---
    DOM-измерено @390/360 (Playwright, 2026-06-26) ПЕРЕД фиксом:
@@ -1253,10 +1509,10 @@ summary:focus-visible,
    групп: .site-footer .widget ul.menu li a. line-height ~26px + 9+9px padding ≈ 44px.
    Специфичность 0,4,1 ≥ vendor + source-order → без important-флага. CSS-only (разметка футера
    идентична на 11 страницах, но НЕ трогается) → change-all-11 НЕ триггерится. */
-.site-footer .widget ul.menu li a{
-	display: inline-block;
-	padding-top: 9px;
-	padding-bottom: 9px;
+.site-footer .widget ul.menu li a {
+  display: inline-block;
+  padding-top: 9px;
+  padding-bottom: 9px;
 }
 
 /* --- 14.9 F2 (AUD-02 P1): хит-зона лейбла согласия >=44px ---
@@ -1264,9 +1520,9 @@ summary:focus-visible,
    но на 390 одна строка = 36px < 44). .pfg-consent — flex-обёртка label (стр.43-50).
    Поднимаем хит-зону вертикальным padding + min-height; align-items уже flex-start.
    CSS-only, без important-флага. */
-.pfg-form .pfg-consent{
-	min-height: 44px;
-	padding: 4px 0;
+.pfg-form .pfg-consent {
+  min-height: 44px;
+  padding: 4px 0;
 }
 
 /* --- 14.10 CMP-06 модалки — честный DESCOPE (не код, а фиксация решения) ---
@@ -1288,51 +1544,53 @@ summary:focus-visible,
 
 /* Карта-тариф — flex-колонка, чтобы CTA прижался к низу (margin-top:auto) и нижний
    край кнопок выровнялся в ряду независимо от длины списка услуг. */
-.pfg-pricing-tier{
-	display: flex;
-	flex-direction: column;
-	gap: var(--pfg-space-4);
+.pfg-pricing-tier {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pfg-space-4);
 }
-.pfg-pricing-tier .pbmit-btn{ margin-top: auto; }
+.pfg-pricing-tier .pbmit-btn {
+  margin-top: auto;
+}
 
 /* Список услуг внутри тарифа: ровный вертикальный ритм на 4px-сетке. */
-.pfg-pricing-tier ul{
-	margin: 0;
-	padding-left: var(--pfg-space-6);
-	display: flex;
-	flex-direction: column;
-	gap: var(--pfg-space-2);
+.pfg-pricing-tier ul {
+  margin: 0;
+  padding-left: var(--pfg-space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--pfg-space-2);
 }
 
 /* Ценовая строка — крупный акцент чернилами, без золотой заливки. */
-.pfg-pricing-price{
-	font-size: var(--pfg-fs-h4);
-	font-weight: 600;
-	line-height: var(--pfg-lh-tight);
-	color: var(--pfg-ink);
-	margin: 0;
+.pfg-pricing-price {
+  font-size: var(--pfg-fs-h4);
+  font-weight: 600;
+  line-height: var(--pfg-lh-tight);
+  color: var(--pfg-ink);
+  margin: 0;
 }
 
 /* Единственный популярный тариф: золото живёт в РАМКЕ и бейдже, НЕ в заливке карты —
    тело остаётся AA-читаемым (санкционировано reserved-for списком мастера: ровно один
    highlight). Усиленная тень приподнимает карту в визуальной иерархии. */
-.pfg-pricing-tier--popular{
-	border-color: var(--pfg-gold);
-	box-shadow: var(--pfg-shadow-md);
+.pfg-pricing-tier--popular {
+  border-color: var(--pfg-gold);
+  box-shadow: var(--pfg-shadow-md);
 }
 
 /* Бейдж «Популярный»: золотая плашка, текст #1b1b1b (AA на золоте, как кнопки).
    text-transform:none — тема иначе капитализирует русские слова (см. конвенцию). */
-.pfg-pricing-badge{
-	align-self: flex-start;
-	background: var(--pfg-gold);
-	color: #1b1b1b;
-	font-size: var(--pfg-fs-label);
-	font-weight: 600;
-	line-height: 1;
-	padding: var(--pfg-space-2) var(--pfg-space-3);
-	border-radius: var(--pfg-radius-sm);
-	text-transform: none;
+.pfg-pricing-badge {
+  align-self: flex-start;
+  background: var(--pfg-gold);
+  color: #1b1b1b;
+  font-size: var(--pfg-fs-label);
+  font-weight: 600;
+  line-height: 1;
+  padding: var(--pfg-space-2) var(--pfg-space-3);
+  border-radius: var(--pfg-radius-sm);
+  text-transform: none;
 }
 
 /* ==========================================================================
@@ -1348,28 +1606,28 @@ summary:focus-visible,
    На stacked-footer <=575px уменьшаем вертикальные интервалы между виджетами и
    служебными блоками токенами Фазы 2, но НЕ режем hit-zone ссылок ниже FT1/F2 44px
    (padding ссылок из 14.8 остаётся). Верхняя золотая линия 3px сохраняется. */
-@media (max-width: 575px){
-	.site-footer .widget{
-		margin-bottom: var(--pfg-space-4);
-	}
-	.site-footer .pbmit-footer-widget-area{
-		padding-top: var(--pfg-space-8);
-		padding-bottom: var(--pfg-space-6);
-	}
-	.site-footer .pbmit-footer-widget-col-1 .widget,
-	.site-footer .pbmit-footer-widget-col-2 .widget,
-	.site-footer .pbmit-footer-widget-col-3 .widget,
-	.site-footer .pbmit-footer-widget-col-4 .widget{
-		padding-bottom: 0;
-	}
-	.site-footer .pbmit-footer-text-area{
-		padding-top: var(--pfg-space-4);
-		padding-bottom: var(--pfg-space-4);
-	}
-	.site-footer .pbmit-footer-big-area{
-		padding-top: var(--pfg-space-6);
-		padding-bottom: var(--pfg-space-4);
-	}
+@media (max-width: 575px) {
+  .site-footer .widget {
+    margin-bottom: var(--pfg-space-4);
+  }
+  .site-footer .pbmit-footer-widget-area {
+    padding-top: var(--pfg-space-8);
+    padding-bottom: var(--pfg-space-6);
+  }
+  .site-footer .pbmit-footer-widget-col-1 .widget,
+  .site-footer .pbmit-footer-widget-col-2 .widget,
+  .site-footer .pbmit-footer-widget-col-3 .widget,
+  .site-footer .pbmit-footer-widget-col-4 .widget {
+    padding-bottom: 0;
+  }
+  .site-footer .pbmit-footer-text-area {
+    padding-top: var(--pfg-space-4);
+    padding-bottom: var(--pfg-space-4);
+  }
+  .site-footer .pbmit-footer-big-area {
+    padding-top: var(--pfg-space-6);
+    padding-bottom: var(--pfg-space-4);
+  }
 }
 
 /* --- 16.2 IMG-01: photo wrappers keep proportion, logos/icons untouched ---
@@ -1377,28 +1635,28 @@ summary:focus-visible,
    не bare img, чтобы не исказить логотипы/иконки. object-fit:cover допускает
    отличие box-ratio от natural-ratio, но сохраняет пропорции содержимого. */
 .pbmit-featured-wrapper img,
-.pbmit-ihbox-img img{
-	width: 100%;
-	height: 100%;
-	display: block;
-	object-fit: cover;
+.pbmit-ihbox-img img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 /* --- 16.3 T1: tablet title-bar tier 768→576 ---
    Вендор shortcode.css:4934 задаёт .pbmit-title-bar-wrapper/.pbmit-title-bar-content
    min-height:550px. Для планшета это непропорционально высокий band. Вставляем
    промежуточный тир ниже 768px и выше mobile-collapse <=575px. */
-@media (max-width: 768px) and (min-width: 576px){
-	/* shortcode.css:4934 иначе выигрывает source-order по min-height; здесь нужен
+@media (max-width: 768px) and (min-width: 576px) {
+  /* shortcode.css:4934 иначе выигрывает source-order по min-height; здесь нужен
 	   один санкционированный форсаж каскада для tablet-tier. */
-	.pbmit-title-bar-wrapper,
-	.pbmit-title-bar-content{
-		min-height: 360px !important;
-	}
-	.pbmit-title-bar-wrapper .pbmit-title-bar-content{
-		padding-top: var(--pfg-space-9);
-		padding-bottom: var(--pfg-space-6);
-	}
+  .pbmit-title-bar-wrapper,
+  .pbmit-title-bar-content {
+    min-height: 360px !important;
+  }
+  .pbmit-title-bar-wrapper .pbmit-title-bar-content {
+    padding-top: var(--pfg-space-9);
+    padding-bottom: var(--pfg-space-6);
+  }
 }
 
 /* --- 16.4 CNV-01: один CTA на hero-слайд ---
@@ -1406,8 +1664,8 @@ summary:focus-visible,
    живут навигационные .slider-arrow/.swiper-button-next/.swiper-button-prev, поэтому
    scope на .pbmit-btn обязателен: не ломаем Swiper navigation и одновременно сохраняем
    ровно один конверсионный primary CTA на слайд. */
-.pbmit-slider-one .swiper-slide .pbmit-btn{
-	display: inline-flex;
+.pbmit-slider-one .swiper-slide .pbmit-btn {
+  display: inline-flex;
 }
 
 /* ==========================================================================
@@ -1426,46 +1684,64 @@ summary:focus-visible,
    только логотип и гамбургер. Возвращаем целевое действие на первый экран двумя
    кнопками 44×44 (WCAG 2.5.5) перед гамбургером. На десктопе ≥1201px контакт темы
    уже есть → блок скрыт. */
-.pfg-header-contact{ display: none; }
+.pfg-header-contact {
+  display: none;
+}
 /* Tier-split (DOM-замер 2026-06-28): на ≤576px длинный логотип «PrimeFinance Group»
    кончается у самого гамбургера — двум иконкам места НЕТ (перекрывали логотип),
    там контакт несёт нижняя sticky-полоса (§17.2). На 577–1200px места достаточно
    (логотип кончается ~279px, гамбургер у правого края), а телефон/CTA темы в этом
    диапазоне скрыты — иконки шапки заполняют пробел. На ≥1201px — полный хедер темы. */
-@media (min-width: 577px) and (max-width: 1200px){
-	/* Гамбургер темы — position:absolute; right:0 относительно .pbmit-header-content
+@media (min-width: 577px) and (max-width: 1200px) {
+  /* Гамбургер темы — position:absolute; right:0 относительно .pbmit-header-content
 	   (его offsetParent, position:relative; правый край = край вьюпорта). А .pbmit-right-area
 	   шире вьюпорта (несёт off-canvas menuarea), поэтому контакт в НОРМАЛЬНОМ потоке
 	   уносится за правый край. Пиним блок абсолютно к тому же containing-block, левее
 	   гамбургера (его ширина ~45px → right:56px даёт зазор). transform применяется к
 	   ЛИСТУ .pfg-header-contact (НЕ предок off-canvas меню) — правило «без filter/transform
 	   на предках меню» не нарушается; header-content уже relative, fixed-меню не трогаем. */
-	.pfg-header-contact{
-		display: inline-flex;
-		align-items: center;
-		gap: var(--pfg-space-2);
-		position: absolute;
-		top: 50%;
-		right: 56px;
-		transform: translateY(-50%);
-		z-index: 3;
-	}
+  .pfg-header-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--pfg-space-2);
+    position: absolute;
+    top: 50%;
+    right: 56px;
+    transform: translateY(-50%);
+    z-index: 3;
+  }
 }
-.pfg-hc-btn{
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 44px;
-	height: 44px;
-	border-radius: var(--pfg-radius-sm);
-	transition: background-color var(--pfg-tf-fast), transform var(--pfg-tf-fast);
+.pfg-hc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--pfg-radius-sm);
+  transition:
+    background-color var(--pfg-tf-fast),
+    transform var(--pfg-tf-fast);
 }
-.pfg-hc-btn svg{ width: 20px; height: 20px; display: block; }
-.pfg-hc-call{ background: rgba(236, 171, 35, .16); }
-.pfg-hc-call svg{ fill: var(--pfg-gold-deep); }
-.pfg-hc-wa{ background: #25D366; }
-.pfg-hc-wa svg{ fill: #fff; }
-.pfg-hc-btn:active{ transform: scale(.94); }
+.pfg-hc-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.pfg-hc-call {
+  background: rgba(236, 171, 35, 0.16);
+}
+.pfg-hc-call svg {
+  fill: var(--pfg-gold-deep);
+}
+.pfg-hc-wa {
+  background: #25d366;
+}
+.pfg-hc-wa svg {
+  fill: #fff;
+}
+.pfg-hc-btn:active {
+  transform: scale(0.94);
+}
 
 /* --- 17.1b Кнопка меню (.nav-menu-toggle) — третий элемент ряда контакт-кнопок ---
    Вендор (responsive.css:796-809 @≤1200, :2151-2160 @≤767) рисует гамбургер как
@@ -1478,30 +1754,34 @@ summary:focus-visible,
    меню, гамбургер не показывается. .nav-menu-toggle — лист (не предок off-canvas
    меню), поэтому background/radius безопасны (правило «без filter/transform на предках
    меню» не нарушается). */
-@media (max-width: 1200px){
-	.site-header .nav-menu-toggle{
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 44px;
-		height: 44px;
-		line-height: 1;
-		border-radius: var(--pfg-radius-sm);
-		background: rgba(236, 171, 35, .16);   /* = .pfg-hc-call */
-		transition: background-color var(--pfg-tf-fast), transform var(--pfg-tf-fast);
-	}
-	.site-header .nav-menu-toggle svg,
-	.site-header .nav-menu-toggle svg g{
-		width: 20px;
-		height: 20px;
-		/* !important: единым правилом перебиваем и обычный svg, и sticky-клон
+@media (max-width: 1200px) {
+  .site-header .nav-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    line-height: 1;
+    border-radius: var(--pfg-radius-sm);
+    background: rgba(236, 171, 35, 0.16); /* = .pfg-hc-call */
+    transition:
+      background-color var(--pfg-tf-fast),
+      transform var(--pfg-tf-fast);
+  }
+  .site-header .nav-menu-toggle svg,
+  .site-header .nav-menu-toggle svg g {
+    width: 20px;
+    height: 20px;
+    /* !important: единым правилом перебиваем и обычный svg, и sticky-клон
 		   (.pbmit-header-style-1 .pbmit-sticky-header .nav-menu-toggle svg, responsive.css:822-824,
 		   спец. 0,3,1) — иначе у иконки клона остаётся тёмная заливка темы. */
-		fill: var(--pfg-gold-deep) !important;
-	}
-	/* :active масштаб как у .pfg-hc-btn, но СОХРАНЯЕМ вендорный translateY(-50%)
+    fill: var(--pfg-gold-deep) !important;
+  }
+  /* :active масштаб как у .pfg-hc-btn, но СОХРАНЯЕМ вендорный translateY(-50%)
 	   (кнопка position:absolute), иначе она прыгнет вниз при нажатии. */
-	.site-header .nav-menu-toggle:active{ transform: translate(0, -50%) scale(.94); }
+  .site-header .nav-menu-toggle:active {
+    transform: translate(0, -50%) scale(0.94);
+  }
 }
 
 /* --- 17.2 Sticky мобильная CTA-полоса ---
@@ -1511,60 +1791,91 @@ summary:focus-visible,
    ОСОЗНАННО ВВОДИТ sticky-CTA, ранее зафиксированную как отсутствующую (CNV-03,
    custom.css:42-50). Это supersede того разрешения-по-отсутствию: под рекламный
    трафик персистентный CTA важнее (docs/REDESIGN-BRIEF.md, Волна 1). */
-.pfg-sticky-cta{ display: none; }
-@media (max-width: 576px){
-	/* Всегда видима на телефонах: в шапке ≤576 контакта нет (нет места у логотипа),
+.pfg-sticky-cta {
+  display: none;
+}
+@media (max-width: 576px) {
+  /* Всегда видима на телефонах: в шапке ≤576 контакта нет (нет места у логотипа),
 	   поэтому полоса — основной мобильный CTA, с первого экрана. */
-	.pfg-sticky-cta{
-		display: flex;
-		position: fixed;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: var(--pfg-z-float);
-		gap: 1px;
-		padding-bottom: env(safe-area-inset-bottom, 0px);
-		background: var(--pfg-hairline-2);   /* тонкий зазор-разделитель между кнопками */
-		box-shadow: 0 -6px 20px -8px rgba(8, 14, 20, .35);
-	}
-	/* При открытом off-canvas-меню полоса не должна перекрывать панель меню. */
-	body.pfg-menu-open .pfg-sticky-cta{ display: none; }
+  .pfg-sticky-cta {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--pfg-z-float);
+    gap: 1px;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: var(
+      --pfg-hairline-2
+    ); /* тонкий зазор-разделитель между кнопками */
+    box-shadow: 0 -6px 20px -8px rgba(8, 14, 20, 0.35);
+  }
+  /* При открытом off-canvas-меню полоса не должна перекрывать панель меню. */
+  body.pfg-menu-open .pfg-sticky-cta {
+    display: none;
+  }
 
-	/* backtotop поднимаем над полосой (≈56px высота + safe-area). */
-	.pbmit-backtotop.active{ bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important; }
-	.pbmit-backtotop:hover{ bottom: calc(77px + env(safe-area-inset-bottom, 0px)) !important; }
+  /* backtotop поднимаем над полосой (≈56px высота + safe-area). */
+  .pbmit-backtotop.active {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .pbmit-backtotop:hover {
+    bottom: calc(77px + env(safe-area-inset-bottom, 0px)) !important;
+  }
 
-	/* Анти-перекрытие: нижний край копирайта не прячем под полосой. */
-	.site-footer .pbmit-copyright-area{
-		padding-bottom: calc(var(--pfg-space-8) + 56px + env(safe-area-inset-bottom, 0px));
-	}
+  /* Анти-перекрытие: нижний край копирайта не прячем под полосой. */
+  .site-footer .pbmit-copyright-area {
+    padding-bottom: calc(
+      var(--pfg-space-8) + 56px + env(safe-area-inset-bottom, 0px)
+    );
+  }
 }
 /* float дублирует контакт на ≤1200 (полоса ≤576 / иконки шапки 577–1200) → прячем,
    оставляя ровно один контакт-механизм на tier. На ≥1201 float остаётся. */
-@media (max-width: 1200px){
-	.pfg-whatsapp-float{ display: none; }
+@media (max-width: 1200px) {
+  .pfg-whatsapp-float {
+    display: none;
+  }
 }
-.pfg-sticky-btn{
-	display: inline-flex;
-	flex: 1 1 0;
-	align-items: center;
-	justify-content: center;
-	gap: var(--pfg-space-2);
-	min-height: 56px;
-	padding: var(--pfg-space-3) var(--pfg-space-2);
-	font-family: var(--pbmit-heading-typography-font-family, inherit);
-	font-size: 14px;
-	font-weight: 600;
-	line-height: 1.1;
-	text-transform: none;   /* кириллица/номер — без капитализации темы */
-	white-space: nowrap;
+.pfg-sticky-btn {
+  display: inline-flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pfg-space-2);
+  min-height: 56px;
+  padding: var(--pfg-space-3) var(--pfg-space-2);
+  font-family: var(--pbmit-heading-typography-font-family, inherit);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.1;
+  text-transform: none; /* кириллица/номер — без капитализации темы */
+  white-space: nowrap;
 }
-.pfg-sticky-btn svg{ width: 18px; height: 18px; flex: 0 0 auto; display: block; }
-.pfg-sticky-call{ background: var(--pfg-ink); color: #fff; }
-.pfg-sticky-call svg{ fill: var(--pfg-gold); }
-.pfg-sticky-wa{ background: #25D366; color: #fff; }
-.pfg-sticky-wa svg{ fill: #fff; }
-.pfg-sticky-btn:active{ filter: brightness(.94); }
+.pfg-sticky-btn svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  display: block;
+}
+.pfg-sticky-call {
+  background: var(--pfg-ink);
+  color: #fff;
+}
+.pfg-sticky-call svg {
+  fill: var(--pfg-gold);
+}
+.pfg-sticky-wa {
+  background: #25d366;
+  color: #fff;
+}
+.pfg-sticky-wa svg {
+  fill: #fff;
+}
+.pfg-sticky-btn:active {
+  filter: brightness(0.94);
+}
 
 /* ==========================================================================
    ЭТАП 18 — ВОЛНА 2: HERO (docs/REDESIGN-BRIEF.md, 2026-06-28).
@@ -1580,19 +1891,19 @@ summary:focus-visible,
    (display:none). Возвращаем оффер в ПОТОК под заголовок/кнопку, слева, читаемо,
    на всех ширинах. Без !important: специфичность .pbmit-slider-one .* (0,2,0) +
    source-order (custom.css после responsive.css) бьёт vendor 0,1,0. */
-.pbmit-slider-one .video-content-area{
-	position: static;
-	justify-content: flex-start;
-	display: flex;
+.pbmit-slider-one .video-content-area {
+  position: static;
+  justify-content: flex-start;
+  display: flex;
 }
-.pbmit-slider-one .pbmit-shape-bg{
-	display: block;
+.pbmit-slider-one .pbmit-shape-bg {
+  display: block;
 }
-.pbmit-slider-one .pbmit-slider-desc{
-	text-align: left;
-	max-width: 62ch;
-	margin-top: var(--pfg-space-6);
-	text-shadow: 0 2px 18px rgba(8, 14, 20, .45);   /* читаемость на фото, как у заголовка (§9.7) */
+.pbmit-slider-one .pbmit-slider-desc {
+  text-align: left;
+  max-width: 62ch;
+  margin-top: var(--pfg-space-6);
+  text-shadow: 0 2px 18px rgba(8, 14, 20, 0.45); /* читаемость на фото, как у заголовка (§9.7) */
 }
 
 /* ==========================================================================
@@ -1603,54 +1914,54 @@ summary:focus-visible,
    ========================================================================== */
 
 /* --- 19.1 Trust section layout --- */
-.pfg-trust-section{
-	padding: var(--pfg-space-10) 0;
-	background: var(--pfg-ink);
-	color: #fff;
+.pfg-trust-section {
+  padding: var(--pfg-space-12) 0;
+  background: var(--pfg-ink);
+  color: #fff;
 }
-.pfg-trust-card{
-	text-align: center;
-	padding: var(--pfg-space-6);
-	border-radius: var(--pfg-radius);
-	background: rgba(255, 255, 255, .04);
-	transition: var(--pfg-tf);
+.pfg-trust-card {
+  text-align: center;
+  padding: var(--pfg-space-6);
+  border-radius: var(--pfg-radius);
+  background: rgba(255, 255, 255, 0.04);
+  transition: var(--pfg-tf);
 }
-.pfg-trust-card:hover{
-	background: rgba(255, 255, 255, .08);
-	transform: translateY(-4px);
+.pfg-trust-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px);
 }
 
 /* --- 19.2 Trust numbers --- */
-.pfg-trust-number{
-	font-size: 3.5rem;
-	font-weight: 700;
-	line-height: 1;
-	color: var(--pfg-gold);
-	margin-bottom: var(--pfg-space-3);
-	font-family: var(--pbmit-heading-typography-font-family);
+.pfg-trust-number {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--pfg-gold);
+  margin-bottom: var(--pfg-space-3);
+  font-family: var(--pbmit-heading-typography-font-family);
 }
-.pfg-trust-label{
-	font-size: 1.125rem;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	margin-bottom: var(--pfg-space-2);
-	color: #fff;
+.pfg-trust-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--pfg-space-2);
+  color: #fff;
 }
-.pfg-trust-desc{
-	font-size: 0.9375rem;
-	color: rgba(255, 255, 255, .7);
-	line-height: var(--pfg-lh-body);
+.pfg-trust-desc {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: var(--pfg-lh-body);
 }
 
 /* --- 19.3 Responsive --- */
-@media (max-width: 768px){
-	.pfg-trust-number{
-		font-size: 2.75rem;
-	}
-	.pfg-trust-section{
-		padding: var(--pfg-space-8) 0;
-	}
+@media (max-width: 768px) {
+  .pfg-trust-number {
+    font-size: 2.75rem;
+  }
+  .pfg-trust-section {
+    padding: var(--pfg-space-8) 0;
+  }
 }
 
 /* ==========================================================================
@@ -1669,40 +1980,40 @@ summary:focus-visible,
    height-страховка на коротких ландшафтных экранах. Переопределяем все 3 вендорных
    тира (1000/880/700) одним правилом: спецификность 0,2,0 == вендор, выигрыш по
    source-order (custom.css грузится последним), без !important. */
-.pbmit-slider-one .pbmit-slider-item{
-	height: 100vh;
-	height: 100svh;
-	min-height: 640px;
+.pbmit-slider-one .pbmit-slider-item {
+  height: 100vh;
+  height: 100svh;
+  min-height: 640px;
 }
 /* Контейнер слайда — flex-колонка с ВЕРТИКАЛЬНЫМ ЦЕНТРИРОВАНИЕМ: заголовок → кнопка
    → оффер идут единым блоком по центру высоты экрана. Прежний вариант (заголовок к
    верху + оффер к низу через margin-top:auto) давал «улёт вверх» и пустой низ —
    смотрелось рвано. Вендор уже даёт .container{height:-webkit-fill-available}. */
-.pbmit-slider-one .pbmit-slider-item > .container{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;   /* вертикальный центр */
-	align-items: center;       /* горизонтальный центр всего блока */
+.pbmit-slider-one .pbmit-slider-item > .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* вертикальный центр */
+  align-items: center; /* горизонтальный центр всего блока */
 }
 /* Контент (заголовок+кнопка) — колонкой по центру. Вендор: width:max-content +
    padding-top:305px тянул влево-вверх. Обнуляем top (центрируется родителем),
    раскладываем по центру, кнопка центрируется как flex-элемент. */
-.pbmit-slider-one .pbmit-slider-content{
-	padding-top: 0;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: auto;
-	text-align: center;
+.pbmit-slider-one .pbmit-slider-content {
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  text-align: center;
 }
 /* Оффер — единым блоком по центру под кнопкой. Vendor + Bootstrap тянули
    .video-content-area в правый-нижний угол (.d-flex .align-items-end
    .justify-content-end — все с !important), поэтому центрируем с !important
    (custom.css §CSS-архитектура: !important только против темы, что иначе не бьётся). */
-.pbmit-slider-one .video-content-area{
-	align-items: center !important;
-	justify-content: center !important;
-	margin-top: var(--pfg-space-6);
+.pbmit-slider-one .video-content-area {
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: var(--pfg-space-6);
 }
 
 /* --- 20.2 Заголовок: одна строка по центру (≥768px) ---
@@ -1715,14 +2026,14 @@ summary:focus-visible,
    переносится естественно в 2 строки и центрируется через text-align:center
    родителя .pbmit-slider-content (§20.1) — читаемый кегль на основном (мобильном)
    трафике важнее буквального «одной строкой». lh 1.15 (§9.7) сохраняется. */
-@media (min-width: 768px){
-	.pbmit-slider-one .pbmit-slider-title{
-		font-size: clamp(56px, 7.4vw, 122px);
-		white-space: nowrap;
-		text-align: center;
-		padding-bottom: 28px;
-		letter-spacing: -1px;
-	}
+@media (min-width: 768px) {
+  .pbmit-slider-one .pbmit-slider-title {
+    font-size: clamp(56px, 7.4vw, 122px);
+    white-space: nowrap;
+    text-align: center;
+    padding-bottom: 28px;
+    letter-spacing: -1px;
+  }
 }
 
 /* --- 20.3 Оффер первого экрана: по центру под кнопкой, 2 строки (desktop ≥992) ---
@@ -1732,21 +2043,21 @@ summary:focus-visible,
    центру; золотой левый штрих убран (он был для левой композиции). max-width:none
    и перенос по <br> в разметке держат ровно 2 строки. backdrop-filter допустим:
    .pbmit-slider-desc НЕ предок off-canvas меню (ограничение custom.css:382-389). */
-@media (min-width: 768px){
-	.pbmit-slider-one .pbmit-slider-desc{
-		font-size: 22px;
-		line-height: 32px;
-		font-weight: 500;
-		text-align: center !important;
-		max-width: none;
-		display: inline-block;
-		padding: 14px 28px;
-		background: rgba(15, 24, 32, .42);
-		backdrop-filter: blur(6px);
-		-webkit-backdrop-filter: blur(6px);
-		border-radius: var(--pfg-radius-sm);
-		border-bottom: 2px solid var(--pfg-gold);   /* тонкий золотой акцент, симметрично центру */
-	}
+@media (min-width: 768px) {
+  .pbmit-slider-one .pbmit-slider-desc {
+    font-size: 22px;
+    line-height: 32px;
+    font-weight: 500;
+    text-align: center !important;
+    max-width: none;
+    display: inline-block;
+    padding: 14px 28px;
+    background: rgba(15, 24, 32, 0.42);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: var(--pfg-radius-sm);
+    border-bottom: 2px solid var(--pfg-gold); /* тонкий золотой акцент, симметрично центру */
+  }
 }
 
 /* --- 20.4 Оффер на мобильном: показать под кнопкой по центру (Юрий, 2026-06-29) ---
@@ -1759,22 +2070,121 @@ summary:focus-visible,
    гасим его и даём оффру собственную компактную плашку. <br> прячем — на узком
    экране ранний разрыв некрасив, абзац идёт естественным переносом по центру.
    .pbmit-slider-desc НЕ предок off-canvas меню — blur-фон допустим. */
-@media (max-width: 767px){
-	.pbmit-slider-one .pbmit-shape-bg{ display: block !important; }
-	.pbmit-slider-one .pbmit-shape-bg:before{ display: none; }
-	.pbmit-slider-one .video-content-area{ display: flex !important; }
-	.pbmit-slider-one .pbmit-slider-desc br{ display: none; }
-	.pbmit-slider-one .pbmit-slider-desc{
-		font-size: 15px;
-		line-height: 22px;
-		font-weight: 500;
-		text-align: center;
-		max-width: 90vw;
-		margin-top: 0;
-		padding: 12px 18px;
-		background: rgba(15, 24, 32, .48);
-		border-radius: var(--pfg-radius-sm);
-		border-bottom: 2px solid var(--pfg-gold);
+@media (max-width: 767px) {
+  .pbmit-slider-one .pbmit-shape-bg {
+    display: block !important;
+  }
+  .pbmit-slider-one .pbmit-shape-bg:before {
+    display: none;
+  }
+  .pbmit-slider-one .video-content-area {
+    display: flex !important;
+  }
+  .pbmit-slider-one .pbmit-slider-desc br {
+    display: none;
+  }
+  .pbmit-slider-one .pbmit-slider-desc {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 500;
+    text-align: center;
+    max-width: 90vw;
+    margin-top: 0;
+    padding: 12px 18px;
+    background: rgba(15, 24, 32, 0.48);
+    border-radius: var(--pfg-radius-sm);
+    border-bottom: 2px solid var(--pfg-gold);
+  }
+}
+
+/* ==========================================================================
+   ЭТАП 21 — БЛОК УСЛУГ: зазор рядов, заголовки, равновысокие карточки (2026-06-29).
+   Проблема 1: .row без row-gap → первый и второй ряды карточек слипаются.
+   Проблема 2: shortcode.css:2793-2806 задаёт display:-webkit-box + line-clamp:1
+   → заголовки обрезаются до «Бухгалтерское…». Предыдущая правка (§10.6, :721-725)
+   меняла clamp на 2, но не сбрасывала display:-webkit-box → обрезка сохранялась.
+   Проблема 3: .pbminfotech-post-item не растягивается до высоты колонки Bootstrap
+   → карточки в одном ряду разной высоты.
+   Правки только в custom.css (shortcode.css — read-only вендор).
+   Применяется к обоим вхождениям блока: index.html и services.html.
+   ========================================================================== */
+
+/* --- 21.1 Зазор между рядами карточек --- */
+.pbmit-element-service-style-2 .row{
+	row-gap: var(--pfg-space-6);
+}
+
+/* --- 21.2 Полный заголовок: сбрасываем обрезку ---
+   display:block отключает -webkit-box → line-clamp перестаёт работать.
+   overflow:hidden (НЕ visible) — текст переносится и остаётся внутри элемента;
+   в том числе при hover-сдвиге темы (translateY(-15px)) не вылезает за карточку.
+   font-size понижен с 24px (shortcode.css:2796) до 20px — в трёх-колоночной сетке
+   при ширине ~236px контента «Бухгалтерское сопровождение» обтекает аккуратно. */
+.pbmit-element-service-style-2 .pbmit-service-title,
+.pbmit-element-service-style-2 .pbmit-service-title a{
+	display: block !important;
+	overflow: hidden !important;
+	-webkit-line-clamp: unset !important;
+	line-clamp: unset !important;
+	text-overflow: clip !important;
+	white-space: normal;
+	font-size: 20px !important;
+	line-height: 1.35 !important;
+}
+
+/* --- 21.3 Полное описание (shortcode.css:2807-2816 — line-clamp:3 + display:-webkit-box) --- */
+.pbmit-element-service-style-2 .pbmit-service-description{
+	display: block !important;
+	overflow: hidden !important;
+	-webkit-line-clamp: unset !important;
+	line-clamp: unset !important;
+}
+
+/* --- 21.4 Равновысокие карточки ---
+   Bootstrap row align-items:stretch уже есть; нужно сделать колонку flex-column,
+   чтобы pbminfotech-post-item растянулся на её полную высоту. */
+.pbmit-element-service-style-2 .pbmit-box-area,
+.pbmit-element-service-style-2 .pbmit-info-area{
+	display: flex;
+	flex-direction: column;
+}
+.pbmit-element-service-style-2 .pbminfotech-post-item,
+.pbmit-element-service-style-2 .pbmit-title-button-wrapper{
+	flex: 1;
+}
+
+/* ==========================================================================
+   ЭТАП 22 — БЛОК STATIC-BOX-STYLE-1: равновысокие панели (2026-06-29).
+   На desktop (>1300px): contentbox выдвигается в ghost-ячейку влагодаря
+   transform: translateX. Его высота (~313px) меньше высоты bg-imgbox (~343px)
+   → белая текстовая карточка на 30px ниже фото-панелей. Фикс: делаем карточку
+   flex-column, contentbox растягивается до полной высоты и центрирует контент.
+   На мобильном (<768px): responsive-img без высоты → разные пропорции фото
+   дают разные высоты карточек. Фикс: object-fit:cover + фиксированная высота.
+   shortcode.css вендорный — всё только в custom.css.
+   ========================================================================== */
+
+/* --- 22.1 Desktop (>1300px): contentbox растягивается до высоты фото-панелей --- */
+@media (min-width: 1301px) {
+	.pbmit-element-static-box-style-1 .pbmit-ele-static-box{
+		display: flex;
+		flex-direction: column;
+	}
+	.pbmit-element-static-box-style-1 .pbmit-contentbox{
+		flex: 1;
+		display: flex !important;
+		flex-direction: column;
+		justify-content: center;
 	}
 }
 
+/* --- 22.2 Mobile (<768px): фото одинаковой высоты через object-fit:cover ---
+   responsive-img.img имеет width:100% но не имеет height → разные пропорции
+   трёх фото дают разные высоты карточек. Фиксируем высоту и обрезаем по центру. */
+@media (max-width: 767px) {
+	.pbmit-static-box-style-1 .pbmit-responsive-img img{
+		height: 220px !important;
+		width: 100% !important;
+		object-fit: cover;
+	}
+}

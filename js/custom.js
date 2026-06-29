@@ -296,37 +296,41 @@
 	}
 
 	/* --- 10. Анимация счётчиков доверия (D6, Волна 3) ---------------
-	   Инициализирует numinate для .pfg-trust-number при появлении в области
-	   видимости. Паттерн взят из scripts.js:10-28 (тема использует waypoint +
-	   numinate для анимированных чисел). Идемпотентно: класс .completed
-	   предотвращает повторный запуск при возврате к секции. */
+	   IntersectionObserver + requestAnimationFrame, без зависимости от
+	   jQuery/waypoints/numinate — те давали дёрганый счётчик на малых числах
+	   (8, 11) и сбрасывали текст в «0» до появления в viewport.
+	   easeOutQuart: быстрый разгон, плавное торможение на финальной цифре.
+	   Класс .completed блокирует повторный запуск при скролле назад. */
 	function initTrustCounters() {
-		var counters = document.querySelectorAll('.pfg-trust-number[data-appear-animation="animateDigits"]');
-		if (!counters.length || typeof jQuery === 'undefined' || !jQuery.fn.waypoint || !jQuery.fn.numinate) return;
+		var counters = document.querySelectorAll('.pfg-trust-number[data-to]');
+		if (!counters.length) return;
 
-		counters.forEach(function(el) {
-			var $el = jQuery(el);
-			$el.html('0');
-			$el.waypoint(function(direction) {
-				if (!$el.hasClass('completed')) {
-					var from = parseInt($el.data('from')) || 0;
-					var to = parseInt($el.data('to')) || 0;
-					var interval = parseInt($el.data('interval')) || 1;
-					var after = $el.data('after') || '';
+		function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
 
-					$el.numinate({
-						format: '%counter%' + after,
-						from: from,
-						to: to,
-						runningInterval: 2000,
-						stepUnit: interval,
-						onComplete: function(elem) {
-							$el.addClass('completed');
-						}
-					});
+		function runCounter(el) {
+			var to = parseInt(el.getAttribute('data-to')) || 0;
+			var after = el.getAttribute('data-after') || '';
+			var duration = 1400;
+			var start = null;
+			function step(ts) {
+				if (!start) start = ts;
+				var t = Math.min((ts - start) / duration, 1);
+				el.textContent = Math.round(to * easeOutQuart(t)) + after;
+				if (t < 1) requestAnimationFrame(step);
+			}
+			requestAnimationFrame(step);
+			el.classList.add('completed');
+		}
+
+		var observer = new IntersectionObserver(function(entries) {
+			entries.forEach(function(entry) {
+				if (entry.isIntersecting && !entry.target.classList.contains('completed')) {
+					runCounter(entry.target);
 				}
-			}, { offset: '85%' });
-		});
+			});
+		}, { threshold: 0.4 });
+
+		counters.forEach(function(el) { observer.observe(el); });
 	}
 
 	})();
