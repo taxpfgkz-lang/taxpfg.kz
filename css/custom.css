@@ -327,17 +327,15 @@
   }
 }
 
-/* 4. Футер «Услуги» (.pbmit-two-column-menu): две колонки стояли впритык
-   (нулевой зазор, длинные пункты сталкивались). Добавляем зазор; на мобильном
-   (≤575px) разворачиваем в одну колонку. */
-.site-footer .widget .pbmit-two-column-menu ul.menu li {
-  padding-right: 20px;
+/* 4. Футер «Услуги» (.pbmit-two-column-menu): отменяем 2-колоночную раскладку
+   (shortcode.css:4533-4539 задаёт flex+li width:50% — 5 пунктов разбиваются
+   на 3+2 неравные колонки, выглядят неряшливо). Делаем единую колонку везде. */
+.site-footer .widget .pbmit-two-column-menu ul.menu{
+  display: block !important;
 }
-@media (max-width: 575px) {
-  .site-footer .widget .pbmit-two-column-menu ul.menu li {
-    width: 100%;
-    padding-right: 0;
-  }
+.site-footer .widget .pbmit-two-column-menu ul.menu li{
+  width: 100% !important;
+  padding-right: 0;
 }
 
 /* 5. Меню футера: text-transform:capitalize (shortcode.css) ломал русские
