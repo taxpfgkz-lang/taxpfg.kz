@@ -20,6 +20,7 @@
 		initHeaderContact();
 		initStickyCta();
 		initTrustCounters();
+		initConversionTracking();
 	});
 
 	/* --- 0. Активный пункт меню по текущей странице -----------------------
@@ -173,6 +174,7 @@
 				if (msg) text += '\nВопрос: ' + msg;
 
 				var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
+				fireConversion(); // отправка лид-формы → конверсия Google Ads (см. раздел 11)
 				window.open(url, '_blank', 'noopener');
 
 				if (status) {
@@ -367,6 +369,65 @@
 		}, { threshold: 0.4 });
 
 		counters.forEach(function(el) { observer.observe(el); });
+	}
+
+	/* --- 11. Конверсия Google Ads: клики WhatsApp / «позвонить» (tel:) -------
+	   Цель «Отправка формы для потенциальных клиентов»
+	   (send_to: AW-18311535243/AokACN_Kv80cEIu1z5tE). Конверсией считаем любой
+	   переход в WhatsApp (wa.me / whatsapp.com) и любой клик «позвонить» (tel:),
+	   а также отправку лид-формы (initLeadForm вызывает fireConversion перед
+	   window.open).
+
+	   Реализация — ОДИН делегированный слушатель на document, а НЕ onclick в
+	   разметке: целевых ссылок > 100 на 11 страницах, плюс часть инжектится из
+	   JS (плавающая кнопка, контакт в шапке, sticky-CTA). Делегирование ловит и
+	   статические, и динамические ссылки разом — без правок в 11 HTML.
+
+	   Все WhatsApp-ссылки — target="_blank" (вкладка не выгружается), поэтому шлём
+	   конверсию fire-and-forget: gtag доставляет запрос через sendBeacon и без
+	   ожидания. Навигацию/переход НЕ перехватываем — поведение ссылок и формы не
+	   меняется (logic-safe). gtag глобально определён inline-тегом в <head>; если
+	   его нет (блокировщик рекламы) — тихо выходим. */
+	var GADS_CONVERSION = 'AW-18311535243/AokACN_Kv80cEIu1z5tE';
+
+	function fireConversion(cb) {
+		if (typeof window.gtag !== 'function') { if (typeof cb === 'function') cb(); return; }
+		var done = false;
+		function finish() { if (done) return; done = true; if (typeof cb === 'function') cb(); }
+		window.gtag('event', 'conversion', {
+			send_to: GADS_CONVERSION,
+			value: 1.0,
+			currency: 'USD',
+			event_callback: finish
+		});
+		/* Подстраховка на случай, если event_callback не придёт (блокировщик,
+		   таймаут). Важна только когда cb выполняет навигацию. */
+		setTimeout(finish, 1000);
+	}
+
+	/* Публичный сниппет Google — доступен как onclick="return gtag_report_conversion(url)"
+	   в разметке, если понадобится точечно. Переходит по url из event_callback
+	   (для ссылок в той же вкладке). Наши tel:/WhatsApp-ссылки его НЕ используют —
+	   они покрыты делегированием в initConversionTracking. */
+	window.gtag_report_conversion = function (url) {
+		fireConversion(function () {
+			if (typeof url !== 'undefined') window.location = url;
+		});
+		return false;
+	};
+
+	function initConversionTracking() {
+		document.addEventListener('click', function (e) {
+			var t = e.target;
+			if (!t || !t.closest) return;
+			var a = t.closest('a[href]');
+			if (!a) return;
+			var href = (a.getAttribute('href') || '').toLowerCase();
+			var isTel = href.lastIndexOf('tel:', 0) === 0;
+			var isWa = /wa\.me|whatsapp\.com/.test(href);
+			if (!isTel && !isWa) return;
+			fireConversion();
+		}, false);
 	}
 
 	})();
